@@ -3,7 +3,9 @@ import { Route, Redirect } from "react-router-dom";
 import { Spin } from "antd";
 import Navbar from "../layouts/Navbar";
 import { AuthContext } from "../../contexts/AuthContext";
+import Notice from "../layouts/Notice";
 import Header from "../layouts/Header";
+import BreadCrumbEcommerce from "../layouts/BreadcrumbEcommerce";
 function ProtectRouter({ component: Component, ...rest }) {
   const {
     authState: { isLoading, isAuth },
@@ -21,8 +23,10 @@ function ProtectRouter({ component: Component, ...rest }) {
       render={(props) =>
         isAuth ? (
           <>
-            <Header />
+            <Notice />
+            <Header/>
             <Navbar />
+            <BreadCrumbEcommerce/>
             <Component {...rest} {...props} />
           </>
         ) : (

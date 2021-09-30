@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Row, Col, Spin } from "antd";
+import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -8,7 +8,6 @@ import AlertAuth from "./AlertAuth";
 export default function Login() {
   const {
     loginUser,
-    authState: { isLoading },
   } = useContext(AuthContext);
   const [loginForm, setLoginForm] = useState({
     identifier: "",

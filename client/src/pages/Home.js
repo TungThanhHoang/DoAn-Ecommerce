@@ -1,9 +1,10 @@
 import React from 'react'
+import Poster from '../components/layouts/Poster'
 function Home() {
     return (
-        <>
-       this is a home
-        </>
+        <div className="container">
+          <Poster/>
+        </div>
     )
 }
 
