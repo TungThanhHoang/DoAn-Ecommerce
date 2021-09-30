@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "name": "Products",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "Price": {
+      "type": "biginteger"
+    },
+    "Promotion": {
+      "type": "biginteger"
+    },
+    "picture": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "category": {
+      "via": "products",
+      "model": "category"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "quanlity": {
+      "type": "biginteger"
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "onebox",
+        "onebotlle",
+        "onekilogram",
+        "onegram",
+        "fivegram"
+      ],
+      "default": "onebox"
+    },
+    "wards": {
+      "collection": "ward",
+      "via": "product"
+    }
+  }
+}

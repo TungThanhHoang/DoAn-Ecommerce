@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wards",
+  "info": {
+    "name": "ward"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "product": {
+      "via": "wards",
+      "model": "products"
+    }
+  }
+}

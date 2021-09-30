@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "name": "Global",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {}
+}

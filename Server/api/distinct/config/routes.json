@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/distincts",
+      "handler": "distinct.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/distincts/count",
+      "handler": "distinct.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/distincts/:id",
+      "handler": "distinct.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/distincts",
+      "handler": "distinct.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/distincts/:id",
+      "handler": "distinct.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/distincts/:id",
+      "handler": "distinct.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

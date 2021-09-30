@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_locations",
+  "info": {
+    "name": "location",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "country": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.country"
+    }
+  }
+}

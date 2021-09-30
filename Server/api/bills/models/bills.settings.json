@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bills",
+  "info": {
+    "name": "Bills"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "unconfirmed",
+        "confirmed",
+        "deliveried"
+      ],
+      "default": "unconfirmed",
+      "required": true
+    },
+    "user": {
+      "via": "bills",
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}
