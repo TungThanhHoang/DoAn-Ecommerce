@@ -1,0 +1,132 @@
+.card-new__product {
+    width: 100%;
+}
+
+.card-new__main {
+    padding-bottom: 2rem;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.view-all__product {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    padding: .4rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.view-all__product span {
+    padding-right: .4rem;
+}
+
+.view-all__product:hover {
+    border: 1px solid rgba(243, 121, 51, 0.596);
+}
+
+.card-new__title {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.card-new__title::after {
+    content: "";
+    display: block;
+    color: #000;
+    width: 50%;
+    height: 3px;
+    background-color: rgba(247, 120, 16, 0.76);
+}
+
+.card-product__item {
+    border-radius: 10px;
+    width: 180px;
+    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
+    transition: .4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-product__item .title-product {
+    font-size: 1rem;
+    padding-left: .8rem;
+    padding-top: .6rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-product__item .address-product {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    padding-top: .2rem;
+    padding-left: .8rem;
+}
+
+.card-product__item .address-product span {
+    padding-left: .4rem;
+    color: rgba(18, 18, 19, 0.74);
+}
+
+.card-product__item .main-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem .8rem;
+}
+
+.main-product .price-product {
+    color: orange;
+    font-size: 16px;
+}
+
+.main-product .weight-product {}
+
+.card-product__item .add-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: .6rem 1rem;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: orange;
+    color: #fff;
+    margin-bottom: .5rem;
+    cursor: pointer;
+}
+
+.card-product__item .add-cart span {
+    padding-right: .4rem;
+}
+
+.img-product {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.card-product__item:hover .img-product {
+    transform: scale(1.15);
+    transition: .4s ease;
+}
+
+.card-product__item:hover {
+    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px, rgba(14, 30, 37, .32) 0px 2px 16px 0px;
+}
+
+.card-new__main .slick-slide {
+    padding: 1rem .5rem;
+}

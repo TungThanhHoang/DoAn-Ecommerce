@@ -18,6 +18,7 @@ export default function Poster() {
               autoplaySpeed={4000}
               speed={1000}
               pauseOnHover="true"
+              dotPosition="bottom"
               arrows
               prevArrow={<ArrowLeft />}
               nextArrow={<ArrowRight />}
@@ -41,7 +42,7 @@ export default function Poster() {
             </Carousel>
           </div>
         </Col>
-        <Col md={8} sm={24} xs={24}>
+        <Col md={8} xs={12}>
           <div className="poster-main__right">
             <Col>
               <div

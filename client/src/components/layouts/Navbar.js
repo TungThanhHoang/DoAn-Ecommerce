@@ -27,23 +27,39 @@ export default function Navbar() {
       <h4 className="title">Sản phẩm vừa thêm</h4>
       <div className="padding-1">
         <div className="cart-item">
-          <img src="../../../nho.jpg" alt="" style={{width:"50px" ,height:"50px"}} />
+          <img
+            src="../../../nho.jpg"
+            alt=""
+            style={{ width: "50px", height: "50px" }}
+          />
           <div className="cart-title">The Ordinary B5</div>
           <div className="cart-price">200.000đ</div>
         </div>
         <div className="cart-item">
-          <img src="../../../nho.jpg" alt="" style={{width:"50px" ,height:"50px"}} />
+          <img
+            src="../../../nho.jpg"
+            alt=""
+            style={{ width: "50px", height: "50px" }}
+          />
           <div className="cart-title">The Ordinary B5</div>
           <div className="cart-price">200.000đ</div>
         </div>
         <div className="cart-item">
-          <img src="../../../nho.jpg" alt="" style={{width:"50px" ,height:"50px"}} />
-          <div className="cart-title">The Ordinary B5 sdhjshdsjdhsjdhdjahdsdsdfdfdfdfdsfsdfsdasd</div>
+          <img
+            src="../../../nho.jpg"
+            alt=""
+            style={{ width: "50px", height: "50px" }}
+          />
+          <div className="cart-title">
+            The Ordinary B5 sdhjshdsjdhsjdhdjahdsdsdfdfdfdfdsfsdfsdasd
+          </div>
           <div className="cart-price">200.000đ</div>
         </div>
       </div>
       <div className="cart-item__hidden">+ 3 Sản phẩm</div>
-      <Link  to="" className="cart-view">Xem Giỏ Hàng</Link>
+      <Link to="" className="cart-view">
+        Xem Giỏ Hàng
+      </Link>
     </div>
   );
   const menu = (
@@ -64,38 +80,52 @@ export default function Navbar() {
   );
 
   return (
-    <nav>
-      <div className="container">
-        <div className="navbar">
-          <div className="logo-brand">
-            <img src="../../../logoEcommerce.png" alt="" />
-          </div>
-          <div className="navbar-search">
-            <input type="text" placeholder="Tìm kiếm" className="field-input" />
-            <span className="btn-search">
-              <Search size={24} className="nav-search-icon" />
-            </span>
-          </div>
-          <div className="navbar-user">
-            <div className="nav-name__user">Xin chào, {firstname}</div>
-            <Dropdown overlay={menu} placement="bottomRight" arrow>
-              <div>
-                <div className="nav-background__user">
-                  <User className="nav-icon__user" />
+    <>
+      <nav>
+        <div className="container">
+          <div className="navbar">
+            <div className="logo-brand">
+              <img src="../../../logoEcommerce.png" alt="" />
+            </div>
+            <div className="navbar-search">
+              <input
+                type="text"
+                placeholder="Tìm kiếm"
+                className="field-input"
+              />
+              <span className="btn-search">
+                <Search size={24} className="nav-search-icon" />
+              </span>
+            </div>
+            <div className="navbar-user">
+              <div className="nav-name__user">Xin chào, {firstname}</div>
+              <Dropdown overlay={menu} placement="bottomRight" arrow>
+                <div>
+                  <div className="nav-background__user">
+                    <User className="nav-icon__user" />
+                  </div>
+                  <div></div>
                 </div>
-                <div></div>
-              </div>
-            </Dropdown>
-          </div>
-          <div className="navbar-cart">
-            <Dropdown overlay={cartItem} placement="bottomRight" arrow>
-              <Badge count={4}>
-                <ShoppingCartOutlined className="navbar-icon-cart" />
-              </Badge>
-            </Dropdown>
+              </Dropdown>
+            </div>
+            <div className="navbar-cart">
+              <Dropdown overlay={cartItem} placement="bottomRight" arrow>
+                <Badge count={4}>
+                  <ShoppingCartOutlined className="navbar-icon-cart" />
+                </Badge>
+              </Dropdown>
+            </div>
           </div>
         </div>
+      </nav>
+      <div className="navbar-search__mobile">
+        <div className="navbar-search">
+          <input type="text" placeholder="Tìm kiếm" className="field-input" />
+          <span className="btn-search">
+            <Search size={24} className="nav-search-icon" />
+          </span>
+        </div>
       </div>
-    </nav>
+    </>
   );
 }

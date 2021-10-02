@@ -1,0 +1,25 @@
+.banner-covid {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F8EFEA;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.banner-title {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+}
+
+.banner-title div:nth-child(1) {
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.banner-img {
+    margin-right: 1rem;
+}

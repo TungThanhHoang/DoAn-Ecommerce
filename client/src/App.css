@@ -28,10 +28,15 @@ a {
     color: #000;
 }
 
+a:hover {
+    color: unset;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 .5rem;
+    /* overflow-x: hidden; */
 }
 
 .spin-load {
