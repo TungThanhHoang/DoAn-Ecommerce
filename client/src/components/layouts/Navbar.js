@@ -1,15 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import {
-  UserOutlined,
-  ShoppingCartOutlined,
-  DownOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { LogOut, Search, User } from "react-feather";
 import { Badge, Dropdown, Menu } from "antd";
 import "./Navbar.css";
 import { AuthContext } from "../../contexts/AuthContext";
+import CartItem from "./CartItem";
+import { ProductContext } from "../../contexts/ProductContext";
 export default function Navbar() {
   const {
     authState: {
@@ -17,46 +14,40 @@ export default function Navbar() {
     },
     logoutUser,
   } = useContext(AuthContext);
+  const { cartItem, setCartItem, formatPrice, deleteItemCart } =
+    useContext(ProductContext);
 
   const handleLogout = () => {
     logoutUser();
+    setCartItem(null);
     window.location.reload();
   };
-  const cartItem = (
+  const renderCartItems = (
     <div className="cart">
       <h4 className="title">Sản phẩm vừa thêm</h4>
       <div className="padding-1">
-        <div className="cart-item">
+        {cartItem.length ? (
+          cartItem.slice(0, 3).map((item) => {
+            return (
+              <CartItem
+                itemcart={item}
+                key={item.id}
+                formatPrice={formatPrice}
+                deleteItemCart={deleteItemCart}
+              />
+            );
+          })
+        ) : (
+          <div className="cart-empty">
           <img
-            src="../../../nho.jpg"
             alt=""
-            style={{ width: "50px", height: "50px" }}
+            src="../../../empty-cart.png"
           />
-          <div className="cart-title">The Ordinary B5</div>
-          <div className="cart-price">200.000đ</div>
-        </div>
-        <div className="cart-item">
-          <img
-            src="../../../nho.jpg"
-            alt=""
-            style={{ width: "50px", height: "50px" }}
-          />
-          <div className="cart-title">The Ordinary B5</div>
-          <div className="cart-price">200.000đ</div>
-        </div>
-        <div className="cart-item">
-          <img
-            src="../../../nho.jpg"
-            alt=""
-            style={{ width: "50px", height: "50px" }}
-          />
-          <div className="cart-title">
-            The Ordinary B5 sdhjshdsjdhsjdhdjahdsdsdfdfdfdfdsfsdfsdasd
+          <span>Giỏ hàng trống</span>
           </div>
-          <div className="cart-price">200.000đ</div>
-        </div>
+        )}
       </div>
-      <div className="cart-item__hidden">+ 3 Sản phẩm</div>
+     { cartItem.length ? ( <div className="cart-item__hidden">Tổng {cartItem.length} Sản phẩm</div>):"" }
       <Link to="" className="cart-view">
         Xem Giỏ Hàng
       </Link>
@@ -109,8 +100,8 @@ export default function Navbar() {
               </Dropdown>
             </div>
             <div className="navbar-cart">
-              <Dropdown overlay={cartItem} placement="bottomRight" arrow>
-                <Badge count={4}>
+              <Dropdown overlay={renderCartItems} placement="bottomRight" arrow>
+                <Badge count={cartItem?.length}>
                   <ShoppingCartOutlined className="navbar-icon-cart" />
                 </Badge>
               </Dropdown>

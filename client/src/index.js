@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import AuthContextProvider from './contexts/AuthContext';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import AuthContextProvider from "./contexts/AuthContext";
+import ProductContextProvider from "./contexts/ProductContext";
 
 ReactDOM.render(
   <AuthContextProvider>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  </AuthContextProvider>
-  ,
-  document.getElementById('root')
+    <ProductContextProvider>
+      {/* <React.StrictMode> */}
+        <App />
+      {/* </React.StrictMode> */}
+    </ProductContextProvider>
+  </AuthContextProvider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
-import { Row, Col, Select } from "antd";
+import React, { useState, useContext } from "react";
+import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import SelectCountry from "./SelectCountry";
 import "./Register.css";

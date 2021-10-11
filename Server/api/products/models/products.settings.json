@@ -51,13 +51,14 @@
         "onebotlle",
         "onekilogram",
         "onegram",
-        "fivegram"
+        "fivegram",
+        "abag"
       ],
       "default": "onebox"
     },
     "wards": {
-      "collection": "ward",
-      "via": "product"
+      "via": "product",
+      "collection": "ward"
     }
   }
 }

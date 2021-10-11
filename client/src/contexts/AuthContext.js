@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useState, useEffect, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import { AuthReducer } from "../reducers/AuthReducer";
 import { apiUrl, LOCAL_TOKEN_USER } from "./constants";
 export const AuthContext = createContext();
@@ -7,7 +7,7 @@ const AuthContextProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(AuthReducer, {
     isLoading: true,
     isAuth: false,
-    user: null,
+    user: null, 
   });
   const setToken = (token) => {
     if (token) {
@@ -58,7 +58,7 @@ const AuthContextProvider = ({ children }) => {
     }
   };
   const logoutUser = () => {
-    localStorage.removeItem(LOCAL_TOKEN_USER);
+    localStorage.clear();
     dispatch({ type: "SET_AUTH", payload: { isAuth: false, user: null } });
   };
 

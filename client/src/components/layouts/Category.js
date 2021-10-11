@@ -16,9 +16,9 @@ export default function Category() {
   return (
     <div className="category">
       <Row justify="center" align="middle">
-        {category.map((item) => {
+        {category.map((item, index) => {
           return (
-            <Col xl={3} md={3} sm={6} xs={6}>
+            <Col xl={3} md={3} sm={6} xs={6} key={index}>
               <Link to={item.path}>
                 <div className="category-card">
                   <div

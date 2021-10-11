@@ -16,6 +16,11 @@
     cursor: pointer;
 }
 
+.poster-main__left {
+    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
+    border-radius: .8rem;
+}
+
 .poster-main__right {
     margin-left: 10px;
 }
@@ -23,6 +28,7 @@
 .poster-main__right--item {
     border-radius: .8rem;
     margin-bottom: 10px;
+    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
 }
 
 .ant-carousel .slick-next {
@@ -63,5 +69,9 @@
 @media screen and (max-width: 767px) {
     .poster-main__right {
         display: none;
+    }
+    .ant-carousel .slick-next,
+    .ant-carousel .slick-prev {
+        display: none !important;
     }
 }

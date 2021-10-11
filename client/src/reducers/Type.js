@@ -1,0 +1,5 @@
+export const LOAD_PRODUCTS = "LOAD_PRODUCTS"
+export const LOAD_NEW_PRODUCTS = "LOAD_NEW_PRODUCTS"
+export const ADD_TO_CART  = "ADD_TO_CART"
+export const REMOVE_TO_CART  = "REMOVE_TO_CART"
+export const LOAD_ITEMS_CART  = "LOAD_ITEMS_CART"

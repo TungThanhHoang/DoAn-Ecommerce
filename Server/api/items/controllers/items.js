@@ -1,6 +1,7 @@
 const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 
 module.exports = {
+  
   async find(ctx) {
     let entities;
     const user = ctx.state.user.id;

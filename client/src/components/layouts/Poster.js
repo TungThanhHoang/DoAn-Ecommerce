@@ -23,9 +23,9 @@ export default function Poster() {
               prevArrow={<ArrowLeft />}
               nextArrow={<ArrowRight />}
             >
-              {imgPoster?.map((item) => {
+              {imgPoster?.map((item , index) => {
                 return (
-                  <div>
+                  <div key={index}>
                     <div
                       className="carousel-item bg-img"
                       style={{
