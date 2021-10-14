@@ -6,6 +6,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Notice from "../layouts/Notice";
 import Header from "../layouts/Header";
 import BreadCrumbEcommerce from "../layouts/BreadcrumbEcommerce";
+import NotifyProduct from "../layouts/Notification/NotifyProduct";
 function ProtectRouter({ component: Component, ...rest }) {
   const {
     authState: { isLoading, isAuth },
@@ -26,6 +27,7 @@ function ProtectRouter({ component: Component, ...rest }) {
             <Notice />
             <Header/>
             <Navbar />
+            {/* <NotifyProduct/> */}
             <BreadCrumbEcommerce/>
             <Component {...rest} {...props} />
           </>

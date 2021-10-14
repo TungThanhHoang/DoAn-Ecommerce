@@ -10,41 +10,43 @@ import ProductItem from "./ProductItem";
 
 function NewProducts() {
   const {
-    productState: { products },
+    productState: { newProducts },
   } = useContext(ProductContext);
-  console.log(products);
+
+  const { formatPrice, addProductToCart, isloading } =
+    useContext(ProductContext);
   var settings = {
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToScroll: 3,
     initialSlide: 0,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-        }
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      }
-    ]
+          slidesToScroll: 2,
+        },
+      },
+    ],
   };
   return (
     <div className="card-new__main">
@@ -56,11 +58,9 @@ function NewProducts() {
           </div>
         </Link>
       </div>
-      <Slider
-      {...settings}
-      >
-        {products?.map((item) => {
-          return <ProductItem key={item.id} product={item} />;
+      <Slider {...settings}>
+        {newProducts?.map((item) => {
+          return <ProductItem key={item.id} product={item} formatPrice={formatPrice} addProductToCart={addProductToCart} isloading={isloading} />;
         })}
       </Slider>
     </div>

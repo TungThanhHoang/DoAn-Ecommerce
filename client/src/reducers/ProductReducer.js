@@ -1,7 +1,5 @@
 import { LOCAL_TOKEN_NEW_PRODUCTS } from "../contexts/constants";
 import {
-  ADD_TO_CART,
-  LOAD_ITEMS_CART,
   LOAD_NEW_PRODUCTS,
   LOAD_PRODUCTS,
 } from "./Type";
@@ -14,16 +12,10 @@ export const ProductReducer = (state, action) => {
         products: action.payload,
         isLoading: false,
       };
-    case LOAD_ITEMS_CART:
-      return {
-        ...state,
-        cartItem: action.items,
-        isLoading: false,
-      };
     case LOAD_NEW_PRODUCTS:
       return {
         ...state,
-        newProducts: action.products.slice(0, 8),
+        newProducts: action.payload,
         isLoading: false,
       };
     // case ADD_TO_CART:

@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Products from "./pages/Products";
 import Auth from "./pages/Auth";
+import Checkout from "./pages/Checkout";
 import Landing from "./pages/Landing";
 import ProtectRouter from "./components/routing/ProtectRouter";
 function App() {
@@ -13,7 +14,6 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/cart" component={Cart} />
           <Route exact path="/product" component={Products} />
           <Route
             exact
@@ -25,7 +25,9 @@ function App() {
             path="/register"
             render={(props) => <Auth {...props} authRouter="registerRouter" />}
           />
-          <ProtectRouter exact to="/" component={Home} />
+          <ProtectRouter exact path="/" component={Home} />
+          <ProtectRouter exact path="/cart" component={Cart} />
+          <ProtectRouter exact path="/checkout" component={Checkout} />
         </Switch>
       </Router>
     </div>

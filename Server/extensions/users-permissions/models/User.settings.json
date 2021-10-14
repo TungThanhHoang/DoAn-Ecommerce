@@ -65,15 +65,15 @@
         "address": {
             "type": "String"
         },
-        "bills": {
-            "via": "user",
-            "collection": "bills"
-        },
         "firstname": {
             "type": "string",
             "required": true
         },
         "lastname": {
+            "type": "string",
+            "required": true
+        },
+        "phone": {
             "type": "string",
             "required": true
         }

@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "bills",
   "info": {
-    "name": "Bills"
+    "name": "Bills",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -25,10 +26,27 @@
       "default": "unconfirmed",
       "required": true
     },
-    "user": {
-      "via": "bills",
-      "plugin": "users-permissions",
-      "model": "user"
+    "name": {
+      "type": "string"
+    },
+    "qrcode": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "id_code": {
+      "type": "text"
+    },
+    "price": {
+      "type": "text"
+    },
+    "cart": {
+      "collection": "items"
     }
   }
 }

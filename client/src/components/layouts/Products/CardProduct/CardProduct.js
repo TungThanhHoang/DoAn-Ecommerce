@@ -15,7 +15,7 @@ function CardProduct({
     },
   },
 }) {
-  const { formatPrice, addProduct } = useContext(ProductContext);
+  const { formatPrice, addProductToCart } = useContext(ProductContext);
 
   return (
     <Col xs={12} sm={6} xl={4} lg={5} className="card-product">
@@ -30,7 +30,7 @@ function CardProduct({
             <div className="price-product">{formatPrice.format(Price)}</div>
             <div className="size-product"> {size}</div>
           </div>
-          <button className="" onClick={(e) => addProduct(id)}>
+          <button className="" onClick={(e) => addProductToCart(id)}>
             <span>Thêm vào giỏ</span>
             <ShoppingCart size={18} />
           </button>

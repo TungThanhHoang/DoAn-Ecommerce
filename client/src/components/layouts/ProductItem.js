@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MapPin, ShoppingCart } from "react-feather";
 import { ProductContext } from "../../contexts/ProductContext";
-import { Swiper ,SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Button } from "antd";
 
 function ProductItem({
   product: {
@@ -15,21 +16,11 @@ function ProductItem({
       0: { url },
     },
   },
+  key,
+  isloading,
+  addProductToCart,
+  formatPrice,
 }) {
-
-
-  
-  const { formatPrice, addProduct } = useContext(ProductContext);
-  // const handleAddToCart = async (productId) =>{
-  //   try {
-  //     const addItem = await addProduct(productId  , 1)
-  //     console.log(addItem);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
-  // }
-
   return (
     <div className="card-product__item">
       <Link to="">
@@ -60,16 +51,32 @@ function ProductItem({
               : ""}
           </div>
         </div>
-        <button
-          className="add-cart"
-          onClick={(e) => {
-            e.preventDefault();
-            addProduct(id, 1);
-          }}
-        >
-          <span>Thêm vào giỏ</span>
-          <ShoppingCart size={18} />
-        </button>
+        {!isloading && (
+          <Button
+            className="add-cart"
+            onClick={(e) => {
+              e.preventDefault();
+              addProductToCart(id);
+            }}
+          >
+            <span>Thêm vào giỏ</span>
+            <ShoppingCart size={18} />
+          </Button>
+        )}
+
+        {isloading && (
+          <Button
+            loading
+            className="add-cart"
+            onClick={(e) => {
+              e.preventDefault();
+              addProductToCart(id);
+            }}
+          >
+            <span>Thêm vào giỏ</span>
+            <ShoppingCart size={18} />
+          </Button>
+        )}
       </Link>
     </div>
   );

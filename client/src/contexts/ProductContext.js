@@ -1,4 +1,6 @@
+import { Alert } from "antd";
 import axios from "axios";
+import { notification } from "antd";
 import React, { createContext, useEffect, useState, useReducer } from "react";
 import { ProductReducer } from "../reducers/ProductReducer";
 import {
@@ -9,26 +11,35 @@ import {
 import { apiUrl, LOCAL_TOKEN_CART_ITEM, LOCAL_TOKEN_USER } from "./constants";
 export const ProductContext = createContext();
 const ProductContextProvider = ({ children }) => {
-  // const [products, setProducts] = useState([]);
+  const [isloading, setIsLoading] = useState(false);
   const [cartItem, setCartItem] = useState([]);
-  const [newProducts, setNewProducts] = useState([]);
+  const [newProduct, setNewProducts] = useState([]);
   const [productState, dispatch] = useReducer(ProductReducer, {
     isLoading: true,
     products: [],
+    newProducts: [],
   });
   const getToken = localStorage.getItem(LOCAL_TOKEN_USER);
 
   const loadProduct = async () => {
     try {
       await axios
-        .get(`${apiUrl}/products`)
+        .get(`${apiUrl}/products?_start=8`)
         .then((res) => {
           dispatch({ type: LOAD_PRODUCTS, payload: res.data });
-          // setProducts(res.data);
-          // const cutData = products.slice(0, 8);
-          // setNewProducts(cutData);
-          console.log("cut", newProducts);
-          // localStorage.setItem(LOAD_NEW_PRODUCTS, JSON.stringify(cutData));
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadNewProduct = async () => {
+    try {
+      await axios
+        .get(`${apiUrl}/products?_limit=8`)
+        .then((res) => {
+          dispatch({ type: LOAD_NEW_PRODUCTS, payload: res.data });
         })
         .catch((err) => console.log(err));
     } catch (error) {
@@ -51,6 +62,7 @@ const ProductContextProvider = ({ children }) => {
         const item = localStorage.getItem(LOCAL_TOKEN_CART_ITEM);
         if (item) {
           const StoreItem = JSON.parse(item);
+
           console.log("item", JSON.parse(item));
           setCartItem(StoreItem);
         }
@@ -60,7 +72,13 @@ const ProductContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
+  const handleNotify = () => {
+    notification["success"]({
+      duration: 2,
+      message: "Thành Công",
+      description: "Đã thêm sản phẩm vào giỏ hàng !",
+    });
+  };
   const deleteItemCart = async (itemId) => {
     try {
       await axios
@@ -76,50 +94,83 @@ const ProductContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  // const addToCart = async (productId , quanlity) =>{
-  //     const updateCart =  products.findIndex( item => item.id === productId)
-  //       if(updateCart < 1){
-  //         await axios.post(`${apiUrl}/items`, { productId , quanlity:quanlity+1} )
-  //       }
-  //       else{
 
-  //       }
-  // }
-
-  const addProduct = async (productId) => {
+  const addProductToCart = async (productId) => {
+    const item = cartItem.find((idItem) => idItem.products.id === productId);
     try {
-      const addItem = productState.products?.findIndex(
-        (item) => item.id === productId
-      );
-      const response = await axios.post(`${apiUrl}/items`, {
-        products: productId,
-        quanlity: 1,
-      });
-      if (response.data) {
-        loadItemCart();
-        console.log(response.data);
+      setIsLoading(true);
+      if (item) {
+        const response = await axios.put(`${apiUrl}/items/${item.id}`, {
+          quanlity: parseInt(item.quanlity) + 1,
+        });
+        if (response.data) {
+          setIsLoading(false);
+          handleNotify();
+          loadItemCart();
+          console.log(response.data);
+        }
+      } else {
+        const response = await axios.post(`${apiUrl}/items`, {
+          products: productId,
+          quanlity: 1,
+        });
+        if (response.data) {
+          setIsLoading(false);
+
+          handleNotify();
+          loadItemCart();
+          console.log(response.data);
+        }
       }
-      // if (addItem) {
-      //   const response = await axios.put(`${apiUrl}/items/${productId}`, {
-      //     quanlity: 1,
-      //   });
-      //   if (response.data) {
-      //     console.log(response.data);
-      //   }
-      // } else {
-      //   const response = await axios.post(`${apiUrl}/items`, {
-      //     products: productId,
-      //     quanlity: 1,
-      //   });
-      //   if (response.data) {
-      //     console.log(response.data);
-      //   }
-      // }
     } catch (error) {
       console.log(error.data);
     }
   };
 
+  const increaseQuanlity = async (itemId, quanlity) => {
+    try {
+      if (quanlity < 10) {
+        console.log("test", cartItem);
+        setIsLoading(true);
+        await axios
+          .put(`${apiUrl}/items/${itemId}`, {
+            quanlity: parseInt(quanlity) + 1,
+          })
+          .then((res) => {
+            if (res.data) {
+              setIsLoading(false);
+              loadItemCart();
+              console.log("Tăng sản phẩm", cartItem.quanlity);
+            }
+          });
+      } else {
+        alert("Đã đạt tối đa số lượng!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const decreaseQuanlity = async (itemId, quanlity) => {
+    try {
+      if (quanlity > 1) {
+        console.log("test", cartItem);
+        await axios
+          .put(`${apiUrl}/items/${itemId}`, {
+            quanlity: parseInt(quanlity) - 1,
+          })
+          .then((res) => {
+            if (res.data) {
+              loadItemCart();
+              console.log("Tăng sản phẩm", cartItem.quanlity);
+            }
+          });
+      } else {
+        alert("Đã đạt tối thiểu số lượng!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const formatPrice = new Intl.NumberFormat("vi-VN", {
     style: "currency",
     currency: "VND",
@@ -127,6 +178,7 @@ const ProductContextProvider = ({ children }) => {
 
   useEffect(() => {
     loadProduct();
+    loadNewProduct();
     loadItemCart();
   }, []);
 
@@ -134,9 +186,13 @@ const ProductContextProvider = ({ children }) => {
     productState,
     formatPrice,
     cartItem,
-    addProduct,
+    newProduct,
+    isloading,
+    addProductToCart,
     setCartItem,
     deleteItemCart,
+    increaseQuanlity,
+    decreaseQuanlity,
   };
 
   return (

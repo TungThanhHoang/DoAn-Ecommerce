@@ -48,7 +48,7 @@ export default function Navbar() {
         )}
       </div>
      { cartItem.length ? ( <div className="cart-item__hidden">Tổng {cartItem.length} Sản phẩm</div>):"" }
-      <Link to="" className="cart-view">
+      <Link to="/cart" className="cart-view">
         Xem Giỏ Hàng
       </Link>
     </div>
