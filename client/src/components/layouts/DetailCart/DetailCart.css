@@ -7,17 +7,17 @@
 .detail-cart .main-right {
     background-color: #fff;
     border-radius: .4rem;
-    border: 1px solid orange
+    border: 1px solid var(--color-background)
 }
 
 .detail-cart .main-left .notify-cart {
     border-radius: .4rem;
     text-align: center;
     padding: .8rem;
-    color: orange;
+    color: var(--color-background);
     font-size: 14px;
     background-color: #fff;
-    border: 1px solid orange
+    border: 1px solid var(--color-background)
 }
 
 .detail-cart .main-left .content-cart {}
@@ -55,7 +55,7 @@
     background-color: #fff;
     border-radius: .4rem;
     padding: .4rem;
-    transition: .2s ease-in-out;
+    transition: .4s ease-in-out;
 }
 
 .detail-cart .main-left .info-product {
@@ -63,6 +63,12 @@
     padding-left: .8rem;
     align-items: center;
     flex-grow: 1;
+}
+
+.detail-cart .main-left .info-product input {
+    width: 16px;
+    height: 16px;
+    margin-right: 1rem;
 }
 
 .detail-cart .main-left .content-cart img {
@@ -120,7 +126,7 @@
 
 .detail-cart .main-left .btn-increase,
 .btn-decrease {
-    background-color: orange;
+    background-color: var(--color-background);
     padding: 0 !important;
     width: 40px;
     height: 40px;
@@ -128,7 +134,7 @@
     justify-content: center;
     align-items: center;
     border-radius: .2rem;
-    color: #fff;
+    color: #000;
     cursor: pointer;
     border: none;
 }
@@ -153,9 +159,11 @@
 .title-cart {
     margin-top: 1rem;
     font-size: 18px;
-    padding-left: .5rem;
+    margin: 1rem 1rem;
+    padding-bottom: .8rem;
     font-weight: 600;
     color: #000;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .main-right .checkout__item {
@@ -169,7 +177,7 @@
     padding: .6rem;
     margin: 1rem;
     border: none;
-    background-color: orange;
+    background-color: var(--color-background);
     color: #fff;
     border-radius: .4rem;
     font-weight: 600;
@@ -179,5 +187,5 @@
 .total-price__product {
     font-size: 20px;
     font-weight: 600;
-    color: orange;
+    color: var(--color-background);
 }

@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { MapPin, ShoppingCart } from "react-feather";
-import { ProductContext } from "../../contexts/ProductContext";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Button } from "antd";
 
 function ProductItem({

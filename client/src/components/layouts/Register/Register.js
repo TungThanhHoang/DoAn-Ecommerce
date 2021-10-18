@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
-import SelectCountry from "./SelectCountry";
+import SelectCountry from "../SelectCountry";
 import "./Register.css";
-import { AuthContext } from "../../contexts/AuthContext";
-import AlertAuth from "./AlertAuth";
+import { AuthContext } from "../../../contexts/AuthContext";
+import AlertAuth from "../AlertAuth";
 const countries = [
   { slug: "Quận Hải Châu", name: "Quận Hải Châu" },
   { slug: "Quận Cẩm Lệ", name: "Quận Cẩm Lệ" },

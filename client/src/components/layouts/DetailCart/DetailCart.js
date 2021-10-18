@@ -1,26 +1,65 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useMemo } from "react";
 import "./DetailCart.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Row, Col, Spin } from "antd";
 import ListProductCart from "./ListProductCart";
 import { ProductContext } from "../../../contexts/ProductContext";
+import { CartContext } from "../../../contexts/CartContext";
+import { Filter } from "react-feather";
 function DetailCart() {
   const {
     cartItem,
-    setCartItem,
-    formatPrice,
     deleteItemCart,
     increaseQuanlity,
     decreaseQuanlity,
     isloading,
-  } = useContext(ProductContext);
+  } = useContext(CartContext);
+  const { formatPrice } = useContext(ProductContext);
+  const [checkOut, setCheckOut] = useState([]);
+  const [checkedState, setCheckedState] = useState([...cartItem].fill(false));
+  const [totalPrice, setTotalPrice] = useState(0);
+  const history = useHistory();
+  const handleCheck = (idItem) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === idItem ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+    const total = updatedCheckedState.reduce((sum, currentState, index) => {
+      if (currentState === true) {
+        return sum + cartItem[index].products.Price * cartItem[index].quanlity;
+      }
+      return sum;
+    }, 0);
 
-  const handleTotalPrice = cartItem.reduce((sum, arr) => {
-    let result = sum + arr.quanlity * arr.products.Price;
-    console.log(result);
-    return result;
-  }, 0);
-  console.log(handleTotalPrice);
+    setTotalPrice(total);
+  };
+  const getData = useMemo(() => handleCheck(cartItem), [cartItem]);
+  let newarray = []
+  const handleSubmitOrder = () => {
+    [...checkedState]?.map((item, index) => {
+      if (item === true) {
+        newarray.push(cartItem[index])
+      }
+      return newarray;
+    });
+    // history.push("/checkout");
+  };
+ handleSubmitOrder()
+  const handleDeleteItem = (id) => {
+    deleteItemCart(id);
+    setCheckedState([...cartItem].fill(false));
+  };
+  const handleCheckProduct = () =>{
+     if(newarray.length === 0 ){
+       alert("Vui lòng chọn ít nhất 1 sản phẩm !")
+     } else{
+       const local = {
+         pathname:"/checkout",
+         state:{ newarray , totalPrice }
+       }
+       history.push(local)
+     }
+  }
   return (
     <div className="detail-cart">
       <Row>
@@ -44,16 +83,18 @@ function DetailCart() {
                   {isloading ? (
                     <Spin size="large" />
                   ) : (
-                    cartItem.map((item) => {
+                    cartItem.map((item, index) => {
                       return (
                         <ListProductCart
                           key={item.id}
                           cartItem={item}
+                          index={index}
                           formatPrice={formatPrice}
-                          deleteItemCart={deleteItemCart}
-                          handleTotalPrice={handleTotalPrice}
+                          deleteItemCart={handleDeleteItem}
                           increaseQuanlity={increaseQuanlity}
                           decreaseQuanlity={decreaseQuanlity}
+                          checkedState={checkedState}
+                          handleCheck={handleCheck}
                         />
                       );
                     })
@@ -68,24 +109,14 @@ function DetailCart() {
             <div className="title-cart">Chi Tiết Giỏ Hàng</div>
             <div className="wrap-checkout">
               <div className="checkout__item">
-                <div>Thành tiền</div>
-                <div>{formatPrice.format(handleTotalPrice)}</div>
-              </div>
-              <div className="checkout__item">
-                <div>Phí ship</div>
-                <div>10.000</div>
-              </div>
-              <div className="checkout__item">
                 <div>Tổng số tiền</div>
                 <div className="total-price__product">
-                  {formatPrice.format(handleTotalPrice + 10000)}
+                  {formatPrice.format(totalPrice)}
                 </div>
               </div>
-                <button>
-              <Link to="/checkout">
-                  Thanh Toán
-              </Link>
-                  </button>
+              <button onClick={()=> handleCheckProduct()}>
+                Thanh Toán
+              </button>
             </div>
           </div>
         </Col>

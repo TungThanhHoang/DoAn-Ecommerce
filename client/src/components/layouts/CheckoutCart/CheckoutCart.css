@@ -1,8 +1,9 @@
 .wrap-checkout .notify-delivery {
+    display: flex;
     background-color: rgb(255, 229, 196);
     margin-right: 2rem;
     border-radius: .4rem;
-    border: 1px solid orange;
+    border: 1px solid var(--color-background);
     padding: 1rem;
     margin-bottom: 1.2rem;
     color: rgb(141, 103, 33);
@@ -161,17 +162,17 @@
 }
 
 .card-info__order .total-price__order span:nth-child(2) {
-    color: orange;
+    color: var(--color-background);
     font-size: 18px;
 }
 
 .card-info__order button {
     width: 100%;
     padding: .6rem;
-    background-color: orange;
-    border: 1px solid orange;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-background);
     border-radius: .4rem;
-    color: #fff;
+    color: #000;
     font-size: 16px;
     font-weight: 600;
     margin-top: 1rem;

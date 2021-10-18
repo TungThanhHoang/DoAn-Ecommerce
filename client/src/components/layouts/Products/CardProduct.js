@@ -1,8 +1,9 @@
 import React, {useContext} from "react";
 import { Col } from "antd";
 import { ShoppingCart, MapPin } from "react-feather";
-import { apiUrl } from "../../../../contexts/constants";
-import { ProductContext } from "../../../../contexts/ProductContext";
+import { apiUrl } from "../../../contexts/constants";
+import { CartContext } from "../../../contexts/CartContext";
+import { ProductContext } from "../../../contexts/ProductContext";
 function CardProduct({
   product: {
     id,
@@ -15,7 +16,8 @@ function CardProduct({
     },
   },
 }) {
-  const { formatPrice, addProductToCart } = useContext(ProductContext);
+  const { formatPrice } = useContext(ProductContext);
+  const { addProductToCart } = useContext(CartContext);
 
   return (
     <Col xs={12} sm={6} xl={4} lg={5} className="card-product">

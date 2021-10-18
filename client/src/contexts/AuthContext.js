@@ -1,14 +1,23 @@
 import axios from "axios";
-import React, { createContext, useEffect, useReducer } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+  useContext,
+} from "react";
 import { AuthReducer } from "../reducers/AuthReducer";
+import { LOAD_ITEMS_CART } from "../reducers/Type";
 import { apiUrl, LOCAL_TOKEN_USER } from "./constants";
 export const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
+  const [loading, setLoading] = useState(false);
   const [authState, dispatch] = useReducer(AuthReducer, {
     isLoading: true,
     isAuth: false,
-    user: null, 
+    user: null,
   });
+
   const setToken = (token) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = ` Bearer ${token} `;
@@ -34,9 +43,11 @@ const AuthContextProvider = ({ children }) => {
     }
   };
   const loginUser = async (formLogin) => {
+    setLoading(true);
     try {
       const response = await axios.post(`${apiUrl}/auth/local`, formLogin);
       if (response.data.user) {
+        setLoading(false);
         localStorage.setItem(LOCAL_TOKEN_USER, response.data.jwt);
       }
       await loadUser();
@@ -47,7 +58,10 @@ const AuthContextProvider = ({ children }) => {
   };
   const registerUser = async (formRegister) => {
     try {
-      const response = await axios.post(`${apiUrl}/auth/local/register`, formRegister);
+      const response = await axios.post(
+        `${apiUrl}/auth/local/register`,
+        formRegister
+      );
       if (response.data.user) {
         localStorage.setItem(LOCAL_TOKEN_USER, response.data.jwt);
       }
@@ -70,6 +84,7 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   const authData = {
+    loading,
     loginUser,
     registerUser,
     logoutUser,

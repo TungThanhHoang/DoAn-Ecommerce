@@ -8,10 +8,10 @@
     bottom: 30px;
     margin-left: 30px;
     border: none;
-    background-color: orange;
+    background-color: var(--color-background);
     padding: .8rem 1.8rem;
     border-radius: 10px;
-    color: #fff;
+    color: #000;
     font-weight: 600;
     cursor: pointer;
 }
@@ -33,13 +33,13 @@
 
 .ant-carousel .slick-next {
     right: 6px;
-    background-color: orange;
+    background-color: var(--color-background);
     border-radius: 11px;
 }
 
 .ant-carousel .slick-prev {
     left: 6px;
-    background-color: orange;
+    background-color: var(--color-background);
     border-radius: 11px;
     z-index: 10;
 }
@@ -55,7 +55,7 @@
 .ant-carousel .slick-prev:focus,
 .ant-carousel .slick-next:focus {
     color: #fff;
-    background-color: orange;
+    background-color: var(--color-background);
 }
 
 .poster-main .slick-dots li button:before {

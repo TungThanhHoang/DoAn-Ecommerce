@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
-import Login from "../components/layouts/Login";
-import Register from "../components/layouts/Register";
+import Login from "../components/layouts/Login/Login";
+import Register from "../components/layouts/Register/Register";
 import { AuthContext } from "../contexts/AuthContext";
 import "./Auth.css";
 export default function Auth({ authRouter }) {

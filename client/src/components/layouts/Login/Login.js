@@ -1,14 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 import { Link } from "react-router-dom";
 import "./Login.css";
-import { AuthContext } from "../../contexts/AuthContext";
-import AlertAuth from "./AlertAuth";
+import { AuthContext } from "../../../contexts/AuthContext";
+import AlertAuth from "../AlertAuth";
 
 export default function Login() {
-  const {
-    loginUser,
-  } = useContext(AuthContext);
+  const { loginUser, loading } = useContext(AuthContext);
   const [loginForm, setLoginForm] = useState({
     identifier: "",
     password: "",
@@ -61,6 +59,7 @@ export default function Login() {
               <AlertAuth info={Alert} />
               <div className="form-field">
                 <input
+                  autoComplete={false}
                   type="text"
                   className="form-input"
                   placeholder=" "
@@ -81,7 +80,13 @@ export default function Login() {
                 />
                 <label className="form-label">Mật Khẩu</label>
               </div>
-              <button className="btn-login">Đăng Nhập</button>
+              {!loading ? (
+                <button className="btn-login">Đăng Nhập</button>
+              ) : (
+                <Button loading className="btn-login">
+                  Đăng Nhập
+                </Button>
+              )}
               <div className="navigation-register">
                 Bạn chưa có tài khoản ?
                 <span>

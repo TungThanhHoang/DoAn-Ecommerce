@@ -5,16 +5,17 @@ import React, { useContext } from "react";
 import { ArrowRight } from "react-feather";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { ProductContext } from "../../contexts/ProductContext";
+import { ProductContext } from "../../../contexts/ProductContext";
 import ProductItem from "./ProductItem";
+import { CartContext } from "../../../contexts/CartContext";
 
 function NewProducts() {
   const {
     productState: { newProducts },
+    formatPrice,
   } = useContext(ProductContext);
 
-  const { formatPrice, addProductToCart, isloading } =
-    useContext(ProductContext);
+  const { addProductToCart, isloading } = useContext(CartContext);
   var settings = {
     dots: true,
     infinite: false,
@@ -60,7 +61,15 @@ function NewProducts() {
       </div>
       <Slider {...settings}>
         {newProducts?.map((item) => {
-          return <ProductItem key={item.id} product={item} formatPrice={formatPrice} addProductToCart={addProductToCart} isloading={isloading} />;
+          return (
+            <ProductItem
+              key={item.id}
+              product={item}
+              formatPrice={formatPrice}
+              addProductToCart={addProductToCart}
+              isloading={isloading}
+            />
+          );
         })}
       </Slider>
     </div>

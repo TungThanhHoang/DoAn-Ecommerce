@@ -47,6 +47,17 @@
     },
     "cart": {
       "collection": "items"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "bills"
+    },
+    "payment": {
+      "type": "string"
     }
   }
 }

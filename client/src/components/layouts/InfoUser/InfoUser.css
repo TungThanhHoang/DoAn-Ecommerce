@@ -1,0 +1,43 @@
+.user-info__left {
+    height: 400px;
+}
+
+.user-info__left .user-info__item {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    font-weight: 600;
+}
+
+.user-info__left img {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+}
+
+.user-info__left .info-detail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}
+
+.user-info__left .info-user {
+    margin-left: 1rem;
+}
+
+.user-info__left .info-user div:nth-child(1) {
+    font-weight: 600;
+}
+
+.user-info__left .info-user div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    color: rgb(116, 116, 116);
+}
+
+.user-info__right {
+    height: 400px;
+    border-radius: .2rem;
+}

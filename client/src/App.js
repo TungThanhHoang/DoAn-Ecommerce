@@ -7,8 +7,9 @@ import Cart from "./pages/Cart";
 import Products from "./pages/Products";
 import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
-import Landing from "./pages/Landing";
 import ProtectRouter from "./components/routing/ProtectRouter";
+import OrderSuccess from "./pages/OrderSuccess";
+import InfoUser from "./pages/InfoUser";
 function App() {
   return (
     <div className="App">
@@ -28,6 +29,8 @@ function App() {
           <ProtectRouter exact path="/" component={Home} />
           <ProtectRouter exact path="/cart" component={Cart} />
           <ProtectRouter exact path="/checkout" component={Checkout} />
+          <ProtectRouter exact path="/order-success" component={OrderSuccess} />
+          <ProtectRouter exact path="/info-user" component={InfoUser} />
         </Switch>
       </Router>
     </div>

@@ -1,0 +1,32 @@
+.notify-success {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.img-success {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.code-order {
+    margin-top: 2rem;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.navigation-user {
+    margin-top: 4rem;
+}
+
+.navigation-user a {
+    background-color: var(--color-background);
+    margin: .5rem;
+    padding: 1rem 2rem;
+    border-radius: .4rem;
+    color: #000;
+    font-weight: 600;
+}

@@ -4,9 +4,10 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { LogOut, Search, User } from "react-feather";
 import { Badge, Dropdown, Menu } from "antd";
 import "./Navbar.css";
-import { AuthContext } from "../../contexts/AuthContext";
-import CartItem from "./CartItem";
-import { ProductContext } from "../../contexts/ProductContext";
+import { AuthContext } from "../../../contexts/AuthContext";
+import CartItem from "../CartItem";
+import { ProductContext } from "../../../contexts/ProductContext";
+import { CartContext } from "../../../contexts/CartContext";
 export default function Navbar() {
   const {
     authState: {
@@ -14,12 +15,11 @@ export default function Navbar() {
     },
     logoutUser,
   } = useContext(AuthContext);
-  const { cartItem, setCartItem, formatPrice, deleteItemCart } =
-    useContext(ProductContext);
+  const { cartItem, deleteItemCart } = useContext(CartContext);
+  const { formatPrice } = useContext(ProductContext);
 
   const handleLogout = () => {
     logoutUser();
-    setCartItem(null);
     window.location.reload();
   };
   const renderCartItems = (
@@ -39,15 +39,16 @@ export default function Navbar() {
           })
         ) : (
           <div className="cart-empty">
-          <img
-            alt=""
-            src="../../../empty-cart.png"
-          />
-          <span>Giỏ hàng trống</span>
+            <img alt="" src="../../../empty-cart.png" />
+            <span>Giỏ hàng trống</span>
           </div>
         )}
       </div>
-     { cartItem.length ? ( <div className="cart-item__hidden">Tổng {cartItem.length} Sản phẩm</div>):"" }
+      {cartItem.length ? (
+        <div className="cart-item__hidden">Tổng {cartItem.length} Sản phẩm</div>
+      ) : (
+        ""
+      )}
       <Link to="/cart" className="cart-view">
         Xem Giỏ Hàng
       </Link>

@@ -35,7 +35,7 @@
 }
 
 .view-all__product:hover {
-    border: 1px solid rgba(243, 121, 51, 0.596);
+    border: 1px solid var(--color-background);
 }
 
 .card-new__title {
@@ -49,7 +49,7 @@
     color: #000;
     width: 70px;
     height: 3px;
-    background-color: rgba(247, 120, 16, 0.76);
+    background-color: var(--color-background);
 }
 
 .card-product__item {
@@ -94,7 +94,7 @@
 }
 
 .main-product .price-product {
-    color: orange;
+    color: var(--color-background);
     font-size: 16px;
 }
 
@@ -114,10 +114,11 @@
     margin: 0 auto;
     border-radius: 10px;
     background-color: #fff;
-    border: 1px solid orange;
-    color: orange;
+    border: 1px solid var(--color-background);
+    color: var(--color-background);
     margin-bottom: .5rem;
     cursor: pointer;
+    height: 35px;
 }
 
 .card-product__item .add-cart span {
@@ -131,8 +132,8 @@
 }
 
 .card-product__item:hover .add-cart {
-    color: #fff;
-    background-color: orange;
+    color: #000;
+    background-color: var(--color-background);
 }
 
 .card-product__item:hover .img-product {

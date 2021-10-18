@@ -19,9 +19,9 @@ export default function Poster() {
               speed={1000}
               pauseOnHover="true"
               dotPosition="bottom"
-              arrows
-              prevArrow={<ArrowLeft />}
-              nextArrow={<ArrowRight />}
+              // arrows
+              // prevArrow={<ArrowLeft />}
+              // nextArrow={<ArrowRight />}
             >
               {imgPoster?.map((item , index) => {
                 return (

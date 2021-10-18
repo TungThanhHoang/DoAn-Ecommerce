@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { ProductContext } from "../../../contexts/ProductContext";
-import ProductItem from "../ProductItem";
-import CardProduct from "./CardProduct/CardProduct";
+import CardProduct from "./CardProduct";
 import { Row} from 'antd'
 import "./ProductHome.css";
+import { ProductContext } from "../../../contexts/ProductContext";
 function ProductHome() {
   const {
     productState: { products },
