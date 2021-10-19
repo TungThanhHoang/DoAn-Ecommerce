@@ -6,6 +6,7 @@ nav {
     top: 38.6px;
     z-index: 99;
     box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
+    margin-bottom: 2rem;
 }
 
 .navbar {

@@ -7,6 +7,7 @@ export const CartContext = createContext();
 const CartContextProvider = ({ children }) => {
   const [cartItem, setCartItem] = useState([]);
   const [isloading, setIsLoading] = useState(false);
+
   const getToken = localStorage.getItem(LOCAL_TOKEN_USER);
 
   const loadItemCart = async () => {
@@ -25,7 +26,7 @@ const CartContextProvider = ({ children }) => {
       const item = localStorage.getItem(LOCAL_TOKEN_CART_ITEM);
       if (item) {
         const StoreItem = JSON.parse(item);
-        console.log("item", JSON.parse(item));
+        console.log("item", StoreItem);
         setCartItem(StoreItem);
       }
 

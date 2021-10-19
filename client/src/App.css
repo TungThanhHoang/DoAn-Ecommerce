@@ -2,7 +2,8 @@
 :root {
     --color-border: #e3e4e6;
     --color-background: #f1c40f;
-    --color-font: #fff
+    --color-font: #fff;
+    --color-gray: rgb(116, 116, 116)
 }
 
 * {
@@ -43,7 +44,6 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 .5rem;
-    /* overflow-x: hidden; */
 }
 
 .spin-load {
@@ -60,4 +60,8 @@ a:hover {
 
 .padding-content {
     padding: .6rem;
+}
+
+.mb-1 {
+    margin-bottom: 4rem;
 }

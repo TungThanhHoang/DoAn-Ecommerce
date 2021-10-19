@@ -37,7 +37,7 @@ function ProtectRouter({ component: Component, ...rest }) {
             <Notice />
             <Header />
             {!navbar ? <Navbar /> : null}
-            {!navbar ? <BreadCrumbEcommerce /> : null}
+            {/* {!navbar ? <BreadCrumbEcommerce /> : null} */}
 
             <Component {...rest} {...props} />
           </>

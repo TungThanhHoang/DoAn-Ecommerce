@@ -33,7 +33,7 @@ const code = codeOrder(10000000, 100000000);
 function CheckoutCart() {
   const {
     authState: {
-      user: { address, country, distinct, firstname, lastname, phone },
+      user: { address, ward, district, firstname, lastname, phone },
     },
   } = useContext(AuthContext);
   const { formatPrice } = useContext(ProductContext);
@@ -48,7 +48,7 @@ function CheckoutCart() {
     name: `${lastname}${firstname} `,
     cart: stateItem.map((item) => item.id),
     price: JSON.stringify(totalPrice),
-    address: `${address}, ${distinct}, ${country}`,
+    address: `${address}, ${ward}, ${district}`,
     
   });
   const { orderProducts } = useContext(CheckOutContext);
@@ -117,7 +117,7 @@ function CheckoutCart() {
                 {lastname} {firstname}
               </div>
               <div className="address-delivery">
-                {address}, {distinct}, {country}
+                {address}, {ward}, {district}, Thành Phố Đà Nẵng
               </div>
               <div className="phone-user">
                 Điện thoại: <span>{phone}</span>

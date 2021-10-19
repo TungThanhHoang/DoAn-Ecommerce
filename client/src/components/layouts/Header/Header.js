@@ -11,10 +11,10 @@ function Header() {
               <Link to="">Về chúng tôi</Link>
             </div>
             <div className="main-left__item">
-              <Link to="">Tài khoản của tôi</Link>
+              <Link to="/user/info">Tài khoản của tôi</Link>
             </div>
             <div className="main-left__item">
-              <Link to="">Đơn hàng</Link>
+              <Link to="/user/bill">Đơn hàng</Link>
             </div>
           </div>
           <div className="header-main__right">

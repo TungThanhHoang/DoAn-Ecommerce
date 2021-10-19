@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { LogOut, Search, User } from "react-feather";
@@ -8,6 +8,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import CartItem from "../CartItem";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CartContext } from "../../../contexts/CartContext";
+import { CheckOutContext } from "../../../contexts/CheckOutContext";
 export default function Navbar() {
   const {
     authState: {
@@ -16,12 +17,24 @@ export default function Navbar() {
     logoutUser,
   } = useContext(AuthContext);
   const { cartItem, deleteItemCart } = useContext(CartContext);
+  const { bill } = useContext(CheckOutContext);
   const { formatPrice } = useContext(ProductContext);
 
   const handleLogout = () => {
     logoutUser();
     window.location.reload();
   };
+
+  // const handleCheck = (id) => {
+  //   const isCheck = cartItem.include(id);
+  //   if (isCheck) {
+  //     const new_arr = cartItem.filter((item) => item !== id);
+  //     return new_arr;
+  //   } else {
+  //     return cartItem;
+  //   }
+  // };
+
   const renderCartItems = (
     <div className="cart">
       <h4 className="title">Sản phẩm vừa thêm</h4>
@@ -58,7 +71,7 @@ export default function Navbar() {
     <Menu>
       <Menu.Item key="1">
         <span>
-          <Link to="">Thông tin cá nhân</Link>
+          <Link to="/user/info">Thông tin cá nhân</Link>
         </span>
       </Menu.Item>
       <Menu.Item key="2">

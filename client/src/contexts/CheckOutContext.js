@@ -5,6 +5,8 @@ export const CheckOutContext = createContext();
 const CheckOutContextProvider = ({ children }) => {
   const [payment, setPayment] = useState([]);
   const [bill, setBill] = useState([]);
+  const [stateBill, setStateBill] = useState("");
+  const [summaryBill ,setSummaryBill] = useState([])
   const getToken = localStorage.getItem(LOCAL_TOKEN_USER);
 
   const orderProducts = async (formProduct) => {
@@ -26,16 +28,37 @@ const CheckOutContextProvider = ({ children }) => {
             Authorization: `Bearer ${getToken}`,
           },
         })
-        .then((res) => console.log(res.data));
+        .then((res) => setBill(res.data));
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
+    const handleLoadBillDeivery = async () => {
+      try {
+        await axios
+          .get(`${apiUrl}/bills?status=${stateBill}`, {
+            headers: {
+              Authorization: `Bearer ${getToken}`,
+            },
+          })
+          .then((res) => setSummaryBill(res.data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleLoadBillDeivery();
+  }, [stateBill]);
+
+  useEffect(() => {
     loadBill();
   }, []);
+
   const contextData = {
+    bill,
     payment,
+    summaryBill,
+    setStateBill,
     orderProducts,
   };
   return (

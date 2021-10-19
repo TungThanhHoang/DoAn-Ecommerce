@@ -10,6 +10,7 @@ import Checkout from "./pages/Checkout";
 import ProtectRouter from "./components/routing/ProtectRouter";
 import OrderSuccess from "./pages/OrderSuccess";
 import InfoUser from "./pages/InfoUser";
+import DetailUser from "./components/layouts/InfoUser/DetailUser";
 function App() {
   return (
     <div className="App">
@@ -30,7 +31,10 @@ function App() {
           <ProtectRouter exact path="/cart" component={Cart} />
           <ProtectRouter exact path="/checkout" component={Checkout} />
           <ProtectRouter exact path="/order-success" component={OrderSuccess} />
-          <ProtectRouter exact path="/info-user" component={InfoUser} />
+          <ProtectRouter exact path="/user/info" component={InfoUser} userRouter="infoRouter" />
+          <ProtectRouter exact path="/user/bill" component={InfoUser} userRouter="billRouter" />
+          <ProtectRouter exact path="/user/change-password" component={InfoUser} userRouter="changePasswordRouter" />
+
         </Switch>
       </Router>
     </div>

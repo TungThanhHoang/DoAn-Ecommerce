@@ -11,7 +11,7 @@ function CartItem({
     },
   },
   formatPrice,
-  deleteItemCart,
+  handleCheck
 }) {
   return (
     <>

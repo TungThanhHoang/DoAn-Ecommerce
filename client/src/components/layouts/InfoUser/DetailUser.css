@@ -1,0 +1,74 @@
+.detail-user {
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: .2rem;
+}
+
+.detail-user .title-top {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+}
+
+.detail-user .title-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.detail-user .sub-title {
+    color: rgb(116, 116, 116);
+}
+
+.detail-user .wrap-detail {
+    margin-top: .5rem;
+}
+
+.detail-user .wrap-detail .name-user {
+    display: flex;
+}
+
+.detail-user .wrap-detail .input-field {
+    border: 1px solid var(--color-border);
+    height: 40px;
+    margin-right: 1rem;
+    border-radius: .1rem;
+    padding: .4rem;
+}
+
+.detail-user .wrap-detail .input-field:focus {
+    outline: none;
+    border-color: var(--color-background);
+}
+
+.detail-user .wrap-detail .title-input {
+    margin-right: .5rem;
+    color: rgb(116, 116, 116);
+    ;
+}
+
+.card-item {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    width: 215px;
+    margin-right: 1rem;
+}
+
+.detail-user .wrap-detail .address-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.detail-user .wrap-detail .ant-select {
+    margin: 0;
+    width: 215px;
+}
+
+.detail-user .btn-save {
+    padding: .5rem 2rem;
+    background-color: var(--color-background);
+    border: none;
+    color: #000;
+    border-radius: .2rem;
+    font-weight: 600;
+}

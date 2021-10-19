@@ -71,6 +71,17 @@ const AuthContextProvider = ({ children }) => {
       return error.response.data;
     }
   };
+  const updateUser = async (formUpdate)=>{
+      try {
+        const response = await axios.put(`${apiUrl}/user/me`, formUpdate)
+        if(response.data){
+          console.log(response.data);
+        }
+        return response.data
+      } catch (error) {
+        console.log(error);
+      }
+  }
   const logoutUser = () => {
     localStorage.clear();
     dispatch({ type: "SET_AUTH", payload: { isAuth: false, user: null } });

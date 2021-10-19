@@ -21,7 +21,9 @@
       "enum": [
         "unconfirmed",
         "confirmed",
-        "deliveried"
+        "deliveried",
+        "delivery",
+        "canceled"
       ],
       "default": "unconfirmed",
       "required": true

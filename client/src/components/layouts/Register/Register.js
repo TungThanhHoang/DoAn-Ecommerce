@@ -2,60 +2,11 @@ import React, { useState, useContext } from "react";
 import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import SelectCountry from "../SelectCountry";
-import "./Register.css";
 import { AuthContext } from "../../../contexts/AuthContext";
+import country from "../../../db/ward.json" 
 import AlertAuth from "../AlertAuth";
-const countries = [
-  { slug: "Quận Hải Châu", name: "Quận Hải Châu" },
-  { slug: "Quận Cẩm Lệ", name: "Quận Cẩm Lệ" },
-  { slug: "Quận Liên Chiểu", name: "Quận Liên Chiểu" },
-  { slug: "Quận Ngũ Hành Sơn", name: "Quận Ngũ Hành Sơn" },
-  { slug: "Quận Hòa Vang", name: "Quận Hòa Vang" },
-  { slug: "Quận Thanh Khê", name: "Quận Thanh Khê" },
-];
+import "./Register.css";
 
-const states = [
-  {
-    countryId: "Quận Hải Châu",
-    slug: "Phường Hải Châu I",
-    name: "Phường Hải Châu I",
-  },
-  {
-    countryId: "Quận Hải Châu",
-    slug: "Phường Hải Châu II ",
-    name: "Phường Hải Châu II",
-  },
-  {
-    countryId: "Quận Cẩm Lệ",
-    slug: "Phường Khuê Trung",
-    name: "Phường Khuê Trung",
-  },
-  {
-    countryId: "Quận Hải Châu",
-    slug: "Phường Hòa Cường Bắc",
-    name: "Phường Hòa Cường Bắc",
-  },
-  {
-    countryId: "Quận Hải Châu",
-    slug: "Phường Hòa Cường Nam",
-    name: "Phường Hòa Cường Nam",
-  },
-  {
-    countryId: "Quận Ngũ Hành Sơn",
-    slug: "Phường Hòa Hải",
-    name: "Phường Hòa Hải",
-  },
-  {
-    countryId: "Quận Cẩm Lệ",
-    slug: "Phường Hòa An",
-    name: "Phường Hòa An",
-  },
-  {
-    countryId: "Quận Cẩm Lệ",
-    slug: "Phường Hòa Xuân",
-    name: "Phường Hòa Xuân",
-  },
-];
 
 export default function Register() {
   const [selectCountryId, setSelectCountries] = useState(null);
@@ -212,7 +163,7 @@ export default function Register() {
             <Row>
               <SelectCountry
                 name="district"
-                options={countries}
+                options={country.countries}
                 value={selectCountryId}
                 onChange={handleSelectCoutry}
                 title="Chọn Quận/Huyện"
@@ -220,7 +171,7 @@ export default function Register() {
               />
               <SelectCountry
                 name="ward"
-                options={states.filter(
+                options={country.ward.filter(
                   (state) => state.countryId === selectCountryId
                 )}
                 value={selectStateId}
