@@ -37,7 +37,7 @@ function CheckoutCart() {
     },
   } = useContext(AuthContext);
   const { formatPrice } = useContext(ProductContext);
-  const [checked, setChecked] = useState("");
+  const [checked, setChecked] = useState();
   const location = useLocation();
   const history = useHistory();
   const stateItem = location.state.newarray;
@@ -49,8 +49,15 @@ function CheckoutCart() {
     cart: stateItem.map((item) => item.id),
     price: JSON.stringify(totalPrice),
     address: `${address}, ${ward}, ${district}`,
-    
+    payment: checked,
   });
+  const onChange = () => {
+    setOrder({
+      ...order,
+      payment: checked,
+    });
+  };
+
   const { orderProducts } = useContext(CheckOutContext);
   console.log(checked);
   const handleSubmit = async (event) => {
@@ -58,10 +65,10 @@ function CheckoutCart() {
     try {
       const submit = await orderProducts(order);
       if (submit) {
-        const local ={
-          pathname:"/order-success",
-          state:{ code }
-        }
+        const local = {
+          pathname: "/order-success",
+          state: { code },
+        };
         history.push(local);
       }
     } catch (error) {
@@ -97,8 +104,12 @@ function CheckoutCart() {
                 <div className="payment-item" key={item.id} value={item.title}>
                   <input
                     type="checkbox"
+                    name="payment"
                     checked={checked === item.title}
-                    onChange={() => setChecked(item.title)}
+                    onChange={() => {
+                      setChecked(item.title);
+                      onChange();
+                    }}
                   />
                   <img src={item.img} alt="" />
                   <div>{item.title}</div>

@@ -57,8 +57,9 @@
       "default": "onebox"
     },
     "wards": {
-      "via": "product",
-      "collection": "ward"
+      "via": "products",
+      "collection": "ward",
+      "dominant": true
     }
   }
 }

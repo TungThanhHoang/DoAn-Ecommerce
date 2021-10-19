@@ -39,7 +39,6 @@ export default function Register() {
       [event.target.name]: event.target.value, district:selectCountryId , ward:selectStateId
     });
   };
-  console.log(registerForm)
   const handleSelectCoutry = (value) => {
     setSelectState(null);
     setSelectCountries(value);

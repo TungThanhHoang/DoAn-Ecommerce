@@ -13,12 +13,19 @@ function ProductItem({
     picture: {
       0: { url },
     },
+    wards,
   },
   key,
   isloading,
   addProductToCart,
   formatPrice,
 }) {
+  const newWard = [];
+  const getWard = localStorage.getItem("ward");
+  wards.map((item) => {
+    if (item.name === getWard) newWard.push(item.name);
+    return newWard;
+  });
   return (
     <div className="card-product__item">
       <Link to="">
@@ -35,7 +42,7 @@ function ProductItem({
         <div className="title-product">{title}</div>
         <div className="address-product">
           <MapPin size={14} style={{ color: "orange" }} />
-          <span>Hải châu</span>
+          <span>{newWard}</span>
         </div>
         <div className="main-product">
           <div className="price-product">{formatPrice.format(Price)}</div>

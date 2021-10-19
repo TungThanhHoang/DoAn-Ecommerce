@@ -12,7 +12,7 @@ function NotifyOrder() {
       ></div>
       <span className="code-order">Mã đơn hàng: {idCode} </span>
       <div className="navigation-user">
-        <Link to="/user/detail-order"> Chi tiết đơn hàng</Link>
+        <Link to="/user/bill"> Chi tiết đơn hàng</Link>
         <Link to="/"> Trở về trang chủ</Link>
       </div>
     </div>

@@ -16,6 +16,7 @@ const AuthContextProvider = ({ children }) => {
     isLoading: true,
     isAuth: false,
     user: null,
+    ward: null,
   });
 
   const setToken = (token) => {
@@ -30,16 +31,20 @@ const AuthContextProvider = ({ children }) => {
       setToken(localStorage[LOCAL_TOKEN_USER]);
     }
     try {
-      await axios.get(`${apiUrl}/users/me`).then((res) =>
+      await axios.get(`${apiUrl}/users/me`).then((res) => {
         dispatch({
           type: "SET_AUTH",
-          payload: { isAuth: true, user: res.data },
-        })
-      );
+          payload: { isAuth: true, user: res.data, ward: res.data.ward },
+        });
+        localStorage.setItem("ward", res.data.ward);
+      });
     } catch (error) {
       localStorage.removeItem(LOCAL_TOKEN_USER);
       setToken(null);
-      dispatch({ type: "SET_AUTH", payload: { isAuth: false, user: null } });
+      dispatch({
+        type: "SET_AUTH",
+        payload: { isAuth: false, user: null, ward: null },
+      });
     }
   };
   const loginUser = async (formLogin) => {
@@ -71,20 +76,24 @@ const AuthContextProvider = ({ children }) => {
       return error.response.data;
     }
   };
-  const updateUser = async (formUpdate)=>{
-      try {
-        const response = await axios.put(`${apiUrl}/user/me`, formUpdate)
-        if(response.data){
-          console.log(response.data);
-        }
-        return response.data
-      } catch (error) {
-        console.log(error);
+  const updateUser = async (formUpdate, userId) => {
+    try {
+      const response = await axios.put(`${apiUrl}/users/${userId}`, formUpdate);
+      if (response.data) {
+        console.log(response.data);
+        await loadUser();
       }
-  }
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const logoutUser = () => {
     localStorage.clear();
-    dispatch({ type: "SET_AUTH", payload: { isAuth: false, user: null } });
+    dispatch({
+      type: "SET_AUTH",
+      payload: { isAuth: false, user: null, ward: null },
+    });
   };
 
   useEffect(() => {
@@ -99,6 +108,7 @@ const AuthContextProvider = ({ children }) => {
     loginUser,
     registerUser,
     logoutUser,
+    updateUser,
     authState,
   };
   return (

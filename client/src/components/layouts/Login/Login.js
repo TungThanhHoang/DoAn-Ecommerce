@@ -59,7 +59,6 @@ export default function Login() {
               <AlertAuth info={Alert} />
               <div className="form-field">
                 <input
-                  autoComplete={false}
                   type="text"
                   className="form-input"
                   placeholder=" "

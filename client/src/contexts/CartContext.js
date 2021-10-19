@@ -9,14 +9,9 @@ const CartContextProvider = ({ children }) => {
   const [isloading, setIsLoading] = useState(false);
 
   const getToken = localStorage.getItem(LOCAL_TOKEN_USER);
-
   const loadItemCart = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/items`, {
-        headers: {
-          Authorization: `Bearer ${getToken}`,
-        },
-      });
+      const response = await axios.get(`${apiUrl}/items`);
       if (response.data) {
         localStorage.setItem(
           LOCAL_TOKEN_CART_ITEM,
@@ -152,14 +147,10 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    loadItemCart();
-    // getItemCart();
-  }, []);
-
   const dataContext = {
     isloading,
     cartItem,
+    loadItemCart,
     decreaseQuanlity,
     increaseQuanlity,
     addProductToCart,

@@ -23,11 +23,7 @@ const CheckOutContextProvider = ({ children }) => {
   const loadBill = async () => {
     try {
       await axios
-        .get(`${apiUrl}/bills`, {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        })
+        .get(`${apiUrl}/bills`)
         .then((res) => setBill(res.data));
     } catch (error) {
       console.log(error);
@@ -50,14 +46,11 @@ const CheckOutContextProvider = ({ children }) => {
     handleLoadBillDeivery();
   }, [stateBill]);
 
-  useEffect(() => {
-    loadBill();
-  }, []);
-
   const contextData = {
     bill,
     payment,
     summaryBill,
+    loadBill,
     setStateBill,
     orderProducts,
   };

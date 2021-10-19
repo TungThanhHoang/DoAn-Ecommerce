@@ -1,7 +1,8 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./NewProducts.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import slug from "slug";
 import { ArrowRight } from "react-feather";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
@@ -13,8 +14,16 @@ function NewProducts() {
   const {
     productState: { newProducts },
     formatPrice,
+    loadNewProduct,
   } = useContext(ProductContext);
 
+  useEffect(() => {
+    setTimeout(() => {
+      const getToken = localStorage.getItem("ward");
+      const tokenProduct = slug(getToken);
+      loadNewProduct(tokenProduct);
+    });
+  }, []);
   const { addProductToCart, isloading } = useContext(CartContext);
   var settings = {
     dots: true,

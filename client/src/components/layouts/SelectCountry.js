@@ -15,7 +15,7 @@ export default function SelectCountry({
       className="select-country"
       bordered
       name="title"
-      value={value ? value : ""}
+      value={value}
       onChange={handleSelectChange}
       optionFilterProp="children"
       filterOption={(input, option) =>

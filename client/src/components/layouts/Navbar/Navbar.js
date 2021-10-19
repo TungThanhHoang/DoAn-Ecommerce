@@ -16,9 +16,13 @@ export default function Navbar() {
     },
     logoutUser,
   } = useContext(AuthContext);
-  const { cartItem, deleteItemCart } = useContext(CartContext);
+  const { cartItem, deleteItemCart, loadItemCart } = useContext(CartContext);
   const { bill } = useContext(CheckOutContext);
   const { formatPrice } = useContext(ProductContext);
+
+  useEffect(() => {
+    loadItemCart();
+  }, []);
 
   const handleLogout = () => {
     logoutUser();
@@ -90,7 +94,9 @@ export default function Navbar() {
         <div className="container">
           <div className="navbar">
             <div className="logo-brand">
-              <img src="../../../logoEcommerce.png" alt="" />
+              <Link to="/">
+                <img src="../../../logoEcommerce.png" alt="" />
+              </Link>
             </div>
             <div className="navbar-search">
               <input
