@@ -1,8 +1,4 @@
-import { LOCAL_TOKEN_NEW_PRODUCTS } from "../contexts/constants";
-import {
-  LOAD_NEW_PRODUCTS,
-  LOAD_PRODUCTS,
-} from "./Type";
+import { LOAD_NEW_PRODUCTS, LOAD_ONE_PRODUCT, LOAD_PRODUCTS } from "./Type";
 
 export const ProductReducer = (state, action) => {
   switch (action.type) {
@@ -16,6 +12,13 @@ export const ProductReducer = (state, action) => {
       return {
         ...state,
         newProducts: action.payload,
+        isLoading: false,
+      };
+
+    case LOAD_ONE_PRODUCT:
+      return {
+        ...state,
+        product: action.payload,
         isLoading: false,
       };
     // case ADD_TO_CART:

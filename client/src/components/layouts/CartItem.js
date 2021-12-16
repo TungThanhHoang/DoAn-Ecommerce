@@ -11,7 +11,6 @@ function CartItem({
     },
   },
   formatPrice,
-  handleCheck
 }) {
   return (
     <>
@@ -24,7 +23,6 @@ function CartItem({
         <div className="cart-title">{title}</div>
         <div className="cart-price">{formatPrice.format(Price)}</div>
       </div>
-      {/* <button onClick={ (e) => deleteItemCart(itemId)}> Delete </button> */}
     </>
   );
 }

@@ -3,7 +3,11 @@ import axios from "axios";
 import React, { createContext, useEffect, useState, useReducer } from "react";
 import slug from "slug";
 import { ProductReducer } from "../reducers/ProductReducer";
-import { LOAD_NEW_PRODUCTS, LOAD_PRODUCTS } from "../reducers/Type";
+import {
+  LOAD_NEW_PRODUCTS,
+  LOAD_ONE_PRODUCT,
+  LOAD_PRODUCTS,
+} from "../reducers/Type";
 import { apiUrl, LOCAL_TOKEN_USER } from "./constants";
 export const ProductContext = createContext();
 
@@ -12,11 +16,9 @@ const ProductContextProvider = ({ children }) => {
     isLoading: true,
     products: [],
     newProducts: [],
+    product: [],
   });
-  // const getWard = localStorage.getItem("ward") ;
-  // const slugWard = slug(getWard) ;
-  // const getWard = localStorage.getItem("ward");
-  // const slugWard = slug(getWard);
+  const [isloading, setLoading] = useState(false);
   const loadProduct = async (type) => {
     try {
       const response = await axios.get(
@@ -44,7 +46,20 @@ const ProductContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
+  const loadOneProduct = async (productId) => {
+    setLoading(true)
+    try {
+      await axios
+        .get(`${apiUrl}/products/${productId}`)
+        .then((res) => {
+          setLoading(false);
+          dispatch({ type: LOAD_ONE_PRODUCT, payload: [res.data] });
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const formatPrice = new Intl.NumberFormat("vi-VN", {
     style: "currency",
     currency: "VND",
@@ -53,8 +68,10 @@ const ProductContextProvider = ({ children }) => {
   const dataContext = {
     productState,
     formatPrice,
+    isloading,
     loadProduct,
     loadNewProduct,
+    loadOneProduct,
   };
 
   return (

@@ -1,30 +1,36 @@
 {
-  "kind": "collectionType",
-  "collectionName": "items",
-  "info": {
-    "name": "items",
-    "description": ""
-  },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "title": {
-      "type": "string"
+    "kind": "collectionType",
+    "collectionName": "items",
+    "info": {
+        "name": "items",
+        "description": ""
     },
-    "quanlity": {
-      "type": "biginteger"
+    "options": {
+        "increments": true,
+        "timestamps": true,
+        "draftAndPublish": true
     },
-    "user": {
-      "via": "items",
-      "plugin": "users-permissions",
-      "model": "user"
-    },
-    "products": {
-      "model": "products"
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string"
+        },
+        "quanlity": {
+            "type": "biginteger"
+        },
+        "user": {
+            "via": "items",
+            "plugin": "users-permissions",
+            "model": "user",
+            "autoPopulate": false
+        },
+        "products": {
+            "autoPopulate": true,
+            "model": "products"
+        },
+        "bill": {
+            "via": "cart",
+            "model": "bills"
+        }
     }
-  }
 }

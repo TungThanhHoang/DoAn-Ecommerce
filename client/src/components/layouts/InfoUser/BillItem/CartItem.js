@@ -1,17 +1,18 @@
 import React from "react";
+import { apiUrl } from "../../../../contexts/constants";
 
-function CartItem({ cart: { quanlity, products }, formatPrice }) {
+function CartItem({ cart: { quanlity, products:{ title , Price, size , picture:{ 0:{url} } } }, formatPrice }) {
   return (
     <div className="product-item">
-      <img src="../../../nho.jpg" alt="" />
+      <img src={`${apiUrl}${url}`} alt="" />
       <div className="info-product">
-        <div className="title-product">Nho Khô</div>
+        <div className="title-product">{title}</div>
         <div className="weight-product">
-          Phân loại: <span>500G</span>
+          Phân loại: <span>{size}</span>
         </div>
         <div className="quanlity-product">SL: X{quanlity}</div>
       </div>
-      <div className="price-product">{formatPrice.format(5000)}</div>
+      <div className="price-product">{formatPrice.format(Price)}</div>
     </div>
   );
 }

@@ -17,8 +17,8 @@ const AuthContextProvider = ({ children }) => {
     isAuth: false,
     user: null,
     ward: null,
+    bill: null,
   });
-
   const setToken = (token) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = ` Bearer ${token} `;
@@ -27,20 +27,28 @@ const AuthContextProvider = ({ children }) => {
     }
   };
   const loadUser = async () => {
-    if (localStorage[LOCAL_TOKEN_USER]) {
-      setToken(localStorage[LOCAL_TOKEN_USER]);
+    const tokenUser = localStorage[LOCAL_TOKEN_USER];
+    if (tokenUser) {
+      // setToken(localStorage[LOCAL_TOKEN_USER]);
+      console.log("token", tokenUser);
     }
     try {
-      await axios.get(`${apiUrl}/users/me`).then((res) => {
-        dispatch({
-          type: "SET_AUTH",
-          payload: { isAuth: true, user: res.data, ward: res.data.ward },
+      await axios
+        .get(`${apiUrl}/users/me`, {
+          headers: {
+            Authorization: `Bearer ${tokenUser}`,
+          },
+        })
+        .then((res) => {
+          dispatch({
+            type: "SET_AUTH",
+            payload: { isAuth: true, user: res.data, ward: res.data.ward },
+          });
+          localStorage.setItem("ward", res.data.ward);
         });
-        localStorage.setItem("ward", res.data.ward);
-      });
     } catch (error) {
       localStorage.removeItem(LOCAL_TOKEN_USER);
-      setToken(null);
+      // setToken(null);
       dispatch({
         type: "SET_AUTH",
         payload: { isAuth: false, user: null, ward: null },
@@ -54,6 +62,7 @@ const AuthContextProvider = ({ children }) => {
       if (response.data.user) {
         setLoading(false);
         localStorage.setItem(LOCAL_TOKEN_USER, response.data.jwt);
+        localStorage.setItem("bill", JSON.stringify(response.data.user.bills));
       }
       await loadUser();
       return response.data;
@@ -77,8 +86,17 @@ const AuthContextProvider = ({ children }) => {
     }
   };
   const updateUser = async (formUpdate, userId) => {
+    const tokenUser = await localStorage[LOCAL_TOKEN_USER];
     try {
-      const response = await axios.put(`${apiUrl}/users/${userId}`, formUpdate);
+      const response = await axios.put(
+        `${apiUrl}/users/${userId}`,
+        formUpdate,
+        {
+          headers: {
+            Authorization: `Bearer ${tokenUser}`,
+          },
+        }
+      );
       if (response.data) {
         console.log(response.data);
         await loadUser();

@@ -34,9 +34,6 @@
     "qrcode": {
       "model": "file",
       "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
@@ -48,18 +45,24 @@
       "type": "text"
     },
     "cart": {
-      "collection": "items"
+      "autoPopulate": true,
+      "collection": "items",
+      "via": "bill"
     },
     "phone": {
       "type": "string"
     },
     "user": {
+      "autoPopulate": false,
       "plugin": "users-permissions",
       "model": "user",
       "via": "bills"
     },
     "payment": {
       "type": "string"
+    },
+    "imgcode": {
+      "type": "text"
     }
   }
 }

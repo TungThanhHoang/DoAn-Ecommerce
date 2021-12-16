@@ -1,18 +1,19 @@
 const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 
 module.exports = {
-  
   async find(ctx) {
     let entities;
     const user = ctx.state.user.id;
     if (ctx.query._q) {
-      entities = await strapi.services.items.search({...ctx.query, user});
+      entities = await strapi.services.items.search({ ...ctx.query, user });
     } else {
-      entities = await strapi.services.items.find({...ctx.query, user});
+      entities = await strapi.services.items.find({ ...ctx.query, user });
     }
-    return entities.map((entity) =>
-      sanitizeEntity(entity, { model: strapi.models.items })
-    );
+    return entities.map((entity) => {
+      if (!entity["bill"] ) {
+        return sanitizeEntity(entity, { model: strapi.models.items });
+      }
+    });
   },
 
   async create(ctx) {

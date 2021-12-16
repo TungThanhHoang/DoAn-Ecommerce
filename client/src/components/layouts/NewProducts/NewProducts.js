@@ -6,6 +6,7 @@ import slug from "slug";
 import { ArrowRight } from "react-feather";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { message } from "antd";
 import { ProductContext } from "../../../contexts/ProductContext";
 import ProductItem from "./ProductItem";
 import { CartContext } from "../../../contexts/CartContext";
@@ -24,7 +25,9 @@ function NewProducts() {
       loadNewProduct(tokenProduct);
     });
   }, []);
-  const { addProductToCart, isloading } = useContext(CartContext);
+
+
+
   var settings = {
     dots: true,
     infinite: false,
@@ -75,8 +78,6 @@ function NewProducts() {
               key={item.id}
               product={item}
               formatPrice={formatPrice}
-              addProductToCart={addProductToCart}
-              isloading={isloading}
             />
           );
         })}

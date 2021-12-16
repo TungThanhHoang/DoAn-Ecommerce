@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Col } from "antd";
+import { Col ,message} from "antd";
 import { ShoppingCart, MapPin } from "react-feather";
 import { apiUrl } from "../../../contexts/constants";
 import { CartContext } from "../../../contexts/CartContext";
@@ -25,8 +25,15 @@ function CardProduct({
   });
 
   const { formatPrice } = useContext(ProductContext);
-  const { addProductToCart } = useContext(CartContext);
+  const { addProductToCart, isloading } = useContext(CartContext);
 
+  const handleAddProduct = (productId) => {
+    const addCart = addProductToCart(productId);
+    if (addCart) {
+      message.success("Thêm sản phẩm thành công", 1);
+    }
+    return addCart;
+  };
   return (
     <Col xs={12} sm={6} xl={4} lg={5} className="card-product">
       <div className="card-product__wrap ">
@@ -40,7 +47,7 @@ function CardProduct({
             <div className="price-product">{formatPrice.format(Price)}</div>
             <div className="size-product"> {size}</div>
           </div>
-          <button className="" onClick={(e) => addProductToCart(id)}>
+          <button className="" onClick={(e) => handleAddProduct(id)}>
             <span>Thêm vào giỏ</span>
             <ShoppingCart size={18} />
           </button>

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, message } from "antd";
 import { useLocation, useHistory } from "react-router-dom";
 import "./CheckoutCart.css";
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -7,8 +7,9 @@ import CheckOutItem from "./CheckOutItem";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CheckOutContext } from "../../../contexts/CheckOutContext";
 import { Bell } from "react-feather";
-
-const payment = [
+import { CartContext } from "../../../contexts/CartContext";
+import QRCode from "qrcode";
+const payments = [
   {
     id: 1,
     img: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-cod.svg",
@@ -37,7 +38,7 @@ function CheckoutCart() {
     },
   } = useContext(AuthContext);
   const { formatPrice } = useContext(ProductContext);
-  const [checked, setChecked] = useState();
+  const [checked, setChecked] = useState(payments[0].title);
   const location = useLocation();
   const history = useHistory();
   const stateItem = location.state.newarray;
@@ -51,20 +52,65 @@ function CheckoutCart() {
     address: `${address}, ${ward}, ${district}`,
     payment: checked,
   });
-  const onChange = () => {
-    setOrder({
-      ...order,
-      payment: checked,
-    });
-  };
+  const { payment } = order;
 
+  const { loadItemCart } = useContext(CartContext);
   const { orderProducts } = useContext(CheckOutContext);
-  console.log(checked);
+  let opts = {
+    errorCorrectionLevel: "Q",
+    width: 256,
+    height: 256,
+  };
+  const [imgQR, setImgQR] = useState("hello word");
+  const [convertProduct, setConvertProduct] = useState([]);
+  const [sendCode] = useState({
+    id_code: JSON.stringify(code),
+    phone: `${phone}`,
+    name: `${lastname} ${firstname}`,
+    price: JSON.stringify(totalPrice),
+    address: `${address}, ${ward}, ${district}`,
+  });
+  useEffect(() => {
+    const arrayProduct = [];
+    stateItem?.forEach((item) => {
+      arrayProduct.push([
+        ...convertProduct,
+        item.products.title,
+        item.products.Price,
+        item.products.picture[0].url,
+        item.quanlity,
+      ]);
+    });
+    setConvertProduct(arrayProduct);
+  }, []);
+
+  QRCode.toString(
+    JSON.stringify({
+      ...sendCode,
+      product: `${convertProduct}`,
+    }),
+    opts
+  )
+    .then((res) => {
+      setImgQR(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("đang tạo mã");
     try {
-      const submit = await orderProducts(order);
+      const submit = await orderProducts({
+        ...order,
+        imgcode: imgQR,
+        payment: checked,
+        
+      });
       if (submit) {
+        message.success("Đơn hàng đã được đặt hàng thành công !", 3);
+        loadItemCart();
         const local = {
           pathname: "/order-success",
           state: { code },
@@ -99,16 +145,16 @@ function CheckoutCart() {
             </div>
           </div>
           <div>
-            {payment.map((item) => {
+            {payments.map((item) => {
               return (
                 <div className="payment-item" key={item.id} value={item.title}>
                   <input
                     type="checkbox"
                     name="payment"
                     checked={checked === item.title}
+                    value={payment}
                     onChange={() => {
                       setChecked(item.title);
-                      onChange();
                     }}
                   />
                   <img src={item.img} alt="" />

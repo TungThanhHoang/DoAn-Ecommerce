@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import "./DetailCart.css";
 import { Link, useHistory } from "react-router-dom";
-import { Row, Col, Spin } from "antd";
+import { Row, Col, Spin, message } from "antd";
 import ListProductCart from "./ListProductCart";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CartContext } from "../../../contexts/CartContext";
@@ -34,32 +34,49 @@ function DetailCart() {
     setTotalPrice(total);
   };
   const getData = useMemo(() => handleCheck(cartItem), [cartItem]);
-  let newarray = []
+  let newarray = [];
   const handleSubmitOrder = () => {
     [...checkedState]?.map((item, index) => {
       if (item === true) {
-        newarray.push(cartItem[index])
+        newarray.push(cartItem[index]);
       }
       return newarray;
     });
     // history.push("/checkout");
   };
- handleSubmitOrder()
+  handleSubmitOrder();
   const handleDeleteItem = (id) => {
     deleteItemCart(id);
+    message.success("Xóa sản phẩm thành công !");
     setCheckedState([...cartItem].fill(false));
   };
-  const handleCheckProduct = () =>{
-     if(newarray.length === 0 ){
-       alert("Vui lòng chọn ít nhất 1 sản phẩm !")
-     } else{
-       const local = {
-         pathname:"/checkout",
-         state:{ newarray , totalPrice }
-       }
-       history.push(local)
-     }
-  }
+
+  const handleIncrease = (id, quanlity) => {
+    const increase = increaseQuanlity(id, quanlity);
+    if (increase) {
+      message.success("Tăng phẩm thành công !", 1);
+    }
+    return increase;
+  };
+  const handleDecrease = (id, quanlity) => {
+    const increase = decreaseQuanlity(id, quanlity);
+    if (increase) {
+      message.success("Giảm sản phẩm thành công !", 1);
+    }
+    return increase;
+  };
+  const handleCheckProduct = () => {
+    if (newarray.length === 0) {
+      message.warning("Vui lòng chọn ít nhất 1 sản phẩm !", 2);
+    } else {
+      message.loading("Loading ...", 1);
+      const local = {
+        pathname: "/checkout",
+        state: { newarray, totalPrice },
+      };
+      history.push(local);
+    }
+  };
   return (
     <div className="detail-cart">
       <Row>
@@ -80,25 +97,21 @@ function DetailCart() {
                   <div>Thao Tác</div>
                 </div>
                 <div className="list-product">
-                  {isloading ? (
-                    <Spin size="large" />
-                  ) : (
-                    cartItem.map((item, index) => {
-                      return (
-                        <ListProductCart
-                          key={item.id}
-                          cartItem={item}
-                          index={index}
-                          formatPrice={formatPrice}
-                          deleteItemCart={handleDeleteItem}
-                          increaseQuanlity={increaseQuanlity}
-                          decreaseQuanlity={decreaseQuanlity}
-                          checkedState={checkedState}
-                          handleCheck={handleCheck}
-                        />
-                      );
-                    })
-                  )}
+                  {cartItem.map((item, index) => {
+                    return (
+                      <ListProductCart
+                        key={item.id}
+                        cartItem={item}
+                        index={index}
+                        formatPrice={formatPrice}
+                        deleteItemCart={handleDeleteItem}
+                        increaseQuanlity={handleIncrease}
+                        decreaseQuanlity={handleDecrease}
+                        checkedState={checkedState}
+                        handleCheck={handleCheck}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </Col>
@@ -114,9 +127,7 @@ function DetailCart() {
                   {formatPrice.format(totalPrice)}
                 </div>
               </div>
-              <button onClick={()=> handleCheckProduct()}>
-                Thanh Toán
-              </button>
+              <button onClick={() => handleCheckProduct()}>Thanh Toán</button>
             </div>
           </div>
         </Col>

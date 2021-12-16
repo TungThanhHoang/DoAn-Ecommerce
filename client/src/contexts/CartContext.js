@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { notification } from "antd";
 import { apiUrl, LOCAL_TOKEN_CART_ITEM, LOCAL_TOKEN_USER } from "./constants";
 export const CartContext = createContext();
 
@@ -11,11 +10,15 @@ const CartContextProvider = ({ children }) => {
   const getToken = localStorage.getItem(LOCAL_TOKEN_USER);
   const loadItemCart = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/items`);
+      const response = await axios.get(`${apiUrl}/items?_sort=createdAt:DESC`, {
+        headers: {
+          Authorization: `Bearer ${getToken}`,
+        },
+      });
       if (response.data) {
         localStorage.setItem(
           LOCAL_TOKEN_CART_ITEM,
-          JSON.stringify(response.data)
+          JSON.stringify(response.data.filter((item) => item !== null))
         );
       }
       const item = localStorage.getItem(LOCAL_TOKEN_CART_ITEM);
@@ -39,25 +42,15 @@ const CartContextProvider = ({ children }) => {
   //   }
   //   return item;
   // };
-  const handleNotify = () => {
-    notification["success"]({
-      duration: 2,
-      message: "Thành Công",
-      description: "Đã thêm sản phẩm vào giỏ hàng !",
-    });
-  };
-  const handleNotifyError = () => {
-    notification["warning"]({
-      duration: 2,
-      message: "Không thành công",
-      description: "Đã thêm sản phẩm vào giỏ hàng !",
-    });
-  };
 
   const deleteItemCart = async (itemId) => {
     try {
       await axios
-        .delete(`${apiUrl}/items/${itemId}`)
+        .delete(`${apiUrl}/items/${itemId}`, {
+          headers: {
+            Authorization: `Bearer ${getToken}`,
+          },
+        })
         .then((res) => {
           if (res.data) {
             loadItemCart();
@@ -75,24 +68,37 @@ const CartContextProvider = ({ children }) => {
     try {
       setIsLoading(true);
       if (item) {
-        const response = await axios.put(`${apiUrl}/items/${item.id}`, {
-          quanlity: parseInt(item.quanlity) + 1,
-        });
+        const response = await axios.put(
+          `${apiUrl}/items/${item.id}`,
+          {
+            quanlity: parseInt(item.quanlity) + 1,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${getToken}`,
+            },
+          }
+        );
         if (response.data) {
           setIsLoading(false);
-          handleNotify();
           loadItemCart();
           console.log(response.data);
         }
       } else {
-        const response = await axios.post(`${apiUrl}/items`, {
-          products: productId,
-          quanlity: 1,
-        });
+        const response = await axios.post(
+          `${apiUrl}/items`,
+          {
+            products: productId,
+            quanlity: 1,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${getToken}`,
+            },
+          }
+        );
         if (response.data) {
           setIsLoading(false);
-
-          handleNotify();
           loadItemCart();
           console.log(response.data);
         }
@@ -108,9 +114,17 @@ const CartContextProvider = ({ children }) => {
         console.log("test", cartItem);
         setIsLoading(true);
         await axios
-          .put(`${apiUrl}/items/${itemId}`, {
-            quanlity: parseInt(quanlity) + 1,
-          })
+          .put(
+            `${apiUrl}/items/${itemId}`,
+            {
+              quanlity: parseInt(quanlity) + 1,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${getToken}`,
+              },
+            },
+          )
           .then((res) => {
             if (res.data) {
               setIsLoading(false);
@@ -130,9 +144,17 @@ const CartContextProvider = ({ children }) => {
       if (quanlity > 1) {
         console.log("test", cartItem);
         await axios
-          .put(`${apiUrl}/items/${itemId}`, {
-            quanlity: parseInt(quanlity) - 1,
-          })
+          .put(
+            `${apiUrl}/items/${itemId}`,
+            {
+              quanlity: parseInt(quanlity) - 1,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${getToken}`,
+              },
+            },
+          )
           .then((res) => {
             if (res.data) {
               loadItemCart();

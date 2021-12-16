@@ -26,9 +26,12 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logoutUser();
-    window.location.reload();
+    // window.location.reload();
   };
 
+  // cartItem.map( item=>{
+  //   if(item.)
+  // })
   // const handleCheck = (id) => {
   //   const isCheck = cartItem.include(id);
   //   if (isCheck) {
@@ -44,7 +47,7 @@ export default function Navbar() {
       <h4 className="title">Sản phẩm vừa thêm</h4>
       <div className="padding-1">
         {cartItem.length ? (
-          cartItem.slice(0, 3).map((item) => {
+          cartItem?.slice(0, 3).map((item) => {
             return (
               <CartItem
                 itemcart={item}

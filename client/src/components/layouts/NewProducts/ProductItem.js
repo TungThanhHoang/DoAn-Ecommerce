@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MapPin, ShoppingCart } from "react-feather";
-import { Button } from "antd";
+import { Button, message } from "antd";
+import { CartContext } from "../../../contexts/CartContext";
 
 function ProductItem({
   product: {
@@ -16,10 +17,17 @@ function ProductItem({
     wards,
   },
   key,
-  isloading,
-  addProductToCart,
   formatPrice,
 }) {
+  const { addProductToCart, isloading } = useContext(CartContext);
+
+  const handleAddProduct = (productId) => {
+    const addCart = addProductToCart(productId);
+    if (addCart) {
+      message.success("Thêm sản phẩm thành công",1);
+    }
+    return addCart;
+  };
   const newWard = [];
   const getWard = localStorage.getItem("ward");
   wards.map((item) => {
@@ -28,7 +36,12 @@ function ProductItem({
   });
   return (
     <div className="card-product__item">
-      <Link to="">
+      <Link
+        to={{
+          pathname: `/product/${id}`,
+          state: { newWard },
+        }}
+      >
         <img
           className="bg-img img-product"
           src={`http://localhost:1337` + url}
@@ -56,33 +69,26 @@ function ProductItem({
               : ""}
           </div>
         </div>
-        {!isloading && (
-          <Button
-            className="add-cart"
-            onClick={(e) => {
-              e.preventDefault();
-              addProductToCart(id);
-            }}
-          >
-            <span>Thêm vào giỏ</span>
-            <ShoppingCart size={18} />
-          </Button>
-        )}
-
-        {isloading && (
-          <Button
-            loading
-            className="add-cart"
-            onClick={(e) => {
-              e.preventDefault();
-              addProductToCart(id);
-            }}
-          >
-            <span>Thêm vào giỏ</span>
-            <ShoppingCart size={18} />
-          </Button>
-        )}
       </Link>
+      {!isloading && (
+        <Button className="add-cart" onClick={() => handleAddProduct(id)}>
+          <span>Thêm vào giỏ</span>
+          <ShoppingCart size={18} />
+        </Button>
+      )}
+
+      {isloading && (
+        <Button
+          loading
+          className="add-cart"
+          onClick={() => {
+            handleAddProduct(id);
+          }}
+        >
+          <span>Thêm vào giỏ</span>
+          <ShoppingCart size={18} />
+        </Button>
+      )}
     </div>
   );
 }

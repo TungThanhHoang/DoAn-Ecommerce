@@ -27,7 +27,10 @@ function DetailUser() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const sendData = await updateUser(infoUser, id);
+      const sendData = await updateUser(
+        { ...infoUser, district: selectCountryId, ward: selectStateId },
+        id
+      );
       if (sendData.data) {
         console.log(sendData.data);
       }

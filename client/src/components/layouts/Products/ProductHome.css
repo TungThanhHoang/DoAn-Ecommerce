@@ -27,23 +27,23 @@
 
 .card-product__wrap .title-product {
     padding-top: .2rem;
-    font-weight: 400;
+    font-weight: bold;
     text-transform: capitalize;
 }
 
 .card-product__wrap .ward-product {
-    font-size: 11px;
+    font-size: 12px;
     text-transform: capitalize;
     padding: .2rem 0;
 }
 
 .card-product__wrap .price-product {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .card-product__wrap .size-product {
-    font-size: 12px;
+    font-size: 14px;
     text-transform: capitalize;
 }
 

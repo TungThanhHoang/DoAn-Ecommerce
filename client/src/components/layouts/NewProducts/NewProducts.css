@@ -65,6 +65,7 @@
 
 .card-product__item .title-product {
     font-size: .9rem;
+    font-weight: bold;
     padding-left: .8rem;
     padding-top: .6rem;
     text-overflow: ellipsis;
@@ -76,14 +77,12 @@
     display: flex;
     align-items: center;
     font-size: 14px;
-    font-weight: 500;
     padding-top: .2rem;
     padding-left: .8rem;
 }
 
 .card-product__item .address-product span {
     padding-left: .4rem;
-    color: rgba(18, 18, 19, 0.74);
 }
 
 .card-product__item .main-product {
