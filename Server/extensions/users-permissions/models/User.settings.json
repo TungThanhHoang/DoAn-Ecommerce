@@ -10,6 +10,11 @@
     "timestamps": true
   },
   "attributes": {
+    "username": {
+      "type": "String",
+      "configurable": false,
+      "required": false
+    },
     "email": {
       "type": "email",
       "minLength": 6,

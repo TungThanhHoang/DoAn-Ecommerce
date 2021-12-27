@@ -7,7 +7,10 @@ module.exports = {
     if (ctx.query._q) {
       entities = await strapi.services.bills.search({ ...ctx.query, user });
     } else {
-      entities = await strapi.services.bills.find({ ...ctx.query, user}, {path:'cart', populate:{path:'products'}} );
+      entities = await strapi.services.bills.find(
+        { ...ctx.query, user },
+        { path: "cart", populate: { path: "products" } }
+      );
     }
     return entities.map((entity) =>
       sanitizeEntity(entity, { model: strapi.models.bills })
@@ -27,5 +30,15 @@ module.exports = {
       });
     }
     return sanitizeEntity(entity, { model: strapi.models.bills });
+  },
+  async findOne(ctx) {
+    let entities;
+    const { id } = ctx.params;
+    entities = await strapi.services.bills.findOne(
+      { id },
+      { path: "cart", populate: { path: "products" } }
+    );
+    console.log(entities);
+    return sanitizeEntity(entities, { model: strapi.models.bills });
   },
 };

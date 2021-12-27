@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shippers",
+  "info": {
+    "name": "Shipper",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "bills": {
+      "collection": "bills"
+    },
+    "ward_id": {
+      "columnName": "ward",
+      "model": "ward"
+    },
+    "title": {
+      "type": "string"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

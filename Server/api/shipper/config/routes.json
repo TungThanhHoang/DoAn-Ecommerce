@@ -1,0 +1,51 @@
+{
+    "routes": [{
+            "method": "GET",
+            "path": "/shippers",
+            "handler": "shipper.find",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/shippers/count",
+            "handler": "shipper.count",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/shippers/:id",
+            "handler": "shipper.findOne",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "POST",
+            "path": "/shippers",
+            "handler": "shipper.create",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "PUT",
+            "path": "/shippers/:id",
+            "handler": "shipper.update",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "DELETE",
+            "path": "/shippers/:id",
+            "handler": "shipper.delete",
+            "config": {
+                "policies": []
+            }
+        }
+    ]
+}
