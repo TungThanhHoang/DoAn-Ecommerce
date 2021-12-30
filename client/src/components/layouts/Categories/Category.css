@@ -16,3 +16,7 @@
     font-weight: 500;
     ;
 }
+
+.shadow-img {
+    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
+}

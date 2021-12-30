@@ -16,8 +16,13 @@
 .box-product .card-product .card-product__wrap {
     background-color: #fff;
     margin: .3rem;
-    height: 310px;
+    height: 315px;
     border-radius: .8rem;
+    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
+}
+
+.box-product .card-product .card-product__wrap:hover {
+    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px, rgba(14, 30, 37, .32) 0px 2px 16px 0px;
 }
 
 .card-product__wrap .quality-product {
@@ -48,11 +53,15 @@
 }
 
 .card-product__wrap button {
-    margin-top: .4rem;
+    position: absolute;
+    bottom: 8px;
+    transform: translateX(-50%);
+    left: 50%;
+    margin-bottom: .4rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
     align-items: center;
     border: 1px solid var(--color-background);
     background-color: #fff;
@@ -69,6 +78,26 @@
     color: #000;
 }
 
+.card-product__wrap:hover .title-add-cart {}
+
 .card-product__wrap:hover {
     box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px
+}
+
+@media screen and (max-width:1025px) {
+    .col-five {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width:769px) {
+    .col-five {
+        width: 33.33%;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .col-five {
+        width: 50%;
+    }
 }

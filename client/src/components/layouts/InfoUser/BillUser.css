@@ -9,6 +9,7 @@
     padding: 1rem;
     border-radius: .2rem;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
 .bill-item .state-bill {
@@ -61,7 +62,7 @@
     font-weight: 600;
     flex-grow: 1;
     text-align: right;
-    color: var(--color-background);
+    color: var(--color-gray);
 }
 
 .bill-item .bill-price {

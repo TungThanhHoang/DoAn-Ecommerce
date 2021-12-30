@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import "./DetailCart.css";
 import { Link, useHistory } from "react-router-dom";
-import { Row, Col, Spin, message } from "antd";
+import { Row, Col, Spin, message, Modal } from "antd";
 import ListProductCart from "./ListProductCart";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CartContext } from "../../../contexts/CartContext";
-import { Filter } from "react-feather";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+
+const { confirm } = Modal;
 function DetailCart() {
   const {
     cartItem,
@@ -46,9 +48,21 @@ function DetailCart() {
   };
   handleSubmitOrder();
   const handleDeleteItem = (id) => {
-    deleteItemCart(id);
-    message.success("Xóa sản phẩm thành công !");
-    setCheckedState([...cartItem].fill(false));
+    confirm({
+      title: "Bạn có chắc chắn muốn xóa sản phẩm này",
+      icon: <ExclamationCircleOutlined />,
+      okText: "Có",
+      okType: "danger",
+      cancelText: "Không",
+      onOk() {
+        deleteItemCart(id);
+        message.success("Xóa sản phẩm thành công !");
+        setCheckedState([...cartItem].fill(false));
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
   };
 
   const handleIncrease = (id, quanlity) => {

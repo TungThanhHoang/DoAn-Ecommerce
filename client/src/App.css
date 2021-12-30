@@ -5,7 +5,12 @@
     --color-border: #e3e4e6;
     --color-background: #f1c40f;
     --color-font: #fff;
-    --color-gray: rgb(116, 116, 116)
+    --color-gray: rgb(116, 116, 116);
+    --color-price: #D51243;
+    --color-font-menu: #fff;
+    --color-font-border-menu: #d6d6d6;
+    --color-footer: #f1c40f;
+    --color-footer-info: #f7f8fd
 }
 
 * {
@@ -18,7 +23,8 @@
 html,
 body {
     scroll-behavior: smooth;
-    background-color: #f5f5f5;
+    background-color: #fff;
+    overflow-x: hidden;
 }
 
 ul {
@@ -66,4 +72,28 @@ a:hover {
 
 .mb-1 {
     margin-bottom: 4rem;
+}
+
+.pd-1 {
+    padding: 10px;
+}
+
+.pd-2 {
+    padding: 20px;
+}
+
+.col-five {
+    width: 20%;
+}
+
+.col-four {
+    width: 25%;
+}
+
+.col-three {
+    width: 33.33%;
+}
+
+.col-two {
+    width: 50%;
 }

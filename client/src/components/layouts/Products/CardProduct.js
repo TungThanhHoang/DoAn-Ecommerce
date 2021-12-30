@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { Col ,message} from "antd";
+import { Col, message } from "antd";
 import { ShoppingCart, MapPin } from "react-feather";
 import { apiUrl } from "../../../contexts/constants";
 import { CartContext } from "../../../contexts/CartContext";
 import { ProductContext } from "../../../contexts/ProductContext";
+import { Link } from "react-router-dom";
 function CardProduct({
   product: {
     id,
@@ -35,23 +36,36 @@ function CardProduct({
     return addCart;
   };
   return (
-    <Col xs={12} sm={6} xl={4} lg={5} className="card-product">
+    <Col className="card-product col-five ">
       <div className="card-product__wrap ">
-        <img src={`${apiUrl}${url}`} alt="" className="bg-img" />
-        <div className="padding-content">
-          <div className="title-product">{title}</div>
-          <div className="ward-product">
-            <MapPin size={12} /> <span>{newWard}</span>
+        <Link to={{ pathname: `product/${id}` }}>
+          <img src={`${apiUrl}${url}`} alt="" className="bg-img" />
+          <div className="padding-content">
+            <div className="title-product">{title}</div>
+            <div className="ward-product">
+              <MapPin size={12} /> <span>{newWard}</span>
+            </div>
+            <div className="quality-product">
+              <div className="price-product">{formatPrice.format(Price)}</div>
+              <div className="size-product">
+                {" "}
+                {size === "onebox"
+                  ? "Hộp"
+                  : size === "onebotlle"
+                  ? "Chai"
+                  : size === "fivegram"
+                  ? "500g"
+                  : ""}
+              </div>
+            </div>
           </div>
-          <div className="quality-product">
-            <div className="price-product">{formatPrice.format(Price)}</div>
-            <div className="size-product"> {size}</div>
-          </div>
-          <button className="" onClick={(e) => handleAddProduct(id)}>
-            <span>Thêm vào giỏ</span>
-            <ShoppingCart size={18} />
-          </button>
-        </div>
+        </Link>
+        <button className="" onClick={() => handleAddProduct(id)}>
+          <span style={{ marginRight: "8px" }} className="title-add-cart">
+            Thêm vào giỏ
+          </span>
+          <ShoppingCart size={18} />
+        </button>
       </div>
     </Col>
   );

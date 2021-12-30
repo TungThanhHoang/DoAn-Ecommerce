@@ -6,18 +6,21 @@ import AuthContextProvider from "./contexts/AuthContext";
 import ProductContextProvider from "./contexts/ProductContext";
 import CartContextProvider from "./contexts/CartContext";
 import CheckOutContextProvider from "./contexts/CheckOutContext";
+import CategoryContextProvider from "./contexts/CategoryContext";
 
 ReactDOM.render(
   <AuthContextProvider>
-    <ProductContextProvider>
-      <CartContextProvider>
-        <CheckOutContextProvider>
-          {/* <React.StrictMode> */}
-          <App />
-          {/* </React.StrictMode> */}
-        </CheckOutContextProvider>
-      </CartContextProvider>
-    </ProductContextProvider>
+    <CategoryContextProvider>
+      <ProductContextProvider>
+        <CartContextProvider>
+          <CheckOutContextProvider>
+            {/* <React.StrictMode> */}
+            <App />
+            {/* </React.StrictMode> */}
+          </CheckOutContextProvider>
+        </CartContextProvider>
+      </ProductContextProvider>
+    </CategoryContextProvider>
   </AuthContextProvider>,
   document.getElementById("root")
 );

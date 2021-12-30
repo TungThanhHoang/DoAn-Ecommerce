@@ -41,6 +41,7 @@
 .card-new__title {
     font-weight: 600;
     font-size: 20px;
+    color: var(--color-gray);
 }
 
 .card-new__title::after {

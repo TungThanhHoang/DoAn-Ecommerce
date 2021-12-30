@@ -24,7 +24,7 @@ function ProductItem({
   const handleAddProduct = (productId) => {
     const addCart = addProductToCart(productId);
     if (addCart) {
-      message.success("Thêm sản phẩm thành công",1);
+      message.success("Thêm sản phẩm thành công", 1);
     }
     return addCart;
   };
@@ -70,14 +70,12 @@ function ProductItem({
           </div>
         </div>
       </Link>
-      {!isloading && (
-        <Button className="add-cart" onClick={() => handleAddProduct(id)}>
-          <span>Thêm vào giỏ</span>
-          <ShoppingCart size={18} />
-        </Button>
-      )}
+      <Button className="add-cart" onClick={() => handleAddProduct(id)}>
+        <span>Thêm vào giỏ</span>
+        <ShoppingCart size={18} />
+      </Button>
 
-      {isloading && (
+      {/* {isloading && (
         <Button
           loading
           className="add-cart"
@@ -88,7 +86,7 @@ function ProductItem({
           <span>Thêm vào giỏ</span>
           <ShoppingCart size={18} />
         </Button>
-      )}
+      )} */}
     </div>
   );
 }

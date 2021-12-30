@@ -1,12 +1,28 @@
-.user-info__left {}
+.user-info__left .card-menu__item {
+    background-color: #fff;
+    margin: 8px;
+    border-radius: 8px;
+    margin-right: 1.2rem;
+    border: 1px solid var(--color-font-border-menu);
+}
+
+.user-info__left .title-menu {
+    color: #000;
+}
+
+.user-info__left .active {
+    background-color: var(--color-background);
+    color: #fff;
+}
 
 .user-info__left .user-info__item {
     display: flex;
     align-items: center;
-    padding: .5rem;
-    font-weight: 600;
+    padding: .6rem .8rem;
+    font-weight: 400;
     color: #7f8c8d;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .user-info__left .menu-sub__user {
@@ -20,7 +36,7 @@
 }
 
 .user-info__left .user-info__item .icon-user {
-    color: #f1c40f;
+    color: #71778E;
 }
 
 .user-info__left .user-info__item .icon-bill {
@@ -46,7 +62,7 @@
     align-items: center;
     justify-content: flex-start;
     margin-top: 1rem;
-    margin-bottom: .5rem;
+    margin-bottom: 1.2rem;
 }
 
 .user-info__left .info-user {

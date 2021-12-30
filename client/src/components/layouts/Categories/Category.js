@@ -1,6 +1,8 @@
 import { Row, Col } from "antd";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { CategoryContext } from "../../../contexts/CategoryContext";
+import { apiUrl } from "../../../contexts/constants";
 import "./Category.css";
 export default function Category() {
   const category = [
@@ -13,18 +15,30 @@ export default function Category() {
     { img: "../../../seafood.png", title: "Hải Sản", path: "/seafood" },
     { img: "../../../pet-food.png", title: "Đồ Khô", path: "/dry-food" },
   ];
+  const {
+    categoryState: { categories },
+    loadCategory,
+  } = useContext(CategoryContext);
+  useEffect(() => {
+    loadCategory();
+  }, []);
+  console.log(categories.title);
   return (
     <div className="category">
       <Row justify="center" align="middle">
-        {category.map((item, index) => {
+        {categories.map((item, index) => {
           return (
             <Col xl={3} md={3} sm={6} xs={6} key={index}>
-              <Link to={item.path}>
+              <Link
+                to={{
+                  pathname: `categories/${item.slug}/${item.id}`,
+                }}
+              >
                 <div className="category-card">
                   <div
-                    className=" bg-img"
+                    className=" bg-img "
                     style={{
-                      backgroundImage: `url(${item.img})`,
+                      backgroundImage: `url(${apiUrl}${item.image.url})`,
                       width: "50px",
                       height: "50px",
                     }}

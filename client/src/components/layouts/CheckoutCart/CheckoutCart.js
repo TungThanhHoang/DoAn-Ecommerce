@@ -126,7 +126,7 @@ function CheckoutCart() {
     <Row className="wrap-checkout">
       <Col span={16}>
         <div className="notify-delivery">
-          <Bell size={22} />
+          <Bell size={20} />
           Với đơn hàng được đặt trước 18h sẽ được giao hàng trong ngày. Với đơn
           hàng sau 18h sẽ được giao hàng vào ngày tiếp theo !
         </div>
@@ -194,7 +194,7 @@ function CheckoutCart() {
               </div>
               <div className="total-price__order">
                 <span>Tổng tiền:</span>{" "}
-                <span>{formatPrice.format(totalPrice + 10000)}</span>
+                <span style={{ color:'var(--color-price)'}}>{formatPrice.format(totalPrice + 10000)}</span>
               </div>
             </div>
             <button>Đặt Mua</button>

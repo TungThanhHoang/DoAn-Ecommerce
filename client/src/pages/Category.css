@@ -1,0 +1,71 @@
+.category .main-left {
+    background-color: var(--color-font);
+    /* padding: 1rem; */
+    border-radius: 8px;
+}
+
+.category .main-right {
+    margin-left: 1rem;
+    /* background-color: var(--color-font); */
+    border-radius: 8px;
+}
+
+.category .title-filter {
+    font-weight: 500;
+    font-size: 20;
+}
+
+.category .result-filter {
+    padding: 20px 0;
+}
+
+.category input {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.category .checkbox-filter {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.category .main-left_poster {
+    margin-top: 2rem;
+}
+
+
+/* Select View */
+
+
+/* .category .select-view {
+    width: 100%;
+} */
+
+.category .card-select {
+    margin-top: 2rem;
+}
+
+.category .card-select__view {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.category .title-view {
+    font-weight: 500;
+    font-size: 20;
+}
+
+
+/* Category Product Item  */
+
+
+/* responsive */
+
+@media screen and (max-width: 990px) {
+    .category .main-left {
+        display: none;
+    }
+}

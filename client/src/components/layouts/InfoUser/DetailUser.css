@@ -1,7 +1,41 @@
-.detail-user {
-    padding: 1.5rem;
+.main-user {
     background-color: #fff;
+    padding: 2rem;
     border-radius: .2rem;
+}
+
+.main-user .main-wrap {
+    display: flex;
+}
+
+.main-user .main-wrap .detail-user {
+    flex-grow: 0.5;
+}
+
+.main-user .main-wrap .update-password {
+    border-left: 1px solid var(--color-border);
+    padding-left: 1rem;
+}
+
+.main-wrap .update-password .password-wrap {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.main-wrap .update-password .icon-password {
+    font-size: 20px;
+    margin-right: .5rem;
+}
+
+.main-wrap .update-password .password-wrap button {
+    padding: 5px 20px;
+    margin-left: 2rem;
+    background-color: var(--color-background);
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 .detail-user .title-top {
@@ -14,7 +48,7 @@
     font-weight: 600;
 }
 
-.detail-user .sub-title {
+.main-wrap .sub-title {
     color: rgb(116, 116, 116);
 }
 
@@ -53,6 +87,14 @@
     margin-right: 1rem;
 }
 
+.input-field {
+    width: 100%;
+}
+
+.card-item__address {
+    width: 444px;
+}
+
 .detail-user .wrap-detail .address-user {
     display: flex;
     flex-direction: row;
@@ -65,6 +107,7 @@
 }
 
 .detail-user .btn-save {
+    margin-top: 2rem;
     padding: .5rem 2rem;
     background-color: var(--color-background);
     border: none;

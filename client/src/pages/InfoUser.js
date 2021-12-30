@@ -1,26 +1,34 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./InfoUser.css";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Edit3, User, Clipboard, Bell, DollarSign } from "react-feather";
 import { Row, Col, Tabs } from "antd";
 import DetailUser from "../components/layouts/InfoUser/DetailUser";
 import BillOrder from "../components/layouts/InfoUser/BillOrder";
 import ChangePassword from "../components/layouts/InfoUser/ChangePassword";
 import { AuthContext } from "../contexts/AuthContext";
+import Notify from "../components/layouts/InfoUser/Notify";
+import DetailBill from "../components/layouts/InfoUser/DetailBill/DetailBill";
 const { TabPane } = Tabs;
 function InfoUser({ userRouter }) {
-  console.log(userRouter);
+  const location = useLocation();
+  const { pathName } = location;
+  console.log(pathName);
   const {
     authState: {
-      user: { firstname , lastname},
+      user: { firstname, lastname },
     },
   } = useContext(AuthContext);
+
   let renderComponent;
   renderComponent = (
     <>
       {userRouter === "infoRouter" && <DetailUser />}
       {userRouter === "billRouter" && <BillOrder />}
+      {userRouter === "notifyRouter" && <Notify />}
+      {userRouter === "voucherRouter" && <BillOrder />}
       {userRouter === "changePasswordRouter" && <ChangePassword />}
+      {userRouter === "detailBill" && <DetailBill />}
     </>
   );
   return (
@@ -34,34 +42,47 @@ function InfoUser({ userRouter }) {
                 alt=""
               />
               <div className="info-user">
-                <div>{lastname} {firstname}</div>
+                <div>
+                  {lastname} {firstname}
+                </div>
                 <div>
                   <Edit3 size={18} />
                   <span>Sửa Hồ Sơ</span>
                 </div>
               </div>
             </div>
-            <Link to="/user/info">
-              <div className="user-info__item">
-                <User className="icon-user" size={20} />
-                <span>Tài Khoản Của Tôi</span>
-              </div>
-              <div className="menu-sub__user">
+            <NavLink
+              to="/user/info"
+              className="user-info__item card-menu__item"
+            >
+              <User className="icon-user" size={20} />
+              <span className="title-menu">Tài Khoản Của Tôi</span>
+              {/* <div className="menu-sub__user">
                 <Link to="/user/info">Hồ Sơ</Link>
                 <Link to="/user/change-password">Đổi Mật Khẩu</Link>
-              </div>
-            </Link>
-            <Link to="/user/bill" className="user-info__item">
-              <Clipboard className="icon-bill" size={20} /> <span>Đơn Mua</span>
-            </Link>
-            <div className="user-info__item">
+              </div> */}
+            </NavLink>
+            <NavLink
+              to="/user/bill"
+              className="card-menu__item user-info__item"
+            >
+              <Clipboard className="icon-bill" size={20} />{" "}
+              <span className="title-menu">Đơn Mua</span>
+            </NavLink>
+            <NavLink
+              to="/user/notify"
+              className="card-menu__item user-info__item"
+            >
               <Bell className="icon-notify" size={20} />
-              <span> Thông Báo</span>
-            </div>
-            <div className="user-info__item">
+              <span className="title-menu"> Thông Báo</span>
+            </NavLink>
+            <NavLink
+              to="/user/voucher"
+              className="card-menu__item user-info__item"
+            >
               <DollarSign className="icon-voucher" size={20} />
-              <span> Kho Voucher</span>
-            </div>
+              <span className="title-menu"> Kho Voucher</span>
+            </NavLink>
           </div>
         </Col>
         <Col span={18} style={{ marginBottom: "5rem" }}>

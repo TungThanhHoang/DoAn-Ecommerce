@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { LogOut, Search, User } from "react-feather";
@@ -8,7 +8,6 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import CartItem from "../CartItem";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CartContext } from "../../../contexts/CartContext";
-import { CheckOutContext } from "../../../contexts/CheckOutContext";
 export default function Navbar() {
   const {
     authState: {
@@ -17,8 +16,11 @@ export default function Navbar() {
     logoutUser,
   } = useContext(AuthContext);
   const { cartItem, deleteItemCart, loadItemCart } = useContext(CartContext);
-  const { bill } = useContext(CheckOutContext);
   const { formatPrice } = useContext(ProductContext);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+});
 
   useEffect(() => {
     loadItemCart();
@@ -26,7 +28,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logoutUser();
-    // window.location.reload();
+    window.location.reload();
   };
 
   // cartItem.map( item=>{
@@ -83,7 +85,7 @@ export default function Navbar() {
       </Menu.Item>
       <Menu.Item key="2">
         <span>
-          <button className="btn-logout" onClick={handleLogout}>
+          <button className="btn-logout" onClick={() => handleLogout()}>
             <LogOut size={20} className="icon-logout" /> Thoát
           </button>
         </span>

@@ -6,7 +6,14 @@ import { CheckOutContext } from "../../../contexts/CheckOutContext";
 import { ProductContext } from "../../../contexts/ProductContext";
 const { TabPane } = Tabs;
 export default function BillOrder() {
-  const { bill, summaryBill, setStateBill ,loadBill } = useContext(CheckOutContext);
+  const {
+    bill,
+    summaryBill,
+    setStateBill,
+    stateBill,
+    loadBill,
+    handleLoadBillDeivery,
+  } = useContext(CheckOutContext);
   const { formatPrice } = useContext(ProductContext);
   const [activeTabKey, setActiveTabKey] = useState("1");
   let emptyBill = (
@@ -18,9 +25,13 @@ export default function BillOrder() {
   const changeTab = (activeKey) => {
     setActiveTabKey(activeKey);
   };
-  useEffect(()=>{
-    loadBill()
-  },[])
+  useEffect(() => {
+    loadBill();
+  }, []);
+
+  useEffect(() => {
+    handleLoadBillDeivery();
+  }, [stateBill]);
   useEffect(() => {
     if (activeTabKey === "1") {
     }

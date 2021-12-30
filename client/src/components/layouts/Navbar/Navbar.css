@@ -117,7 +117,7 @@ nav {
 
 .cart {
     width: 350px;
-    height: 300px;
+    height: 280px;
     background-color: #FFF;
     box-shadow: 0px 5px 10px rgb(62 68 90 / 10%);
     border: 1px solid #edeef5;
@@ -140,13 +140,13 @@ nav {
     bottom: 10px;
     width: 90%;
     border: none;
-    padding: .6rem;
+    padding: .5rem;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 10px;
     background-color: var(--color-background);
-    color: #FFF;
-    font-weight: 600;
+    color: #000;
+    font-weight: 500;
     cursor: pointer;
     text-align: center;
 }
@@ -175,8 +175,9 @@ nav {
 }
 
 .cart-price {
-    font-size: 12px;
-    color: var(--color-background);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-price);
 }
 
 .cart-item__hidden {
