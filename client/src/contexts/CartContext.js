@@ -63,7 +63,7 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  const addProductToCart = async (productId) => {
+  const addProductToCart = async (productId , quanlityId) => {
     const item = cartItem.find((idItem) => idItem.products.id === productId);
     try {
       setIsLoading(true);
@@ -71,7 +71,7 @@ const CartContextProvider = ({ children }) => {
         const response = await axios.put(
           `${apiUrl}/items/${item.id}`,
           {
-            quanlity: parseInt(item.quanlity) + 1,
+            quanlity: parseInt(item.quanlity) + parseInt(quanlityId),
           },
           {
             headers: {

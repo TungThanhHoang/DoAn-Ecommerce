@@ -24,12 +24,12 @@ function CopyRight() {
           </Col>
           <Col md={24} lg={16}>
             <Row className="social-us">
-              <Col xs={24} sm={24} md={8} xl={8}>
+              <Col xs={24} sm={24} md={8} xl={10}>
                 <div className="title-download">
                   Tải ứng dụng trên điện thoại
                 </div>
               </Col>
-              <Col className="download-mobile" xs={24} sm={24} md={8} xl={10}>
+              <Col className="download-mobile" xs={24} sm={24} md={8} xl={8}>
                 <img src="../../../../app-store.png" alt="" />
                 <img src="../../../../google-play.png" alt="" />
               </Col>

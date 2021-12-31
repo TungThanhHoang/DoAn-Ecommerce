@@ -114,4 +114,9 @@
     color: #000;
     border-radius: .2rem;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.detail-user .btn-save:hover {
+    opacity: .6;
 }

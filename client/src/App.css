@@ -25,6 +25,7 @@ body {
     scroll-behavior: smooth;
     background-color: #fff;
     overflow-x: hidden;
+    position: relative;
 }
 
 ul {

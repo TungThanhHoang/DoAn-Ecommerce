@@ -12,6 +12,10 @@
     cursor: pointer;
 }
 
+.bill-item:hover {
+    opacity: .6;
+}
+
 .bill-item .state-bill {
     display: flex;
     align-items: center;

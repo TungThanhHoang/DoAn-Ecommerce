@@ -7,6 +7,7 @@ import Notice from "../layouts/Notice";
 import Header from "../layouts/Header/Header";
 import BreadCrumbEcommerce from "../layouts/BreadcrumbEcommerce";
 import Footer from "../../pages/Footer";
+import ScrollToTop from "../layouts/ScrollOnTop";
 function ProtectRouter({ component: Component, ...rest }) {
   // const location = useLocation();
   const [navbar, setNavbar] = useState(false);

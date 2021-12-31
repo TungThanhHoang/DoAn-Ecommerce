@@ -33,7 +33,7 @@ function DetailUser() {
         { ...infoUser, district: selectCountryId, ward: selectStateId },
         id
       );
-      if (sendData.data) {
+      if (sendData) {
         message.success("Cập nhật thành công !")
         // console.log(sendData.data);
       }

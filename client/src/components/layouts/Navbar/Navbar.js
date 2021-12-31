@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect, useLayoutEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { LogOut, Search, User } from "react-feather";
-import { Badge, Dropdown, Menu } from "antd";
+import { LogOut, Search, User, MapPin, Home, Menu, X } from "react-feather";
+import { Badge, Button, Dropdown } from "antd";
 import "./Navbar.css";
 import { AuthContext } from "../../../contexts/AuthContext";
 import CartItem from "../CartItem";
@@ -17,10 +17,11 @@ export default function Navbar() {
   } = useContext(AuthContext);
   const { cartItem, deleteItemCart, loadItemCart } = useContext(CartContext);
   const { formatPrice } = useContext(ProductContext);
-
+  const [SearchState, setSearchState] = useState(false);
+  const [MenuState, setMenuState] = useState(false);
   useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-});
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     loadItemCart();
@@ -98,10 +99,17 @@ export default function Navbar() {
       <nav>
         <div className="container">
           <div className="navbar">
+            <div onClick={() => setMenuState(!MenuState)} className="icon-menu">
+              <Menu size={30} />
+            </div>
             <div className="logo-brand">
               <Link to="/">
                 <img src="../../../logoEcommerce.png" alt="" />
               </Link>
+            </div>
+            <div className="location">
+              <MapPin style={{ color: "var(--color-footer)" }} size={18} />
+              <div className="ward-location">Hải Châu I, Quận Hải Châu</div>
             </div>
             <div className="navbar-search">
               <input
@@ -134,13 +142,71 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <div className="navbar-search__mobile">
-        <div className="navbar-search">
-          <input type="text" placeholder="Tìm kiếm" className="field-input" />
-          <span className="btn-search">
-            <Search size={24} className="nav-search-icon" />
-          </span>
+
+      {MenuState ? (
+        <div className="menubar">
+          <div className="menubar-top">
+            <div className="logo-brand">
+              <Link to="/">
+                <img src="../../../logoEcommerce.png" alt="" />
+              </Link>
+            </div>
+            <div onClick={() => setMenuState(!MenuState)}>
+              <X size={30} style={{ color: "var(--color-gray)" }} />
+            </div>
+          </div>
+          <div className="location-user">
+            <div className="title-location">
+              <MapPin
+                style={{ color: "var(--color-gray) ",marginRight:'10px' }}
+                size={18}
+              />
+              <div style={{ fontWeight:'500' ,fontSize:'15px'}}>Địa điểm</div>
+            </div>
+            <div className="ward-location">
+              <div>Hải Châu I, Quận Hải Châu, TP Đà Nẵng</div>
+            </div>
+          </div>
+          <div className="name-user">
+            <div>Xin chào</div>
+            <div style={{ fontWeight:'500'}}>,  Hoàng Mai</div>
+          </div>
+          <button>
+            <LogOut style={{ margin: "0 1rem" }} />
+            <div className="title-exit">Thoát</div>
+          </button>
         </div>
+      ) : (
+        ""
+      )}
+      {SearchState ? (
+        <div className="navbar-search__mobile">
+          <div className="navbar-search">
+            <input type="text" placeholder="Tìm kiếm" className="field-input" />
+            <span className="btn-search">
+              <Search size={24} className="nav-search-icon" />
+            </span>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+      <div className="navbar-mobile">
+        <NavLink to="/" className="navbar-item">
+          <Home size={22} className="color-menu" />
+          <div className="color-menu">Home</div>
+        </NavLink>
+        <div
+          className="navbar-item"
+          onClick={() => setSearchState(!SearchState)}
+        >
+          <Search size={22} className="color-menu" />{" "}
+          <div className="color-menu">Tìm kiếm</div>
+        </div>
+        <NavLink to="/user/info" className="navbar-item">
+          <User size={22} className="color-menu" />
+          <div className="color-menu">Tài khoản</div>
+        </NavLink>
       </div>
     </>
   );

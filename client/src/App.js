@@ -12,35 +12,78 @@ import InfoUser from "./pages/InfoUser";
 import Product from "./pages/Product";
 import Category from "./pages/Category";
 import ScrollOnTop from "./components/layouts/ScrollOnTop";
+import ScrollToTop from "react-router-scroll-top";
 function App() {
   return (
     <div className="App">
-      <Router >
-        <Switch>
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Auth {...props} authRouter="loginRouter" />}
-          />
-          <Route
-            exact
-            path="/register"
-            render={(props) => <Auth {...props} authRouter="registerRouter" />}
-          />
-          <ProtectRouter exact path="/" component={Home} />
-          <ProtectRouter exact path="/product/:id" component={Product} />
-          <ProtectRouter exact path="/categories/:slug/:id" component={Category} />
-          <ProtectRouter exact path="/cart" component={Cart} />
-          <ProtectRouter exact path="/checkout" component={Checkout} />
-          <ProtectRouter exact path="/order-success" component={OrderSuccess} />
-          <ProtectRouter exact path="/user/info" component={InfoUser} userRouter="infoRouter" />
-          <ProtectRouter exact path="/user/bill" component={InfoUser} userRouter="billRouter" />
-          <ProtectRouter exact path="/user/notify" component={InfoUser} userRouter="notifyRouter" />
-          <ProtectRouter exact path="/user/voucher" component={InfoUser} userRouter="voucherRouter" />
-          <ProtectRouter exact path="/user/change-password" component={InfoUser} userRouter="changePasswordRouter" />
-          <ProtectRouter exact path="/user/detail-bill/:id" component={InfoUser} userRouter="detailBill" />
-
-        </Switch>
+      <Router>
+        {/* <ScrollOnTop /> */}
+        <ScrollToTop>
+          <Switch>
+            <Route
+              exact
+              path="/login"
+              render={(props) => <Auth {...props} authRouter="loginRouter" />}
+            />
+            <Route
+              exact
+              path="/register"
+              render={(props) => (
+                <Auth {...props} authRouter="registerRouter" />
+              )}
+            />
+            <ProtectRouter exact path="/" component={Home} />
+            <ProtectRouter exact path="/product/:id" component={Product} />
+            <ProtectRouter
+              exact
+              path="/categories/:slug/:id"
+              component={Category}
+            />
+            <ProtectRouter exact path="/cart" component={Cart} />
+            <ProtectRouter exact path="/checkout" component={Checkout} />
+            <ProtectRouter
+              exact
+              path="/order-success"
+              component={OrderSuccess}
+            />
+            <ProtectRouter
+              exact
+              path="/user/info"
+              component={InfoUser}
+              userRouter="infoRouter"
+            />
+            <ProtectRouter
+              exact
+              path="/user/bill"
+              component={InfoUser}
+              userRouter="billRouter"
+            />
+            <ProtectRouter
+              exact
+              path="/user/notify"
+              component={InfoUser}
+              userRouter="notifyRouter"
+            />
+            <ProtectRouter
+              exact
+              path="/user/voucher"
+              component={InfoUser}
+              userRouter="voucherRouter"
+            />
+            <ProtectRouter
+              exact
+              path="/user/change-password"
+              component={InfoUser}
+              userRouter="changePasswordRouter"
+            />
+            <ProtectRouter
+              exact
+              path="/user/detail-bill/:id"
+              component={InfoUser}
+              userRouter="detailBill"
+            />
+          </Switch>
+        </ScrollToTop>
       </Router>
     </div>
   );

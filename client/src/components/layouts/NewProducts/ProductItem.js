@@ -21,8 +21,8 @@ function ProductItem({
 }) {
   const { addProductToCart, isloading } = useContext(CartContext);
 
-  const handleAddProduct = (productId) => {
-    const addCart = addProductToCart(productId);
+  const handleAddProduct = (productId, quanlity) => {
+    const addCart = addProductToCart(productId, quanlity);
     if (addCart) {
       message.success("Thêm sản phẩm thành công", 1);
     }
@@ -70,7 +70,7 @@ function ProductItem({
           </div>
         </div>
       </Link>
-      <Button className="add-cart" onClick={() => handleAddProduct(id)}>
+      <Button className="add-cart" onClick={() => handleAddProduct(id ,1)}>
         <span>Thêm vào giỏ</span>
         <ShoppingCart size={18} />
       </Button>

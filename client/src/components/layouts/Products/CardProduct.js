@@ -28,8 +28,8 @@ function CardProduct({
   const { formatPrice } = useContext(ProductContext);
   const { addProductToCart, isloading } = useContext(CartContext);
 
-  const handleAddProduct = (productId) => {
-    const addCart = addProductToCart(productId);
+  const handleAddProduct = (productId, quanlity) => {
+    const addCart = addProductToCart(productId, quanlity);
     if (addCart) {
       message.success("Thêm sản phẩm thành công", 1);
     }
@@ -60,7 +60,7 @@ function CardProduct({
             </div>
           </div>
         </Link>
-        <button className="" onClick={() => handleAddProduct(id)}>
+        <button className="" onClick={() => handleAddProduct(id, 1)}>
           <span style={{ marginRight: "8px" }} className="title-add-cart">
             Thêm vào giỏ
           </span>

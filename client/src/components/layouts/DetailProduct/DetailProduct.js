@@ -1,13 +1,11 @@
 import { Spin } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ProductContext } from "../../../contexts/ProductContext";
 import CardProduct from "./CartProduct";
 import "./DetailProduct.css";
 function DetailProduct() {
   const { id } = useParams();
-  const { pathname } = useParams();
-  console.log(pathname);
   const {
     productState: { product },
     isloading,
@@ -16,11 +14,8 @@ function DetailProduct() {
   } = useContext(ProductContext);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-      loadOneProduct(id);
-  }, [pathname]);
-
-  console.log(product);
+    loadOneProduct(id);
+  }, []);
 
   return (
     <div>
