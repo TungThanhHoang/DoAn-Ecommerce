@@ -12,7 +12,7 @@
 
 .category .title-filter {
     font-weight: 500;
-    font-size: 20;
+    color: var(--color-font-two);
 }
 
 .category .result-filter {

@@ -3,16 +3,15 @@
     margin: 8px;
     border-radius: 8px;
     margin-right: 1.2rem;
-    border: 1px solid var(--color-font-border-menu);
+    border: 1px solid var(--color-border);
 }
 
 .user-info__left .title-menu {
-    color: #000;
+    color: var(--color-font-two);
 }
 
 .user-info__left .active {
     background-color: var(--color-background);
-    color: #fff;
 }
 
 .user-info__left .user-info__item {
@@ -90,5 +89,8 @@
 @media screen and (max-width:768px) {
     .main-user {
         padding: 0;
+    }
+    .menu-user {
+        display: none;
     }
 }

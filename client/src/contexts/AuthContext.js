@@ -1,13 +1,6 @@
 import axios from "axios";
-import React, {
-  createContext,
-  useEffect,
-  useReducer,
-  useState,
-  useContext,
-} from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import { AuthReducer } from "../reducers/AuthReducer";
-import { LOAD_ITEMS_CART } from "../reducers/Type";
 import { apiUrl, LOCAL_TOKEN_USER } from "./constants";
 export const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
@@ -19,13 +12,13 @@ const AuthContextProvider = ({ children }) => {
     ward: null,
     bill: null,
   });
-  const setToken = (token) => {
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = ` Bearer ${token} `;
-    } else {
-      delete axios.defaults.headers.common["Authorization"];
-    }
-  };
+  // const setToken = (token) => {
+  //   if (token) {
+  //     axios.defaults.headers.common["Authorization"] = ` Bearer ${token} `;
+  //   } else {
+  //     delete axios.defaults.headers.common["Authorization"];
+  //   }
+  // };
   const loadUser = async () => {
     const tokenUser = localStorage[LOCAL_TOKEN_USER];
     if (tokenUser) {

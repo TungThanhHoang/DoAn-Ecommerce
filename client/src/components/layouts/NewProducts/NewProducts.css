@@ -22,11 +22,12 @@
 .view-all__product {
     display: flex;
     align-items: center;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 500;
     padding: .4rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
+    border: 1px solid var(--color-font-two);
+    border-radius: 10px;
+    color: var(--color-font-two);
     cursor: pointer;
 }
 
@@ -36,12 +37,13 @@
 
 .view-all__product:hover {
     border: 1px solid var(--color-background);
+    color: var(--color-background);
 }
 
 .card-new__title {
     font-weight: 600;
     font-size: 20px;
-    color: var(--color-gray);
+    color: var(--color-font-two);
 }
 
 .card-new__title::after {
@@ -54,14 +56,15 @@
 }
 
 .card-product__item {
-    border-radius: 6px;
+    border-radius: 10px;
     /* width: 180px; */
-    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
+    /* box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px; */
     transition: .4s ease;
     position: relative;
     overflow: hidden;
     margin: 1rem .4rem;
     background-color: #fff;
+    border: 1px solid var(--color-border);
 }
 
 .card-product__item .title-product {
@@ -72,6 +75,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    color: var(--color-font-two);
 }
 
 .card-product__item .address-product {
@@ -84,6 +88,8 @@
 
 .card-product__item .address-product span {
     padding-left: .4rem;
+    color: var(--color-font-two);
+    font-size: .8rem;
 }
 
 .card-product__item .main-product {
@@ -96,9 +102,12 @@
 .main-product .price-product {
     color: var(--color-background);
     font-size: 16px;
+    font-weight: 500;
 }
 
-.main-product .weight-product {}
+.main-product .weight-product {
+    color: var(--color-size);
+}
 
 .card-product__item button {
     width: 90%;
@@ -112,13 +121,14 @@
     /* width: 90%; */
     padding: .6rem 0;
     margin: 0 auto;
-    border-radius: 6px;
-    background-color: #fff;
-    border: 1px solid var(--color-background);
+    border-radius: 10px;
+    background-color: var(--color-overlay);
+    /* border: 1px solid var(--color-background); */
     color: var(--color-background);
     margin-bottom: .5rem;
     cursor: pointer;
     height: 35px;
+    font-weight: 500;
 }
 
 .card-product__item .add-cart span {
@@ -132,7 +142,7 @@
 }
 
 .card-product__item:hover .add-cart {
-    color: #000;
+    color: #fff;
     background-color: var(--color-background);
 }
 
@@ -142,5 +152,7 @@
 }
 
 .card-product__item:hover {
-    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px, rgba(14, 30, 37, .32) 0px 2px 16px 0px;
+    /* box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px, rgba(14, 30, 37, .32) 0px 2px 16px 0px; */
+    box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+    border: 1px solid var(--color-overlay);
 }

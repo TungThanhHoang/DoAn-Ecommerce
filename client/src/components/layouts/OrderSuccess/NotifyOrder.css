@@ -15,7 +15,7 @@
 .title-success {
     font-size: 18px;
     font-weight: 500;
-    color: var(--color-gray);
+    color: var(--color-font-two);
     margin-bottom: .6rem;
 }
 
@@ -35,7 +35,7 @@
     margin: .5rem;
     padding: .9rem 2rem;
     border-radius: .4rem;
-    color: #000;
+    color: var(--color-font);
     font-weight: 500;
     font-size: .9rem;
 }

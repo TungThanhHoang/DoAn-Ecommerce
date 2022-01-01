@@ -137,7 +137,7 @@ function CheckoutCart() {
         </div>
         <div className="card-payment">
           <div className="title-payment">
-            <div className="">Hình Thức Thanh Toán</div>
+            <div className="format-payment">Hình Thức Thanh Toán</div>
             <div className="notify-payment">
               (Khuyến khích thanh toán trả trước và hạn chế tiếp xúc gần để đề
               phòng COVID19)

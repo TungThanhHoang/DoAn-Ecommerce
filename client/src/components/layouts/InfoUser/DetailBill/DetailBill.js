@@ -37,7 +37,7 @@ function DetailBill() {
   }) => (
     <div>
       <Row className="row-product">
-        <Col span={8}>
+        <Col xs={14} sm={8} md={8} lg={8} xl={8}>
           <div className="card-product">
             <img src={`${apiUrl}${url}`} alt="" width={70} height={70} />
             <div>
@@ -45,17 +45,21 @@ function DetailBill() {
             </div>
           </div>
         </Col>
-        <Col span={4}>
-          <div className="title-wrap ">{formatPrice.format(Price)}</div>
-        </Col>
-        <Col span={4}>
-          <div className="title-wrap ">x{quanlity}</div>
-        </Col>
-        <Col span={4}>
-          <div className="title-wrap ">{size}</div>
-        </Col>
-        <Col span={4}>
-          <div className="title-wrap ">{formatPrice.format(Price)}</div>
+        <Col xs={10} sm={16} md={16} lg={16} xl={16}>
+          <Row>
+            <Col xs={24} sm={6} md={6} lg={6} xl={6}>
+              <div className="title-wrap ">{formatPrice.format(Price)}</div>
+            </Col>
+            <Col xs={24} sm={6} md={6} lg={6} xl={6}>
+              <div className="title-wrap ">x{quanlity}</div>
+            </Col>
+            <Col xs={24} sm={6} md={6} lg={6} xl={6}>
+              <div className="title-wrap ">{size}</div>
+            </Col>
+            <Col xs={24} sm={6} md={6} lg={6} xl={6}>
+              <div className="title-wrap ">{formatPrice.format(Price)}</div>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </div>
@@ -75,7 +79,7 @@ function DetailBill() {
             <div className="date-order">{formatDate(billItem.createdAt)}</div>
           </div>
           <Row className="card-wrap">
-            <Col span={8}>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
               <div>
                 <h4>Địa chỉ người nhận</h4>
                 <div className="card-order__info">
@@ -91,7 +95,7 @@ function DetailBill() {
                 </div>
               </div>
             </Col>
-            <Col span={8}>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
               <div>
                 <h4>Hình thức giao hàng</h4>
                 <div className="card-order__info">
@@ -109,7 +113,7 @@ function DetailBill() {
                 </div>
               </div>
             </Col>
-            <Col span={8}>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
               <div>
                 <h4>Hình thức thanh toán</h4>
                 <div className="card-order__info">
@@ -150,7 +154,7 @@ function DetailBill() {
           </div>
           <div className="detail-price">
             <Row justify="end">
-              <Col span={8}>
+              <Col xs={24} sm={10} md={9}  lg={9} xl={8}>
                 <Row>
                   <Col span={12}>
                     <div className="column-title">Tạm tính</div>

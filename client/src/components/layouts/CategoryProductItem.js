@@ -3,7 +3,9 @@ import { Col, message } from "antd";
 import { ShoppingCart, MapPin } from "react-feather";
 import { CartContext } from "../../contexts/CartContext";
 import { ProductContext } from "../../contexts/ProductContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { apiUrl } from "../../contexts/constants";
+import { Link } from "react-router-dom";
 function CategoryProductItem({
   product: {
     id,
@@ -13,16 +15,13 @@ function CategoryProductItem({
     picture: {
       0: { url },
     },
-    wards,
   },
 }) {
-  const newWard = [];
-  const getWard = localStorage.getItem("ward");
-  wards.map((item) => {
-    if (item.name === getWard) newWard.push(item.name);
-    return newWard;
-  });
-
+  const {
+    authState: {
+      user: { ward },
+    },
+  } = useContext(AuthContext);
   const { formatPrice } = useContext(ProductContext);
   const { addProductToCart } = useContext(CartContext);
 
@@ -34,23 +33,40 @@ function CategoryProductItem({
     return addCart;
   };
   return (
-    <Col xs={12} sm={8} xl={8} lg={8} className="card-product">
+    <Col xs={12} sm={8} lg={6} xl={6} className="card-product">
       <div className="card-product__wrap ">
-        <img src={`${apiUrl}${url}`} alt="" className="bg-img" />
-        <div className="padding-content">
-          <div className="title-product">{title}</div>
-          <div className="ward-product">
-            <MapPin size={12} /> <span>{newWard}</span>
+        <Link to={{ pathname: `product/${id}` }}>
+          <img src={`${apiUrl}${url}`} alt="" className="bg-img" />
+          <div className="padding-content">
+            <div className="title-product">{title}</div>
+            <div className="ward-product">
+              <MapPin size={14} style={{ color: "orange" }} />{" "}
+              <span>{ward}</span>
+            </div>
+            <div className="quality-product">
+              <div
+                className="price-product"
+                style={{ color: "var(--color-background)" }}
+              >
+                {formatPrice.format(Price)}
+              </div>
+              <div className="size-product">
+                {" "}
+                {size === "onebox"
+                  ? "Hộp"
+                  : size === "onebotlle"
+                  ? "Chai"
+                  : size === "fivegram"
+                  ? "500g"
+                  : ""}
+              </div>
+            </div>
           </div>
-          <div className="quality-product">
-            <div className="price-product">{formatPrice.format(Price)}</div>
-            <div className="size-product"> {size}</div>
-          </div>
-          <button className="" onClick={(e) => handleAddProduct(id)}>
-            <span>Thêm vào giỏ</span>
-            <ShoppingCart size={18} style={{ marginLeft:'8px'}} />
-          </button>
-        </div>
+        </Link>
+        <button className="" onClick={(e) => handleAddProduct(id)}>
+          <span>Thêm vào giỏ</span>
+          <ShoppingCart size={18} style={{ marginLeft: "8px" }} />
+        </button>
       </div>
     </Col>
   );

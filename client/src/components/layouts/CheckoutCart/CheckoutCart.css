@@ -1,12 +1,12 @@
 .wrap-checkout .notify-delivery {
     display: flex;
-    background-color: rgb(255, 229, 196);
+    background-color: var(--color-overlay);
     margin-right: 2rem;
     border-radius: .4rem;
-    border: 1px solid var(--color-background);
     padding: 1rem;
     margin-bottom: 1.2rem;
-    color: rgb(141, 103, 33);
+    font-weight: 500;
+    color: var(--color-background);
     font-size: 13px;
 }
 
@@ -24,7 +24,12 @@
     font-size: 16px;
     font-weight: 600;
     padding-bottom: 1rem;
+    color: var(--color-font-two);
     border-bottom: 1px solid var(--color-border);
+}
+
+.wrap-checkout .main-left .format-payment {
+    color: var(--color-font-two);
 }
 
 .wrap-checkout .main-left .card-product {
@@ -125,6 +130,7 @@
     font-size: 16px;
     font-weight: 600;
     padding-bottom: .6rem;
+    color: var(--color-font-two);
     border-bottom: 1px solid #e3e4e6;
 }
 
@@ -132,6 +138,7 @@
     padding-top: 1rem;
     font-weight: 600;
     font-size: 15px;
+    color: var(--color-font-two);
     text-transform: capitalize;
 }
 
@@ -144,9 +151,8 @@
 .card-info__user .detail-info .phone-user {
     font-weight: 600;
     padding-top: .5rem;
+    color: var(--color-font-two);
 }
-
-.card-info__order .title-info__order {}
 
 .card-info__order .delivery-fee {
     display: flex;
@@ -173,11 +179,16 @@
     background-color: var(--color-background);
     border: 1px solid var(--color-background);
     border-radius: .4rem;
-    color: #000;
+    color: var(--color-font);
     font-size: 16px;
     font-weight: 600;
     margin-top: 1rem;
     cursor: pointer;
+}
+
+.wrap-checkout .main-left .card-product .info-product .title-product {
+    color: var(--color-font-two);
+    font-weight: 500;
 }
 
 @media screen and (max-width:992px) {

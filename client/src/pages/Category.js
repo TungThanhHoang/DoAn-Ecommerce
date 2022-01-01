@@ -1,35 +1,46 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Row, Col, Slider, Select } from "antd";
 import "./Category.css";
-import "../components/layouts/Products/ProductHome.css";
 import { useParams } from "react-router-dom";
 import { CategoryContext } from "../contexts/CategoryContext";
 import CategoryProductItem from "../components/layouts/CategoryProductItem";
+import { ProductContext } from "../contexts/ProductContext";
 const { Option } = Select;
 function Category() {
-  const {id } = useParams();
+  const { id } = useParams();
   const {
     categoryState: { category },
     loadOneCategory,
   } = useContext(CategoryContext);
+  const { formatPrice } = useContext(ProductContext);
+
+  const [CountPrice, setCountPrice] = useState([0,100000]);
+
   useEffect(() => {
     loadOneCategory(id);
   }, []);
+
+  const handleOnChange = (input) => {
+    setCountPrice(input);
+  };
   return (
     <div className="container ">
       <Row className="category">
         <Col lg={6} xl={6}>
           <div className="main-left">
             <div className="pd-2">
-              <div className="title-filter">Lọc theo giá</div>
+              <h3 className="title-filter">Lọc theo giá</h3>
               <Slider
                 min={0}
                 max={500000}
-                range={{ draggableTrack: true }}
-                defaultValue={[10000, 100000]}
+                range={{ draggableTrack: false }}
+                defaultValue={[0, 100000]}
+                onChange={handleOnChange}
               />
-              <div className="result-filter">Giá từ: 10.000 - 20.000</div>
-              <div className="title-filter">Lọc theo thương hiệu</div>
+              <div className="result-filter">
+                Giá từ: {formatPrice.format(CountPrice[0])} - {formatPrice.format(CountPrice[1])}
+              </div>
+              <h3 className="title-filter">Lọc theo thương hiệu</h3>
               <div className="checkbox-filter">
                 <input type="checkbox" />
                 <div>Checkbox1</div>
@@ -41,6 +52,10 @@ function Category() {
               <div className="checkbox-filter">
                 <input type="checkbox" />
                 <div>Checkbox3</div>
+              </div>
+              <div className="checkbox-filter">
+                <input type="checkbox" />
+                <div>Checkbox4</div>
               </div>
             </div>
             <div className="main-left_poster">
@@ -54,7 +69,7 @@ function Category() {
             </div>
           </div>
         </Col>
-        <Col   xs={24} sm={24}  md={24} lg={18} xl={18} >
+        <Col xs={24} sm={24} md={24} lg={18} xl={18}>
           <div className="main-right">
             <div
               className="bg-img"

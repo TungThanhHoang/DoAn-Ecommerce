@@ -12,7 +12,7 @@
 
 .category-card__title {
     padding-top: 10px;
-    color: #000;
+    color: var(--color-font-two);
     font-weight: 500;
     ;
 }

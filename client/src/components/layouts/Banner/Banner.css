@@ -11,15 +11,21 @@
     justify-content: flex-start;
     flex-direction: column;
     justify-content: center;
-    padding-left: 30px;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-bottom: 2%;
 }
 
 .banner-title div:nth-child(1) {
     font-weight: 600;
     font-size: 16px;
     padding-bottom: 10px;
+    color: var(--color-font-two);
 }
 
 .banner-img {
     margin-right: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: center;
 }

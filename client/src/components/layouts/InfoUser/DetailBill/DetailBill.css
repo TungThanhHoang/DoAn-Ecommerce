@@ -121,7 +121,21 @@
     color: var(--color-price);
 }
 
+@media screen and (max-width: 768px) {
+    .detail-bill {
+        padding: .4rem;
+    }
+    .title-wrap {
+        margin-right: 1.2rem;
+    }
+}
 
-/* @media screen and (max-width: 1024px) {
-    
-} */
+@media screen and (max-width: 576px) {
+    .detail-bill .card-title__wrap {
+        display: none;
+    }
+    .title-wrap {
+        text-align: left;
+        margin: .2rem 2rem;
+    }
+}

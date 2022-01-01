@@ -10,19 +10,20 @@
 .box-product .card-product__wrap img {
     width: 100%;
     height: 180px;
-    border-radius: 6px 6px 0 0;
+    border-radius: 10px 10px 0 0;
 }
 
 .box-product .card-product .card-product__wrap {
     background-color: #fff;
     margin: .3rem;
     height: 315px;
-    border-radius: 6px;
-    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px;
+    border-radius: 10px;
+    /* box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px; */
+    border: 1px solid var(--color-border);
 }
 
 .box-product .card-product .card-product__wrap:hover {
-    box-shadow: rgba(14, 30, 37, .12) 0px 2px 4px 0px, rgba(14, 30, 37, .32) 0px 2px 16px 0px;
+    box-shadow: 5px 5px 15px rgb(0 0 0 / 5%)
 }
 
 .card-product__wrap .quality-product {
@@ -34,12 +35,20 @@
     padding-top: .2rem;
     font-weight: bold;
     text-transform: capitalize;
+    color: var(--color-font-two);
 }
 
 .card-product__wrap .ward-product {
-    font-size: 12px;
+    display: flex;
+    align-items: center;
+    font-size: .8rem;
     text-transform: capitalize;
     padding: .2rem 0;
+}
+
+.card-product__wrap .ward-product span {
+    color: var(--color-font-two);
+    margin-left: .2rem;
 }
 
 .card-product__wrap .price-product {
@@ -50,6 +59,7 @@
 .card-product__wrap .size-product {
     font-size: 14px;
     text-transform: capitalize;
+    color: var(--color-size);
 }
 
 .card-product__wrap button {
@@ -63,19 +73,20 @@
     align-items: center;
     width: 90%;
     align-items: center;
-    border: 1px solid var(--color-background);
     background-color: #fff;
+    background-color: var(--color-overlay);
     color: var(--color-background);
     padding: .4rem;
-    border-radius: 6px;
+    border-radius: 10px;
     transition: .2s ease-in-out;
     cursor: pointer;
+    border: none
 }
 
 .card-product__wrap:hover button {
     background-color: var(--color-background);
     border: none;
-    color: #000;
+    color: #fff;
 }
 
 .card-product__wrap:hover .title-add-cart {}

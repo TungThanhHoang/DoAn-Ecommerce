@@ -18,7 +18,7 @@ function CartItem({
         <img
           src={`http://localhost:1337` + url}
           alt=""
-          style={{ width: "40px", height: "40px" }}
+          style={{ width: "50px", height: "50px" }}
         />
         <div className="cart-title">{title}</div>
         <div className="cart-price">{formatPrice.format(Price)}</div>

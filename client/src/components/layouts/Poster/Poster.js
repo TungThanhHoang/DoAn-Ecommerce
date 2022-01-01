@@ -4,9 +4,15 @@ import { Row, Col, Carousel } from "antd";
 import "./Poster.css";
 export default function Poster() {
   const imgPoster = [
-    { img: "../../../slider-1.jpg" },
-    { img: "../../../slider-2.jpg" },
-    { img: "../../../slider-3.jpg" },
+    { img: "../../../slider-6.png", title: "Sản phẩm tươi mới mỗi ngày" },
+    {
+      img: "../../../slider-5.png",
+      title: "Hàng hóa sản phẩm đảm bảo chất lượng",
+    },
+    {
+      img: "../../../slider-4.jpg",
+      title: "Đón tết bình an, tràn ngập sức khỏe",
+    },
   ];
   return (
     <div className="poster-main">
@@ -19,11 +25,8 @@ export default function Poster() {
               speed={1000}
               pauseOnHover="true"
               dotPosition="bottom"
-              // arrows
-              // prevArrow={<ArrowLeft />}
-              // nextArrow={<ArrowRight />}
             >
-              {imgPoster?.map((item , index) => {
+              {imgPoster?.map((item, index) => {
                 return (
                   <div key={index}>
                     <div
@@ -34,6 +37,7 @@ export default function Poster() {
                         height: "390px",
                       }}
                     >
+                      <div className="title-banner">{item.title}</div>
                       <button className="btn-buy">Mua Ngay</button>
                     </div>
                   </div>
@@ -48,7 +52,7 @@ export default function Poster() {
               <div
                 className="poster-main__right--item bg-img"
                 style={{
-                  backgroundImage: "url(../../../slider-2.jpg)",
+                  backgroundImage: "url(../../../banner-right-1.png)",
                   width: "100%",
                   height: "190px",
                 }}
@@ -58,7 +62,7 @@ export default function Poster() {
               <div
                 className="poster-main__right--item bg-img"
                 style={{
-                  backgroundImage: "url(../../../slider-2.jpg)",
+                  backgroundImage: "url(../../../banner-delivery.jpg)",
                   width: "100%",
                   height: "190px",
                 }}

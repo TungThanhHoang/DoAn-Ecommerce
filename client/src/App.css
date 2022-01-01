@@ -10,7 +10,10 @@
     --color-font-menu: #fff;
     --color-font-border-menu: #d6d6d6;
     --color-footer: #f1c40f;
-    --color-footer-info: #f7f8fd
+    --color-footer-info: #f7f8fd;
+    --color-font-two: #253D4E;
+    --color-overlay: rgba(255, 243, 186, 0.8);
+    --color-size: #b6b1b4
 }
 
 * {
@@ -23,7 +26,7 @@
 html,
 body {
     scroll-behavior: smooth;
-    background-color: #fff;
+    background-color: #ffffff;
     overflow-x: hidden;
     position: relative;
 }

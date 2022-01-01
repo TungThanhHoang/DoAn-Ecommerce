@@ -42,7 +42,7 @@ function CardProduct({
           <div className="padding-content">
             <div className="title-product">{title}</div>
             <div className="ward-product">
-              <MapPin size={12} /> <span>{newWard}</span>
+              <MapPin size={14} style={{ color:'orange'}} /> <span>{newWard}</span>
             </div>
             <div className="quality-product">
               <div className="price-product">{formatPrice.format(Price)}</div>

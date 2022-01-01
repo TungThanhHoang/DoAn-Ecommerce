@@ -29,7 +29,7 @@ function ListProductCart({
 
   return (
     <Row className="product-cart__item">
-      <Col xs={11} sm={8} md={5} lg={4} xl={4} className="info-product">
+      <Col xs={11} sm={8} md={5} lg={5} xl={5} className="info-product">
         <input
           type="checkbox"
           name={index}
@@ -39,7 +39,7 @@ function ListProductCart({
         />
         <img className="bg-img" src={`${apiUrl}` + url} alt="" />
       </Col>
-      <Col xs={13} sm={16} md={19} lg={20} xl={20} className="total-product">
+      <Col xs={13} sm={16} md={19} lg={19} xl={19} className="total-product">
         {/* <Row> */}
           <div className="name-product">{title}</div>
           <div className="price-product">{formatPrice.format(Price)}</div>

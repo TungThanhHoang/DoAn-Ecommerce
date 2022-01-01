@@ -92,6 +92,17 @@
     color: #e74c3c
 }
 
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--color-background) !important;
+    font-weight: 500;
+}
+
+.ant-tabs-ink-bar {
+    position: absolute;
+    background: var(--color-background);
+    pointer-events: none;
+}
+
 
 /*  empty bill */
 
@@ -103,4 +114,10 @@
 
 .empty-bill .title-empty {
     text-align: center;
+}
+
+@media screen and (max-width:768px) {
+    .bill-order {
+        padding: .5rem;
+    }
 }

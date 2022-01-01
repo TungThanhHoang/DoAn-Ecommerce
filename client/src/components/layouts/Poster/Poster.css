@@ -3,6 +3,13 @@
     border-radius: .8rem;
 }
 
+.title-banner {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-font-two);
+    padding: 4rem 2rem;
+}
+
 .btn-buy {
     position: absolute;
     bottom: 30px;
@@ -11,7 +18,7 @@
     background-color: var(--color-background);
     padding: .8rem 1.8rem;
     border-radius: 10px;
-    color: #000;
+    color: var(--color-font);
     font-weight: 600;
     cursor: pointer;
 }

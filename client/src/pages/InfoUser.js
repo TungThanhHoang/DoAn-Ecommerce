@@ -50,38 +50,40 @@ function InfoUser({ userRouter }) {
                 </div>
               </div>
             </div>
-            <NavLink
-              to="/user/info"
-              className="user-info__item card-menu__item"
-            >
-              <User className="icon-user" size={20} />
-              <span className="title-menu">Tài Khoản Của Tôi</span>
-              {/* <div className="menu-sub__user">
+            <div className="menu-user">
+              <NavLink
+                to="/user/info"
+                className="user-info__item card-menu__item"
+              >
+                <User className="icon-user" size={20} />
+                <span className="title-menu">Tài Khoản Của Tôi</span>
+                {/* <div className="menu-sub__user">
                 <Link to="/user/info">Hồ Sơ</Link>
                 <Link to="/user/change-password">Đổi Mật Khẩu</Link>
               </div> */}
-            </NavLink>
-            <NavLink
-              to="/user/bill"
-              className="card-menu__item user-info__item"
-            >
-              <Clipboard className="icon-bill" size={20} />{" "}
-              <span className="title-menu">Đơn Mua</span>
-            </NavLink>
-            <NavLink
-              to="/user/notify"
-              className="card-menu__item user-info__item"
-            >
-              <Bell className="icon-notify" size={20} />
-              <span className="title-menu"> Thông Báo</span>
-            </NavLink>
-            <NavLink
-              to="/user/voucher"
-              className="card-menu__item user-info__item"
-            >
-              <DollarSign className="icon-voucher" size={20} />
-              <span className="title-menu"> Kho Voucher</span>
-            </NavLink>
+              </NavLink>
+              <NavLink
+                to="/user/bill"
+                className="card-menu__item user-info__item"
+              >
+                <Clipboard className="icon-bill" size={20} />{" "}
+                <span className="title-menu">Đơn Mua</span>
+              </NavLink>
+              <NavLink
+                to="/user/notify"
+                className="card-menu__item user-info__item"
+              >
+                <Bell className="icon-notify" size={20} />
+                <span className="title-menu"> Thông Báo</span>
+              </NavLink>
+              <NavLink
+                to="/user/voucher"
+                className="card-menu__item user-info__item"
+              >
+                <DollarSign className="icon-voucher" size={20} />
+                <span className="title-menu"> Kho Voucher</span>
+              </NavLink>
+            </div>
           </div>
         </Col>
         <Col
