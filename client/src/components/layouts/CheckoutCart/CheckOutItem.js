@@ -8,7 +8,7 @@ function CheckOutItem({data:{ quanlity , products:{ title , Price ,picture:{ 0:{
       <div className="card-product">
         <img className="bg-img" src={`${apiUrl}${url}`} alt="" />
         <div className="info-product">
-          <div>{title}</div>
+          <div className="title-product">{title}</div>
           <div>{`Sl: x${quanlity}`}</div>
         </div>
         <div className="price-product">{formatPrice.format(Price)}</div>

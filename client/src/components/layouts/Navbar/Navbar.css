@@ -44,6 +44,8 @@ nav {
 
 .navbar .location .ward-location {
     margin-left: .5rem;
+    font-weight: 500;
+    color: var(--color-gray);
 }
 
 .navbar-search {
@@ -238,8 +240,12 @@ nav {
     nav {
         top: 0;
     }
+    .navbar {
+        justify-content: space-between;
+    }
     .navbar .icon-menu {
         display: block;
+        margin-left: 1rem;
     }
     .navbar .navbar-search {
         display: none;
@@ -284,6 +290,7 @@ nav {
         height: 100vh;
         background-color: #fff;
         z-index: 999;
+        animation: menubarAnimation .1s ease-in-out;
     }
     .navbar-search__mobile .navbar-search {
         width: 90%;
@@ -306,7 +313,7 @@ nav {
         position: fixed;
         background-color: #fff;
         z-index: 999;
-        transition: .8s ease-in-out;
+        animation: menubarAnimation .3s ease-in-out;
         overflow-y: hidden;
     }
     .menubar .menubar-top {
@@ -368,3 +375,27 @@ nav {
 }
 
 @media screen and (max-width: 600px) {}
+
+@keyframes menubarAnimation {
+    0% {
+        left: -10%;
+    }
+    /* 50% {
+        left: 80%;
+    } */
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes searchAnimation {
+    0% {
+        left: -10%;
+    }
+    /* 50% {
+        left: 80%;
+    } */
+    100% {
+        left: 0;
+    }
+}

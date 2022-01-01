@@ -1,6 +1,7 @@
 import React from "react";
 import { apiUrl } from "../../../contexts/constants";
 import { Trash2 } from "react-feather";
+import { Row, Col } from "antd";
 function ListProductCart({
   cartItem: {
     id,
@@ -19,7 +20,7 @@ function ListProductCart({
   increaseQuanlity,
   decreaseQuanlity,
   handleCheck,
-  checkedState
+  checkedState,
 }) {
   const handleTotalPriceProduct = (quanlity, price) => {
     let total = quanlity * price;
@@ -27,8 +28,8 @@ function ListProductCart({
   };
 
   return (
-    <div className="product-cart__item">
-      <div className="info-product">
+    <Row className="product-cart__item">
+      <Col xs={11} sm={8} md={5} lg={4} xl={4} className="info-product">
         <input
           type="checkbox"
           name={index}
@@ -37,33 +38,35 @@ function ListProductCart({
           onChange={() => handleCheck(index)}
         />
         <img className="bg-img" src={`${apiUrl}` + url} alt="" />
-        <div className="name-product">{title}</div>
-      </div>
-      <div className="total-product">
-        <div className="price-product">{formatPrice.format(Price)}</div>
-        <div className="quanlity-product">
-          <button
-            onClick={(e) => decreaseQuanlity(id, quanlity)}
-            className="btn-increase"
-          >
-            -
-          </button>
-          <input disabled type="text" value={quanlity} />
-          <button
-            onClick={(e) => increaseQuanlity(id, quanlity)}
-            className="btn-decrease"
-          >
-            +
-          </button>
-        </div>
-        <div className="total-price">
-          {formatPrice.format(handleTotalPriceProduct(quanlity, Price))}
-        </div>
-        <div className="btn-remove" onClick={(e) => deleteItemCart(id)}>
-          <Trash2 size={16} color="orange" />
-        </div>
-      </div>
-    </div>
+      </Col>
+      <Col xs={13} sm={16} md={19} lg={20} xl={20} className="total-product">
+        {/* <Row> */}
+          <div className="name-product">{title}</div>
+          <div className="price-product">{formatPrice.format(Price)}</div>
+          <div className="quanlity-product">
+            <button
+              onClick={(e) => decreaseQuanlity(id, quanlity)}
+              className="btn-increase"
+            >
+              -
+            </button>
+            <input disabled type="text" value={quanlity} />
+            <button
+              onClick={(e) => increaseQuanlity(id, quanlity)}
+              className="btn-decrease"
+            >
+              +
+            </button>
+          </div>
+          <div className="total-price">
+            {formatPrice.format(handleTotalPriceProduct(quanlity, Price))}
+          </div>
+          <div className="btn-remove" onClick={(e) => deleteItemCart(id)}>
+            <Trash2 size={16} color="orange" />
+          </div>
+        {/* </Row> */}
+      </Col>
+    </Row>
   );
 }
 

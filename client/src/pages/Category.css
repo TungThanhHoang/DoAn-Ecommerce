@@ -64,8 +64,11 @@
 
 /* responsive */
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 991px) {
     .category .main-left {
         display: none;
+    }
+    .category .main-right {
+        margin: 0;
     }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Carousel } from "antd";
-import { ArrowLeft, ArrowRight } from "react-feather";
+// import { ArrowLeft, ArrowRight } from "react-feather";
 import "./Poster.css";
 export default function Poster() {
   const imgPoster = [

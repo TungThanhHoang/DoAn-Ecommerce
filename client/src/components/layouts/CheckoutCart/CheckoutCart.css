@@ -179,3 +179,34 @@
     margin-top: 1rem;
     cursor: pointer;
 }
+
+@media screen and (max-width:992px) {
+    .wrap-checkout .main-left {
+        margin: 0;
+    }
+    .wrap-checkout .card-payment {
+        width: 100%;
+        margin: 1.2rem 0;
+    }
+    .wrap-checkout .notify-delivery {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .wrap-checkout .main-left .card-product .price-product {
+        margin-right: 1rem;
+    }
+    .wrap-checkout .main-left .card-product .info-product .title-product {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .wrap-checkout .title-payment .notify-payment {
+        display: none;
+    }
+}

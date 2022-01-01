@@ -1,7 +1,6 @@
-import react, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import axios from "axios";
 import { apiUrl, LOCAL_TOKEN_USER } from "./constants";
-import InfoUser from "../pages/InfoUser";
 export const CheckOutContext = createContext();
 const CheckOutContextProvider = ({ children }) => {
   const [payment, setPayment] = useState([]);

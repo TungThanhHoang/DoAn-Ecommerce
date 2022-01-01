@@ -1,15 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import "./InfoUser.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { Edit3, User, Clipboard, Bell, DollarSign } from "react-feather";
-import { Row, Col, Tabs } from "antd";
+import { Row, Col } from "antd";
 import DetailUser from "../components/layouts/InfoUser/DetailUser";
 import BillOrder from "../components/layouts/InfoUser/BillOrder";
 import ChangePassword from "../components/layouts/InfoUser/ChangePassword";
 import { AuthContext } from "../contexts/AuthContext";
 import Notify from "../components/layouts/InfoUser/Notify";
 import DetailBill from "../components/layouts/InfoUser/DetailBill/DetailBill";
-const { TabPane } = Tabs;
 function InfoUser({ userRouter }) {
   const location = useLocation();
   const { pathName } = location;
@@ -34,7 +33,7 @@ function InfoUser({ userRouter }) {
   return (
     <div className="container">
       <Row className="">
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6} xl={6}>
           <div className="user-info__left">
             <div className="info-detail">
               <img
@@ -85,7 +84,14 @@ function InfoUser({ userRouter }) {
             </NavLink>
           </div>
         </Col>
-        <Col span={18} style={{ marginBottom: "5rem" }}>
+        <Col
+          xs={24}
+          sm={24}
+          md={24}
+          lg={18}
+          xl={18}
+          style={{ marginBottom: "5rem" }}
+        >
           <div className="user-info__right">{renderComponent}</div>
         </Col>
       </Row>

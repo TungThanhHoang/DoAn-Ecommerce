@@ -2,13 +2,12 @@ import React, { useEffect, useContext } from "react";
 import { Row, Col, Slider, Select } from "antd";
 import "./Category.css";
 import "../components/layouts/Products/ProductHome.css";
-import CardProduct from "../components/layouts/Products/CardProduct";
 import { useParams } from "react-router-dom";
 import { CategoryContext } from "../contexts/CategoryContext";
 import CategoryProductItem from "../components/layouts/CategoryProductItem";
 const { Option } = Select;
 function Category() {
-  const { slug, id } = useParams();
+  const {id } = useParams();
   const {
     categoryState: { category },
     loadOneCategory,
@@ -16,11 +15,10 @@ function Category() {
   useEffect(() => {
     loadOneCategory(id);
   }, []);
-  console.log(typeof category.products);
   return (
     <div className="container ">
       <Row className="category">
-        <Col span={6}>
+        <Col lg={6} xl={6}>
           <div className="main-left">
             <div className="pd-2">
               <div className="title-filter">Lọc theo giá</div>
@@ -56,7 +54,7 @@ function Category() {
             </div>
           </div>
         </Col>
-        <Col lg={18} sm={24}>
+        <Col   xs={24} sm={24}  md={24} lg={18} xl={18} >
           <div className="main-right">
             <div
               className="bg-img"
@@ -69,9 +67,9 @@ function Category() {
             ></div>
             <div className="card-select">
               <Row justify="end" align="middle">
-                <Col span={10}>
+                <Col xs={24} md={12} lg={12} xl={12}>
                   <div className="card-select__view">
-                    <Select defaultValue={1}>
+                    <Select defaultValue="Sắp xếp theo thứ tự mới nhất">
                       <Option value="Sắp xếp theo thứ tự mới nhất">
                         Sắp xếp theo thứ tự mới nhất
                       </Option>

@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
+import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Auth from "./pages/Auth";
@@ -11,14 +11,10 @@ import OrderSuccess from "./pages/OrderSuccess";
 import InfoUser from "./pages/InfoUser";
 import Product from "./pages/Product";
 import Category from "./pages/Category";
-import ScrollOnTop from "./components/layouts/ScrollOnTop";
-import ScrollToTop from "react-router-scroll-top";
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <ScrollOnTop /> */}
-        <ScrollToTop>
           <Switch>
             <Route
               exact
@@ -83,7 +79,6 @@ function App() {
               userRouter="detailBill"
             />
           </Switch>
-        </ScrollToTop>
       </Router>
     </div>
   );

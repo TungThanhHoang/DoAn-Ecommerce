@@ -1,13 +1,14 @@
-import React, { useState, useContext, useEffect, useLayoutEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { ShoppingCartOutlined } from "@ant-design/icons";
-import { LogOut, Search, User, MapPin, Home, Menu, X } from "react-feather";
-import { Badge, Button, Dropdown } from "antd";
 import "./Navbar.css";
-import { AuthContext } from "../../../contexts/AuthContext";
+import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ShoppingCartOutlined, MenuOutlined } from "@ant-design/icons";
+import { LogOut, Search, User, MapPin, Home, X } from "react-feather";
+import { Badge, Dropdown, Menu } from "antd";
 import CartItem from "../CartItem";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CartContext } from "../../../contexts/CartContext";
+
 export default function Navbar() {
   const {
     authState: {
@@ -19,9 +20,6 @@ export default function Navbar() {
   const { formatPrice } = useContext(ProductContext);
   const [SearchState, setSearchState] = useState(false);
   const [MenuState, setMenuState] = useState(false);
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  });
 
   useEffect(() => {
     loadItemCart();
@@ -32,20 +30,7 @@ export default function Navbar() {
     window.location.reload();
   };
 
-  // cartItem.map( item=>{
-  //   if(item.)
-  // })
-  // const handleCheck = (id) => {
-  //   const isCheck = cartItem.include(id);
-  //   if (isCheck) {
-  //     const new_arr = cartItem.filter((item) => item !== id);
-  //     return new_arr;
-  //   } else {
-  //     return cartItem;
-  //   }
-  // };
-
-  const renderCartItems = (
+  let renderCartItems = (
     <div className="cart">
       <h4 className="title">Sản phẩm vừa thêm</h4>
       <div className="padding-1">
@@ -77,7 +62,7 @@ export default function Navbar() {
       </Link>
     </div>
   );
-  const menu = (
+  let menu = (
     <Menu>
       <Menu.Item key="1">
         <span>
@@ -100,7 +85,9 @@ export default function Navbar() {
         <div className="container">
           <div className="navbar">
             <div onClick={() => setMenuState(!MenuState)} className="icon-menu">
-              <Menu size={30} />
+              <MenuOutlined
+                style={{ color: "var(--color-footer)" ,fontSize:'20px' }}
+              />
             </div>
             <div className="logo-brand">
               <Link to="/">
@@ -158,10 +145,12 @@ export default function Navbar() {
           <div className="location-user">
             <div className="title-location">
               <MapPin
-                style={{ color: "var(--color-gray) ",marginRight:'10px' }}
+                style={{ color: "var(--color-gray) ", marginRight: "10px" }}
                 size={18}
               />
-              <div style={{ fontWeight:'500' ,fontSize:'15px'}}>Địa điểm</div>
+              <div style={{ fontWeight: "500", fontSize: "15px" }}>
+                Địa điểm
+              </div>
             </div>
             <div className="ward-location">
               <div>Hải Châu I, Quận Hải Châu, TP Đà Nẵng</div>
@@ -169,7 +158,7 @@ export default function Navbar() {
           </div>
           <div className="name-user">
             <div>Xin chào</div>
-            <div style={{ fontWeight:'500'}}>,  Hoàng Mai</div>
+            <div style={{ fontWeight: "500" }}>, Hoàng Mai</div>
           </div>
           <button>
             <LogOut style={{ margin: "0 1rem" }} />
@@ -191,11 +180,12 @@ export default function Navbar() {
       ) : (
         ""
       )}
+
       <div className="navbar-mobile">
-        <NavLink to="/" className="navbar-item">
+        <Link to="/" className="navbar-item">
           <Home size={22} className="color-menu" />
           <div className="color-menu">Home</div>
-        </NavLink>
+        </Link>
         <div
           className="navbar-item"
           onClick={() => setSearchState(!SearchState)}
@@ -203,10 +193,10 @@ export default function Navbar() {
           <Search size={22} className="color-menu" />{" "}
           <div className="color-menu">Tìm kiếm</div>
         </div>
-        <NavLink to="/user/info" className="navbar-item">
+        <Link to="/user/info" className="navbar-item">
           <User size={22} className="color-menu" />
           <div className="color-menu">Tài khoản</div>
-        </NavLink>
+        </Link>
       </div>
     </>
   );

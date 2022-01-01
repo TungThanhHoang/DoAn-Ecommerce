@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Col, message } from "antd";
 import { ShoppingCart, MapPin } from "react-feather";
 import { CartContext } from "../../contexts/CartContext";
@@ -9,7 +9,6 @@ function CategoryProductItem({
     id,
     title,
     Price,
-    slug,
     size,
     picture: {
       0: { url },
@@ -25,7 +24,7 @@ function CategoryProductItem({
   });
 
   const { formatPrice } = useContext(ProductContext);
-  const { addProductToCart, isloading } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
 
   const handleAddProduct = (productId) => {
     const addCart = addProductToCart(productId);
@@ -35,7 +34,7 @@ function CategoryProductItem({
     return addCart;
   };
   return (
-    <Col xs={12} sm={9} xl={6} lg={8} className="card-product">
+    <Col xs={12} sm={8} xl={8} lg={8} className="card-product">
       <div className="card-product__wrap ">
         <img src={`${apiUrl}${url}`} alt="" className="bg-img" />
         <div className="padding-content">

@@ -12,10 +12,18 @@
     margin: 0 auto;
 }
 
+.title-success {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-gray);
+    margin-bottom: .6rem;
+}
+
 .code-order {
     /* margin-top: 2rem; */
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
+    color: var(--color-price);
 }
 
 .navigation-user {
@@ -25,8 +33,24 @@
 .navigation-user a {
     background-color: var(--color-background);
     margin: .5rem;
-    padding: 1rem 2rem;
+    padding: .9rem 2rem;
     border-radius: .4rem;
     color: #000;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+.navigation-user a:hover {
+    opacity: .6;
+}
+
+@media screen and (max-width:395px) {
+    .navigation-user {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .navigation-user a {
+        text-align: center;
+    }
 }

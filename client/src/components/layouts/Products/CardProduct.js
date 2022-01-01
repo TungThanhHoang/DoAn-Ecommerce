@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Col, message } from "antd";
 import { ShoppingCart, MapPin } from "react-feather";
 import { apiUrl } from "../../../contexts/constants";
@@ -10,7 +10,6 @@ function CardProduct({
     id,
     title,
     Price,
-    slug,
     size,
     picture: {
       0: { url },
@@ -26,7 +25,7 @@ function CardProduct({
   });
 
   const { formatPrice } = useContext(ProductContext);
-  const { addProductToCart, isloading } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
 
   const handleAddProduct = (productId, quanlity) => {
     const addCart = addProductToCart(productId, quanlity);

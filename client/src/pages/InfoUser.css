@@ -86,3 +86,9 @@
 .user-info__right {
     border-radius: .2rem;
 }
+
+@media screen and (max-width:768px) {
+    .main-user {
+        padding: 0;
+    }
+}

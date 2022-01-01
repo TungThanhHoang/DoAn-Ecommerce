@@ -1,14 +1,12 @@
-import { Alert } from "antd";
 import axios from "axios";
-import React, { createContext, useEffect, useState, useReducer } from "react";
-import slug from "slug";
+import React, { createContext, useState, useReducer } from "react";
 import { ProductReducer } from "../reducers/ProductReducer";
 import {
   LOAD_NEW_PRODUCTS,
   LOAD_ONE_PRODUCT,
   LOAD_PRODUCTS,
 } from "../reducers/Type";
-import { apiUrl, LOCAL_TOKEN_USER } from "./constants";
+import { apiUrl } from "./constants";
 export const ProductContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
@@ -47,7 +45,7 @@ const ProductContextProvider = ({ children }) => {
     }
   };
   const loadOneProduct = async (productId) => {
-    setLoading(true)
+    setLoading(true);
     try {
       await axios
         .get(`${apiUrl}/products/${productId}`)

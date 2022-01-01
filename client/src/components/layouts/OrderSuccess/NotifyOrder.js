@@ -19,6 +19,7 @@ function NotifyOrder() {
       <div>
         <Lottie options={defaultOptions} height={400} width={400} />
       </div>
+      <div className="title-success">Đặt hàng thành công</div>
       <span className="code-order">Mã đơn hàng: {idCode} </span>
       <div className="navigation-user">
         <Link to="/user/bill"> Chi tiết đơn hàng</Link>

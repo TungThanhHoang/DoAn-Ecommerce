@@ -16,10 +16,9 @@ function ProductItem({
     },
     wards,
   },
-  key,
   formatPrice,
 }) {
-  const { addProductToCart, isloading } = useContext(CartContext);
+  const { addProductToCart } = useContext(CartContext);
 
   const handleAddProduct = (productId, quanlity) => {
     const addCart = addProductToCart(productId, quanlity);

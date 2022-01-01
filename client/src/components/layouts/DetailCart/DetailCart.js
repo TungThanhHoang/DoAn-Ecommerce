@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect, useMemo } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import "./DetailCart.css";
-import { Link, useHistory } from "react-router-dom";
-import { Row, Col, Spin, message, Modal } from "antd";
+import { useHistory } from "react-router-dom";
+import { Row, Col, message, Modal } from "antd";
 import ListProductCart from "./ListProductCart";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CartContext } from "../../../contexts/CartContext";
@@ -9,15 +9,10 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 const { confirm } = Modal;
 function DetailCart() {
-  const {
-    cartItem,
-    deleteItemCart,
-    increaseQuanlity,
-    decreaseQuanlity,
-    isloading,
-  } = useContext(CartContext);
+  const { cartItem, deleteItemCart, increaseQuanlity, decreaseQuanlity } =
+    useContext(CartContext);
   const { formatPrice } = useContext(ProductContext);
-  const [checkOut, setCheckOut] = useState([]);
+  // const [checkOut, setCheckOut] = useState([]);
   const [checkedState, setCheckedState] = useState([...cartItem].fill(false));
   const [totalPrice, setTotalPrice] = useState(0);
   const history = useHistory();
@@ -94,7 +89,7 @@ function DetailCart() {
   return (
     <div className="detail-cart">
       <Row>
-        <Col span={18}>
+        <Col xs={24} sm={24} md={24} lg={18} xl={18}>
           <div className="main-left">
             <Col>
               <div className="notify-cart">
@@ -131,7 +126,7 @@ function DetailCart() {
             </Col>
           </div>
         </Col>
-        <Col span={6}>
+        <Col xs={24} sm={24} md={24} lg={6} xl={6}>
           <div className="main-right">
             <div className="title-cart">Chi Tiết Giỏ Hàng</div>
             <div className="wrap-checkout">

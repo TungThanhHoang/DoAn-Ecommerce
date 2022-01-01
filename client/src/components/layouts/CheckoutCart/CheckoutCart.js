@@ -12,17 +12,17 @@ import QRCode from "qrcode";
 const payments = [
   {
     id: 1,
-    img: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-cod.svg",
+    img: "../../../../icon-payment-method-cod.png",
     title: "Thanh toán tiền mặt khi nhận hàng",
   },
   {
     id: 2,
-    img: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-mo-mo.svg",
+    img: "../../../../icon-payment-method-mo-mo.png",
     title: "Thanh toán bằng ví MoMo",
   },
   {
     id: "3",
-    img: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-atm.svg",
+    img: "../.../../../../../icon-payment-method-atm.png",
     title: "Thanh toán bằng ATM/Internet Banking",
   },
 ];
@@ -43,7 +43,7 @@ function CheckoutCart() {
   const history = useHistory();
   const stateItem = location.state.newarray;
   const totalPrice = location.state.totalPrice;
-  const [order, setOrder] = useState({
+  const [order] = useState({
     id_code: JSON.stringify(code),
     phone: `${phone}`,
     name: `${lastname}${firstname} `,
@@ -106,7 +106,6 @@ function CheckoutCart() {
         ...order,
         imgcode: imgQR,
         payment: checked,
-        
       });
       if (submit) {
         message.success("Đơn hàng đã được đặt hàng thành công !", 3);
@@ -124,7 +123,7 @@ function CheckoutCart() {
 
   return (
     <Row className="wrap-checkout">
-      <Col span={16}>
+      <Col xs={24} sm={24} md={24} lg={16} xl={16}>
         <div className="notify-delivery">
           <Bell size={20} />
           Với đơn hàng được đặt trước 18h sẽ được giao hàng trong ngày. Với đơn
@@ -157,7 +156,7 @@ function CheckoutCart() {
                       setChecked(item.title);
                     }}
                   />
-                  <img src={item.img} alt="" />
+                  <img src={item.img} alt="" width={30} height={30} />
                   <div>{item.title}</div>
                 </div>
               );
@@ -165,7 +164,7 @@ function CheckoutCart() {
           </div>
         </div>
       </Col>
-      <Col span={8}>
+      <Col xs={24} sm={24} md={24} lg={8} xl={8}>
         <div className="main-right">
           <div className="card-info__user">
             <div className="title-info">Địa Chỉ Giao Hàng</div>
@@ -194,7 +193,9 @@ function CheckoutCart() {
               </div>
               <div className="total-price__order">
                 <span>Tổng tiền:</span>{" "}
-                <span style={{ color:'var(--color-price)'}}>{formatPrice.format(totalPrice + 10000)}</span>
+                <span style={{ color: "var(--color-price)" }}>
+                  {formatPrice.format(totalPrice + 10000)}
+                </span>
               </div>
             </div>
             <button>Đặt Mua</button>
