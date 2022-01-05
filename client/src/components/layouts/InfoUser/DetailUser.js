@@ -5,7 +5,7 @@ import country from "../../../db/ward.json";
 import SelectCountry from "../SelectCountry";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { LockOutlined } from "@ant-design/icons";
-
+import { Link } from "react-router-dom";
 function DetailUser() {
   const {
     authState: { user },
@@ -163,11 +163,11 @@ function DetailUser() {
             <div>
               <h4 className="sub-title">Thay đổi mật khẩu</h4>
             </div>
-            <div className="password-wrap">
+            <Link to={{pathname:`/user/change-password`}} className="password-wrap">
               <LockOutlined className="icon-password" />{" "}
               <span>Cập nhật mật khẩu</span>
               <button>Cập nhật</button>
-            </div>
+            </Link>
           </div>
         </Col>
       </Row>

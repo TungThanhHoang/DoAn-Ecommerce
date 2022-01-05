@@ -11,7 +11,11 @@
 }
 
 .user-info__left .active {
-    background-color: var(--color-background);
+    background-color: var(--color-overlay);
+}
+
+.user-info__left .active-text {
+    color: #ffff;
 }
 
 .user-info__left .user-info__item {
@@ -22,6 +26,10 @@
     color: #7f8c8d;
     cursor: pointer;
     font-size: 14px;
+}
+
+.user-info__left .user-info__item:hover {
+    background-color: var(--color-overlay);
 }
 
 .user-info__left .menu-sub__user {

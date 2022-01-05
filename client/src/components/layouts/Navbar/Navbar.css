@@ -239,6 +239,66 @@ nav {
     .navbar .location {
         display: none;
     }
+    /* navbar mobile */
+    /* nav home */
+    .navbar-mobile {
+        left: 0;
+        position: fixed;
+        display: flex;
+        bottom: 0;
+        align-items: center;
+        flex-direction: row;
+        z-index: 999;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    /* nav account */
+    .card-content__wrap {
+        padding: .5rem 1rem;
+        /* height: calc(100vh- 60); */
+        height: 85vh;
+        /* overflow-y: hidden; */
+        /* overflow-x: hidden; */
+        overflow-y: scroll;
+    }
+    .navbar-mobile__account {
+        position: fixed;
+        display: flex;
+        bottom: 0;
+        align-items: center;
+        flex-direction: row;
+        z-index: 999;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    .navbar-mobile__account .navbar-item {
+        bottom: 0;
+        flex-direction: column;
+        display: flex;
+        flex: 25%;
+        justify-content: center;
+        height: 60px;
+    }
+    .navbar-mobile .navbar-item {
+        bottom: 0;
+        flex-direction: column;
+        display: flex;
+        flex: 33.33%;
+        justify-content: center;
+        height: 60px;
+    }
+    .navbar-mobile .navbar-item .color-menu {
+        color: var(--color-gray);
+        margin: 2px;
+        font-size: .7rem;
+    }
+    .navbar-mobile__account .navbar-item .color-menu {
+        color: var(--color-gray);
+        margin: 2px;
+        font-size: .7rem;
+    }
     /* Responsive menubar */
     .menubar {
         display: block;

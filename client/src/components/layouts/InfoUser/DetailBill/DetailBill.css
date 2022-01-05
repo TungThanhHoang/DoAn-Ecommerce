@@ -161,6 +161,18 @@
     opacity: .8;
 }
 
+.view-qr {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.title-qr {
+    color: var(--color-font-two);
+    margin-left: .3rem;
+    font-weight: 500;
+}
+
 @media screen and (max-width: 768px) {
     .detail-bill {
         padding: .4rem;

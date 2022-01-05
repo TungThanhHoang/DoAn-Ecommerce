@@ -65,11 +65,15 @@ function ProductItem({
               ? "Chai"
               : size === "fivegram"
               ? "500g"
-              : ""}
+              : size === "onegram"
+              ? "100g"
+              : size === "onekilogram"
+              ? "1kg"
+              : "1 túi"}
           </div>
         </div>
       </Link>
-      <Button className="add-cart" onClick={() => handleAddProduct(id ,1)}>
+      <Button className="add-cart" onClick={() => handleAddProduct(id, 1)}>
         <span>Thêm vào giỏ</span>
         <ShoppingCart size={18} />
       </Button>

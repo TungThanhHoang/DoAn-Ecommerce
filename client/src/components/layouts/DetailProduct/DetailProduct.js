@@ -21,7 +21,7 @@ function DetailProduct() {
     <div>
       {isloading ? (
         <div className="spin-load">
-          <Spin />
+      <Spin />
         </div>
       ) : (
         <div>

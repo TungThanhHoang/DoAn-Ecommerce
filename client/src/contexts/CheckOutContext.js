@@ -71,7 +71,24 @@ const CheckOutContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
+  const updateBillStateCancel = async (idBillOrder) => {
+    try {
+      const response = await axios.put(
+        `${apiUrl}/bills/${idBillOrder}`,
+        { status: "canceled" },
+        {
+          headers: {
+            Authorization: `Bearer ${getToken}`,
+          },
+        }
+      );
+      if (response.data) {
+        loadBill();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const contextData = {
     bill,
     payment,
@@ -84,6 +101,7 @@ const CheckOutContextProvider = ({ children }) => {
     orderProducts,
     loadItemBill,
     handleLoadBillDeivery,
+    updateBillStateCancel,
   };
   return (
     <CheckOutContext.Provider value={contextData}>

@@ -9,6 +9,7 @@ import ChangePassword from "../components/layouts/InfoUser/ChangePassword";
 import { AuthContext } from "../contexts/AuthContext";
 import Notify from "../components/layouts/InfoUser/Notify";
 import DetailBill from "../components/layouts/InfoUser/DetailBill/DetailBill";
+import Voucher from "../components/layouts/InfoUser/Voucher";
 function InfoUser({ userRouter }) {
   const {
     authState: {
@@ -22,7 +23,7 @@ function InfoUser({ userRouter }) {
       {userRouter === "infoRouter" && <DetailUser />}
       {userRouter === "billRouter" && <BillOrder />}
       {userRouter === "notifyRouter" && <Notify />}
-      {userRouter === "voucherRouter" && <BillOrder />}
+      {userRouter === "voucherRouter" && <Voucher />}
       {userRouter === "changePasswordRouter" && <ChangePassword />}
       {userRouter === "detailBill" && <DetailBill />}
     </>
@@ -51,6 +52,7 @@ function InfoUser({ userRouter }) {
               <NavLink
                 to="/user/info"
                 className="user-info__item card-menu__item"
+                activeClassName="active"
               >
                 <User className="icon-user" size={20} />
                 <span className="title-menu">Tài Khoản Của Tôi</span>
@@ -62,13 +64,15 @@ function InfoUser({ userRouter }) {
               <NavLink
                 to="/user/bill"
                 className="card-menu__item user-info__item"
+                activeClassName="active"
               >
-                <Clipboard className="icon-bill" size={20} />{" "}
+                <Clipboard className="icon-bill" size={20} />
                 <span className="title-menu">Đơn Mua</span>
               </NavLink>
               <NavLink
                 to="/user/notify"
                 className="card-menu__item user-info__item"
+                activeClassName="active active-text"
               >
                 <Bell className="icon-notify" size={20} />
                 <span className="title-menu"> Thông Báo</span>
@@ -76,6 +80,7 @@ function InfoUser({ userRouter }) {
               <NavLink
                 to="/user/voucher"
                 className="card-menu__item user-info__item"
+                activeClassName="active active-text"
               >
                 <DollarSign className="icon-voucher" size={20} />
                 <span className="title-menu"> Kho Voucher</span>

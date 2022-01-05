@@ -12,6 +12,7 @@ import {
   Lock,
   Layout,
   ShoppingCart,
+  Gift,
 } from "react-feather";
 import { Badge, Dropdown, Menu } from "antd";
 import CartItem from "../CartItem";
@@ -60,7 +61,7 @@ export default function Navbar() {
       history.push({ pathname: "/user/info" });
     }
   };
-  console.log("hello");
+  // console.log("hello");
   const renderCartItems = (
     <div className="cart">
       <h4 className="title">Sản phẩm vừa thêm</h4>
@@ -201,44 +202,48 @@ export default function Navbar() {
       {navbarMobile === "account" ? (
         <div className="navbar-mobile__account">
           <div onClick={() => handleNavigation("home")} className="navbar-item">
-            <Home size={20} className="color-menu" />
+            <Home size={19} className="color-menu" />
             <div className="color-menu">Home</div>
           </div>
           <Link to="/user/info" className="navbar-item">
-            <User size={20} className="color-menu" />
+            <User size={19} className="color-menu" />
             <div className="color-menu">Tài khoản</div>
           </Link>
           <Link to="/user/bill" className="navbar-item">
-            <Layout size={20} className="color-menu" />
+            <Layout size={19} className="color-menu" />
             <div className="color-menu">Đơn hàng</div>
           </Link>
           <Link to="/user/change-password" className="navbar-item">
-            <Lock size={20} className="color-menu" />
+            <Lock size={19} className="color-menu" />
             <div className="color-menu">Mật khẩu</div>
+          </Link>
+          <Link to="/user/voucher" className="navbar-item">
+            <Gift size={19} className="color-menu" />
+            <div className="color-menu">Voucher</div>
           </Link>
         </div>
       ) : (
         <div className="navbar-mobile">
           <Link to="/" className="navbar-item">
-            <Home size={20} className="color-menu" />
+            <Home size={19} className="color-menu" />
             <div className="color-menu">Home</div>
           </Link>
           <div
             className="navbar-item"
             onClick={() => setSearchState(!SearchState)}
           >
-            <Search size={20} className="color-menu" />{" "}
+            <Search size={19} className="color-menu" />{" "}
             <div className="color-menu">Tìm kiếm</div>
           </div>
           <Link to="/cart" className="navbar-item">
-            <ShoppingCart size={20} className="color-menu" />
+            <ShoppingCart size={19} className="color-menu" />
             <div className="color-menu">Giỏ hàng</div>
           </Link>
           <div
             onClick={() => handleNavigation("account")}
             className="navbar-item"
           >
-            <User size={20} className="color-menu" />
+            <User size={19} className="color-menu" />
             <div className="color-menu">Tài khoản</div>
           </div>
         </div>

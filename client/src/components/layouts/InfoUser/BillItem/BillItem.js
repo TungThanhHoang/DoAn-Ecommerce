@@ -40,7 +40,6 @@ export default function BillItem({
             Tổng số tiền: <span>{formatPrice.format(price)}</span>
           </div>
         </div>
-        {/* <div dangerouslySetInnerHTML={{ __html: imgcode }} /> */}
       </div>
     </Link>
   );

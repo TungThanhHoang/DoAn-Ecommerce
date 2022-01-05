@@ -10,6 +10,16 @@
             "name": "Phường Hải Châu II"
         },
         {
+            "countryId": "Quận Liên Chiểu",
+            "slug": "Phường Hòa Hiệp Bắc ",
+            "name": "Phường Hòa Hiệp Bắc"
+        },
+        {
+            "countryId": "Quận Liên Chiểu",
+            "slug": "Phường Hòa Hiệp Nam ",
+            "name": "Phường Hòa Hiệp Nam"
+        },
+        {
             "countryId": "Quận Cẩm Lệ",
             "slug": "Phường Khuê Trung",
             "name": "Phường Khuê Trung"
@@ -38,6 +48,31 @@
             "countryId": "Quận Cẩm Lệ",
             "slug": "Phường Hòa Xuân",
             "name": "Phường Hòa Xuân"
+        },
+        {
+            "countryId": "Quận Thanh Khê",
+            "slug": "Phường Tân Chính",
+            "name": "Phường Tân Chính"
+        },
+        {
+            "countryId": "Quận Thanh Khê",
+            "slug": "Phường Vĩnh Trung",
+            "name": "Phường Vĩnh Trung"
+        },
+        {
+            "countryId": "Quận Sơn Trà",
+            "slug": "Phường Hòa Qúy",
+            "name": "Phường Hòa Qúy"
+        },
+        {
+            "countryId": "Quận Thanh Khê",
+            "slug": "Phường Nại Hiên Đông",
+            "name": "Phường Nại Hiên Đông"
+        },
+        {
+            "countryId": "Quận Ngũ Hành Sơn",
+            "slug": "Phường Khuê Mỹ",
+            "name": "Phường Khuê Mỹ"
         }
     ],
     "countries": [{
@@ -55,6 +90,10 @@
         {
             "slug": "Quận Ngũ Hành Sơn",
             "name": "Quận Ngũ Hành Sơn"
+        },
+        {
+            "slug": "Quận Ngũ Sơn Trà",
+            "name": "Quận Ngũ Sơn Trà"
         },
         {
             "slug": "Quận Hòa Vang",

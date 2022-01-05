@@ -34,6 +34,7 @@ function CardProduct({
     }
     return addCart;
   };
+  
   return (
     <Col className="card-product col-five ">
       <div className="card-product__wrap ">
@@ -42,19 +43,23 @@ function CardProduct({
           <div className="padding-content">
             <div className="title-product">{title}</div>
             <div className="ward-product">
-              <MapPin size={14} style={{ color:'orange'}} /> <span>{newWard}</span>
+              <MapPin size={14} style={{ color: "orange" }} />
+              <span>{newWard}</span>
             </div>
             <div className="quality-product">
               <div className="price-product">{formatPrice.format(Price)}</div>
               <div className="size-product">
-                {" "}
                 {size === "onebox"
                   ? "Hộp"
                   : size === "onebotlle"
                   ? "Chai"
                   : size === "fivegram"
                   ? "500g"
-                  : ""}
+                  : size === "onegram"
+                  ? "100g"
+                  : size === "onekilogram"
+                  ? "1kg"
+                  : "1 túi"}
               </div>
             </div>
           </div>

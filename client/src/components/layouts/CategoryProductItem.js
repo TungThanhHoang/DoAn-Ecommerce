@@ -51,14 +51,17 @@ function CategoryProductItem({
                 {formatPrice.format(Price)}
               </div>
               <div className="size-product">
-                {" "}
-                {size === "onebox"
-                  ? "Hộp"
-                  : size === "onebotlle"
-                  ? "Chai"
-                  : size === "fivegram"
-                  ? "500g"
-                  : ""}
+              {size === "onebox"
+              ? "Hộp"
+              : size === "onebotlle"
+              ? "Chai"
+              : size === "fivegram"
+              ? "500g"
+              : size === "onegram"
+              ? "100g"
+              : size === "onekilogram"
+              ? "1kg"
+              : "1 túi"}
               </div>
             </div>
           </div>

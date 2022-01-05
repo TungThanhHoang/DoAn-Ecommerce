@@ -1,27 +1,55 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./DetailBill.css";
-import { Row, Col } from "antd";
-import { useParams, useLocation } from "react-router-dom";
+import { Row, Col, Modal, message, Button } from "antd";
+import { useParams } from "react-router-dom";
 import { CheckOutContext } from "../../../../contexts/CheckOutContext";
 import { ProductContext } from "../../../../contexts/ProductContext";
 import { apiUrl } from "../../../../contexts/constants";
 import LoadingPage from "../../LoadingPage";
+import { ExclamationCircleOutlined, QrcodeOutlined } from "@ant-design/icons";
+
+const { confirm } = Modal;
 function DetailBill() {
-  const { loadItemBill, billItem, isLoadingBill } = useContext(CheckOutContext);
+  const { loadItemBill, billItem, isLoadingBill, updateBillStateCancel } =
+    useContext(CheckOutContext);
   const { formatPrice } = useContext(ProductContext);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     loadItemBill(id);
   }, []);
-  console.log(billItem);
 
   const formatDate = (createdAt) => {
     const date = new Date(createdAt);
     const dateOrder = date.toLocaleString("en-Us");
     return dateOrder;
   };
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleBillCancel = async (idBill) => {
+    confirm({
+      title: "Bạn có chắc chắn muốn hủy đơn hàng này",
+      icon: <ExclamationCircleOutlined />,
+      okText: "Có",
+      okType: "danger",
+      cancelText: "Không",
+      onOk() {
+        const sendData = updateBillStateCancel(idBill);
+        if (sendData) {
+          message.success("Hủy đơn hàng thành công");
+          window.location.reload();
+        }
+      },
+      onCancel() {},
+    });
+  };
   const ProductItem = ({
     item: {
       quanlity,
@@ -54,7 +82,20 @@ function DetailBill() {
               <div className="title-wrap ">x{quanlity}</div>
             </Col>
             <Col xs={24} sm={6} md={6} lg={6} xl={6}>
-              <div className="title-wrap ">{size}</div>
+              <div className="title-wrap ">
+                {" "}
+                {size === "onebox"
+                  ? "Hộp"
+                  : size === "onebotlle"
+                  ? "Chai"
+                  : size === "fivegram"
+                  ? "500g"
+                  : size === "onegram"
+                  ? "100g"
+                  : size === "onekilogram"
+                  ? "1kg"
+                  : "1 túi"}
+              </div>
             </Col>
             <Col xs={24} sm={6} md={6} lg={6} xl={6}>
               <div className="title-wrap ">{formatPrice.format(Price)}</div>
@@ -66,7 +107,22 @@ function DetailBill() {
   );
   return (
     <div className="detail-bill">
-      <h2>Chi tiết đơn hàng</h2>
+      <Modal
+        title="Mã  QR code"
+        visible={isModalVisible}
+        footer={
+          <Button key="ok" type="primary" onClick={handleOk}>
+            Đóng
+          </Button>
+        }
+      >
+        <div>
+          <div dangerouslySetInnerHTML={{ __html: billItem?.imgcode }} />
+        </div>
+      </Modal>
+      <h2 style={{ color: "var(--color-font-two)", fontWeight: "500" }}>
+        Chi tiết đơn hàng
+      </h2>
       {isLoadingBill ? (
         <LoadingPage />
       ) : (
@@ -94,9 +150,20 @@ function DetailBill() {
           <Row className="card-wrap">
             <Col xs={24} sm={24} md={8} lg={8} xl={8}>
               <div>
-                <h4>Địa chỉ người nhận</h4>
+                <h4
+                  style={{ color: "var(--color-font-two)", fontWeight: "500" }}
+                >
+                  Địa chỉ người nhận
+                </h4>
                 <div className="card-order__info">
-                  <h4>{billItem.name}</h4>
+                  <h4
+                    style={{
+                      color: "var(--color-font-two)",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {billItem.name}
+                  </h4>
                   <div>
                     <span>Điện thoại:</span>
                     <span className="phone-user">{billItem.phone}</span>
@@ -110,19 +177,57 @@ function DetailBill() {
             </Col>
             <Col xs={24} sm={24} md={8} lg={8} xl={8}>
               <div>
-                <h4>Hình thức giao hàng</h4>
+                <h4
+                  style={{ color: "var(--color-font-two)", fontWeight: "500" }}
+                >
+                  Hình thức giao hàng
+                </h4>
                 <div className="card-order__info">
-                  <h4>Nguyễn Văn A</h4>
-                  <div>
-                    <span style={{ marginRight: "5px" }}>Giao hàng:</span>
-                    <span className="date-delivery">
-                      {formatDate(billItem.updatedAt)}
-                    </span>
-                  </div>
-                  <div>
-                    <span>Phí vận chuyển:</span>
-                    <span className="address-delivery">15.000đ</span>
-                  </div>
+                  {billItem?.status === "unconfirmed" ||
+                  billItem.status === "canceled" ? (
+                    <div
+                      style={{
+                        color: "var(--color-font-two)",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Đơn hàng chưa vận chuyển
+                    </div>
+                  ) : billItem.status === "confirmed" ? (
+                    <div
+                      style={{
+                        color: "var(--color-font-two)",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Đơn hàng đã được xác nhận
+                    </div>
+                  ) : (
+                    <div>
+                      <div>
+                        Giao hàng bởi nhân viên{" "}
+                        <span style={{ color: "var(--color-font-two)" ,fontWeight:500 }}>
+                          Shopping market
+                        </span>
+                      </div>
+                      {billItem.status === "deliveried" ? (
+                        <div>
+                          <span style={{ marginRight: "5px" }}>
+                            Đã giao hàng:
+                          </span>
+                          <span className="date-delivery">
+                            {formatDate(billItem.updatedAt)}
+                          </span>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                      <div>
+                        <span>Phí vận chuyển:</span>
+                        <span className="address-delivery">15.000đ</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </Col>
@@ -137,7 +242,14 @@ function DetailBill() {
                       width={28}
                       height={28}
                     />
-                    <h4>{billItem.payment}</h4>
+                    <h4
+                      style={{
+                        color: "var(--color-font-two)",
+                        fontWeight: "500",
+                      }}
+                    >
+                      {billItem.payment}
+                    </h4>
                   </div>
                 </div>
               </div>
@@ -149,10 +261,26 @@ function DetailBill() {
             </Col>
             <Col xs={12} sm={12} md={12} lg={12} xl={12}>
               {billItem.status === "unconfirmed" ? (
-                <button>Hủy đơn hàng</button>
+                <button
+                  onClick={() => {
+                    handleBillCancel(id);
+                  }}
+                >
+                  Hủy đơn hàng
+                </button>
               ) : billItem.status === "deliveried" ? (
                 <button>Mua lại</button>
-              ) : ""}
+              ) : (
+                ""
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div className="view-qr" onClick={() => showModal()}>
+                <QrcodeOutlined style={{ fontSize: "20px" }} />
+                <div className="title-qr">Xem mã QR</div>
+              </div>
             </Col>
           </Row>
           <Row className="card-title__wrap">
