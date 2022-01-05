@@ -25,8 +25,8 @@ function DetailProduct() {
         </div>
       ) : (
         <div>
-          {product?.map((item) => {
-            return <CardProduct item={item} formatPrice={formatPrice} />;
+          {product?.map((item , index) => {
+            return <CardProduct key={index} item={item} formatPrice={formatPrice} />;
           })}
         </div>
       )}

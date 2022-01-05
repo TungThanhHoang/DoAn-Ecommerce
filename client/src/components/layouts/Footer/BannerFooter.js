@@ -20,12 +20,12 @@ function BannerFooter() {
               <button>Xác nhận</button>
             </div>
           </Col>
-          <Col sm={24} lg={12} xl={12}>
+          <Col xs={24} sm={24} lg={12} xl={12}>
             <img
               src="../../../../coupon.png"
               alt=""
               className="bg-img"
-              style={{ height: "100%" }}
+              style={{ height: "100%" ,width:"100%"}}
             />
           </Col>
         </Row>

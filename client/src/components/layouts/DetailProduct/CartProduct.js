@@ -1,6 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Row, Col, Button, Image, Rate, message } from "antd";
-import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  MinusOutlined,
+  PlusOutlined,
+  CarOutlined,
+  SafetyCertificateOutlined,
+  FileDoneOutlined,
+} from "@ant-design/icons";
 import { apiUrl } from "../../../contexts/constants";
 import { MapPin, ShoppingBag, Truck, Shield } from "react-feather";
 import { CartContext } from "../../../contexts/CartContext";
@@ -84,7 +90,10 @@ function CardProduct({
                 maiores.
               </div>
               <div className="quanlity-product">
-                <Button color="warning" onClick={() => setCountNumber(countNumber - 1)}>
+                <Button
+                  color="warning"
+                  onClick={() => setCountNumber(countNumber - 1)}
+                >
                   <MinusOutlined />
                 </Button>
                 <div className="number-quanlity">{countNumber}</div>
@@ -100,7 +109,7 @@ function CardProduct({
                   Thêm Vào Giỏ Hàng
                 </button>
                 <img
-                className="bg-img card-img-social"
+                  className="bg-img card-img-social"
                   src="../../../../icon-social.png"
                   alt=""
                   style={{ marginTop: "1.5rem" }}
@@ -112,18 +121,18 @@ function CardProduct({
                 <div className="title-intro">Giao hàng sản phẩm</div>
                 <div className="card-delivery">
                   <div className="icon-message">
-                    <Truck size={50} />
+                    <CarOutlined style={{ fontSize: "18px" }} />
                     <div>
                       Giao hàng miễn phí áp dụng cho tất cả đơn hàng trên
                       200.000 đ
                     </div>
                   </div>
                   <div className="icon-message">
-                    <ShoppingBag size={25} />
+                    <FileDoneOutlined style={{ fontSize: "18px" }} />
                     <div> Sản phẩm đảm bảo chất lượng</div>
                   </div>
                   <div className="icon-message">
-                    <Shield size={35} />
+                    <SafetyCertificateOutlined style={{ fontSize: "18px" }} />
                     <div> Giao hàng đảm bảo tiêu chuẩn chống dịch</div>
                   </div>
                 </div>

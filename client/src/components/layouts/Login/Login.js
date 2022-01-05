@@ -29,7 +29,7 @@ export default function Login() {
     }
     try {
       const sendData = await loginUser(loginForm);
-      console.log(sendData);
+      // console.log(sendData);
       if (sendData.error === "Bad Request") {
         setAlert({
           type: "error",
@@ -52,7 +52,7 @@ export default function Login() {
   return (
     <div className="container-login">
       <div className="svg-login">
-        <Row justify="center">
+        <Row justify="center" align="middle">
           <Col lg={6} md={8} sm={12} xs={24}>
             <form className="form-login" onSubmit={handleLoginForm}>
               <h1>Đăng Nhập</h1>

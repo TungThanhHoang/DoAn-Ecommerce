@@ -1,4 +1,4 @@
-import { LOAD_CATEGORIES, LOAD_CATEGORY } from "./Type";
+import { FILTER_CATEGORY_PRODUCT, LOAD_CATEGORIES, LOAD_CATEGORY } from "./Type";
 
 export const CategoryReducer = (state, action) => {
   switch (action.type) {
@@ -12,6 +12,11 @@ export const CategoryReducer = (state, action) => {
         ...state,
         category: action.payload,
       };
+      case FILTER_CATEGORY_PRODUCT:
+        return {
+          ...state,
+          productFilter: action.payload,
+        }
     default:
       return state;
   }

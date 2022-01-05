@@ -25,7 +25,7 @@ export default function Auth({ authRouter }) {
           <div className="container">
             <div className="navbar-item">
               <div className="logo-brand">
-                <img src="../../logoEcommerce.png" alt="" />
+                <img src="../../logo.png" alt="" />
               </div>
               <span className="navbar-title">
                 {authRouter === "loginRouter" ? "Đăng Nhập" : "Đăng Ký"}
@@ -36,5 +36,6 @@ export default function Auth({ authRouter }) {
         {renderComponent}
       </div>
     </div>
+    
   );
 }

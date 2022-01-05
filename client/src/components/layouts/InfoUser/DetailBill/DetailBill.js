@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "./DetailBill.css";
 import { Row, Col } from "antd";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { CheckOutContext } from "../../../../contexts/CheckOutContext";
 import { ProductContext } from "../../../../contexts/ProductContext";
 import { apiUrl } from "../../../../contexts/constants";
@@ -10,7 +10,7 @@ function DetailBill() {
   const { loadItemBill, billItem, isLoadingBill } = useContext(CheckOutContext);
   const { formatPrice } = useContext(ProductContext);
   const { id } = useParams();
-  console.log(id);
+
   useEffect(() => {
     loadItemBill(id);
   }, []);
@@ -76,7 +76,20 @@ function DetailBill() {
               <span>Mã đơn:</span>
               <span className="code-order">#{billItem.id_code}</span>
             </div>
-            <div className="date-order">{formatDate(billItem.createdAt)}</div>
+            <div className="status-order">
+              <div className="date-order">{formatDate(billItem.createdAt)}</div>
+              <div className="title-status">
+                {billItem.status === "confirmed"
+                  ? "Đã xác nhận"
+                  : billItem.status === "unconfirmed"
+                  ? "Chưa xác nhận"
+                  : billItem.status === "deliveried"
+                  ? "Đã giao hàng"
+                  : billItem.status === "delivery"
+                  ? "Đang giao hàng"
+                  : "Đã hủy"}
+              </div>
+            </div>
           </div>
           <Row className="card-wrap">
             <Col xs={24} sm={24} md={8} lg={8} xl={8}>
@@ -130,6 +143,18 @@ function DetailBill() {
               </div>
             </Col>
           </Row>
+          <Row className="card-thank">
+            <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+              <span>Cảm ơn bạn đã mua sắm !</span>
+            </Col>
+            <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+              {billItem.status === "unconfirmed" ? (
+                <button>Hủy đơn hàng</button>
+              ) : billItem.status === "deliveried" ? (
+                <button>Mua lại</button>
+              ) : ""}
+            </Col>
+          </Row>
           <Row className="card-title__wrap">
             <Col span={8}>
               <div className="title-column">Sản phẩm</div>
@@ -154,7 +179,7 @@ function DetailBill() {
           </div>
           <div className="detail-price">
             <Row justify="end">
-              <Col xs={24} sm={10} md={9}  lg={9} xl={8}>
+              <Col xs={24} sm={10} md={9} lg={9} xl={8}>
                 <Row>
                   <Col span={12}>
                     <div className="column-title">Tạm tính</div>

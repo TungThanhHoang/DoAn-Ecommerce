@@ -6,8 +6,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Notice from "../layouts/Notice";
 import Header from "../layouts/Header/Header";
 import Footer from "../../pages/Footer";
+import ScrollOnTop from "../layouts/ScrollOnTop";
 function ProtectRouter({ component: Component, ...rest }) {
-  // const location = useLocation();
   const [navbar] = useState(false);
   const {
     authState: { isLoading, isAuth },
@@ -35,9 +35,9 @@ function ProtectRouter({ component: Component, ...rest }) {
           <>
             <Notice />
             <Header />
-            {!navbar ? <Navbar /> : null}
+            <Navbar />
+            {/* {!navbar ? <Navbar /> : null} */}
             {/* {!navbar ? <BreadCrumbEcommerce /> : null} */}
-
             <Component {...rest} {...props} />
             <Footer />
           </>

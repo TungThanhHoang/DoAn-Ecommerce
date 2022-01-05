@@ -1,6 +1,6 @@
 import "./Navbar.css";
-import React, { useState, useContext, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useContext, useEffect, useCallback } from "react";
+import { Link, useHistory, NavLink } from "react-router-dom";
 import { ShoppingCartOutlined, MenuOutlined } from "@ant-design/icons";
 import {
   LogOut,
@@ -11,15 +11,16 @@ import {
   X,
   Lock,
   Layout,
-  ShoppingCart
+  ShoppingCart,
 } from "react-feather";
 import { Badge, Dropdown, Menu } from "antd";
 import CartItem from "../CartItem";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ProductContext } from "../../../contexts/ProductContext";
 import { CartContext } from "../../../contexts/CartContext";
+import CardSearch from "../CardSearch/CardSearch";
+import CardSearchMobile from "../CardSearch/CardSearchMobile";
 import { LOCAL_TOKEN_NAV } from "../../../contexts/constants";
-
 export default function Navbar() {
   const history = useHistory();
   const {
@@ -28,44 +29,39 @@ export default function Navbar() {
     },
     logoutUser,
   } = useContext(AuthContext);
+
   const { cartItem, deleteItemCart, loadItemCart } = useContext(CartContext);
   const { formatPrice } = useContext(ProductContext);
   const [SearchState, setSearchState] = useState(false);
   const [MenuState, setMenuState] = useState(false);
-  const [NavAccount, setNavAccount] = useState(false);
-
-  // localStorage.setItem(LOCAL_TOKEN_NAV, JSON.stringify(NavAccount));
-
-  // const getStateNav = localStorage.getItem(
-  //   LOCAL_TOKEN_NAV,
-  //   JSON.parse(NavAccount)
-  // );
-
+  const [navbarMobile, setNavbarMobile] = useState("home");
   useEffect(() => {
     loadItemCart();
+    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    setNavbarMobile(localStorage.getItem(LOCAL_TOKEN_NAV));
+  });
 
   const handleLogout = () => {
     logoutUser();
     window.location.reload();
   };
-  const handleNavigationAccount = () => {
-    setNavAccount(!NavAccount);
-    const local = {
-      pathname: "/user/info",
-    };
-    history.push(local);
+  const handleNavigation = (a) => {
+    localStorage.setItem(LOCAL_TOKEN_NAV, a);
+    setNavbarMobile(navbarMobile);
+    if (a === "home") {
+      const local = {
+        pathname: "/",
+      };
+      history.push(local);
+    } else {
+      history.push({ pathname: "/user/info" });
+    }
   };
-
-  const handleNavigationHome = () => {
-    setNavAccount(!NavAccount);
-    // localStorage.setItem(LOCAL_TOKEN_NAV, JSON.stringify(NavAccount));
-    const local = {
-      pathname: "/",
-    };
-    history.push(local);
-  };
-  let renderCartItems = (
+  console.log("hello");
+  const renderCartItems = (
     <div className="cart">
       <h4 className="title">Sản phẩm vừa thêm</h4>
       <div className="padding-1">
@@ -97,7 +93,7 @@ export default function Navbar() {
       </Link>
     </div>
   );
-  let menu = (
+  const menu = (
     <Menu>
       <Menu.Item key="1">
         <span>
@@ -135,16 +131,7 @@ export default function Navbar() {
                 {ward}, {district}
               </div>
             </div>
-            <div className="navbar-search">
-              <input
-                type="text"
-                placeholder="Tìm kiếm"
-                className="field-input"
-              />
-              <span className="btn-search">
-                <Search size={24} className="nav-search-icon" />
-              </span>
-            </div>
+            <CardSearch />
             <div className="navbar-user">
               <div className="nav-name__user">Xin chào, {firstname}</div>
               <Dropdown overlay={menu} placement="bottomRight" arrow>
@@ -172,7 +159,7 @@ export default function Navbar() {
           <div className="menubar-top">
             <div className="logo-brand">
               <Link to="/">
-                <img src="../../../logoEcommerce.png" alt="" />
+                <img src="../../../logo.png" alt="" />
               </Link>
             </div>
             <div onClick={() => setMenuState(!MenuState)}>
@@ -199,7 +186,7 @@ export default function Navbar() {
             <div>Xin chào</div>
             <div style={{ fontWeight: "500" }}>, Hoàng Mai</div>
           </div>
-          <button>
+          <button onClick={() => handleLogout()}>
             <LogOut style={{ margin: "0 1rem" }} />
             <div className="title-exit">Thoát</div>
           </button>
@@ -207,26 +194,13 @@ export default function Navbar() {
       ) : (
         ""
       )}
-      {/* Navigation Menu bottom */}
-
-      {SearchState ? (
-        <div className="navbar-search__mobile">
-          <div className="navbar-search">
-            <input type="text" placeholder="Tìm kiếm" className="field-input" />
-            <span className="btn-search">
-              <Search size={24} className="nav-search-icon" />
-            </span>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
+      {SearchState ? <CardSearchMobile setSearchState={setSearchState} /> : ""}
       {/* Menu bottom home */}
-
       {/* menu bottom account */}
-      {NavAccount ? (
-        <div className="navbar-mobile navbar-mobile__account">
-          <div onClick={() => handleNavigationHome()} className="navbar-item">
+
+      {navbarMobile === "account" ? (
+        <div className="navbar-mobile__account">
+          <div onClick={() => handleNavigation("home")} className="navbar-item">
             <Home size={20} className="color-menu" />
             <div className="color-menu">Home</div>
           </div>
@@ -261,7 +235,7 @@ export default function Navbar() {
             <div className="color-menu">Giỏ hàng</div>
           </Link>
           <div
-            onClick={() => handleNavigationAccount()}
+            onClick={() => handleNavigation("account")}
             className="navbar-item"
           >
             <User size={20} className="color-menu" />

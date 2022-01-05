@@ -17,6 +17,19 @@
 
 .detail-bill .info-order .date-order {
     color: var(--color-gray);
+    border-right: 1px solid var(--color-border);
+    padding-right: .5rem;
+}
+
+.detail-bill .status-order {
+    display: flex;
+    align-items: center;
+}
+
+.detail-bill .status-order .title-status {
+    padding-left: .5rem;
+    text-transform: uppercase;
+    color: var(--color-price);
 }
 
 .detail-bill .card-wrap {
@@ -119,6 +132,33 @@
     font-size: 17px;
     font-weight: 500;
     color: var(--color-price);
+}
+
+.card-thank {
+    padding: 1rem .2rem;
+    /* border: 1px solid var(--color-border); */
+    /* border-radius: 10px; */
+}
+
+.card-thank span {
+    font-size: 15px;
+    color: var(--color-gray);
+}
+
+.card-thank button {
+    background-color: var(--color-price);
+    margin-right: .5rem;
+    border: none;
+    padding: .5rem 2rem;
+    border-radius: .4rem;
+    color: #fff;
+    font-weight: 500;
+    float: right;
+    cursor: pointer;
+}
+
+.card-thank button:hover {
+    opacity: .8;
 }
 
 @media screen and (max-width: 768px) {

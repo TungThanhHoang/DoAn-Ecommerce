@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch ,useHistory} from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Auth from "./pages/Auth";
@@ -11,10 +11,13 @@ import OrderSuccess from "./pages/OrderSuccess";
 import InfoUser from "./pages/InfoUser";
 import Product from "./pages/Product";
 import Category from "./pages/Category";
+import ScrollOnTop from "./components/layouts/ScrollOnTop";
 function App() {
+  const history = useHistory();
   return (
     <div className="App">
-      <Router>
+      <Router history={history}>
+        <ScrollOnTop />
           <Switch>
             <Route
               exact
@@ -29,7 +32,7 @@ function App() {
               )}
             />
             <ProtectRouter exact path="/" component={Home} />
-            <ProtectRouter exact path="/product/:id" component={Product} />
+            <ProtectRouter exact  path="/product/:id" component={Product} />
             <ProtectRouter
               exact
               path="/categories/:slug/:id"

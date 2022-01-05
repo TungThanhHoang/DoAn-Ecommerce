@@ -7,6 +7,7 @@ export default function BillItem({
 }) {
   const date = new Date(createdAt);
   const dateOrder = date.toLocaleString("en-Us");
+  console.log(status);
   return (
     <Link to={{ pathname: `/user/detail-bill/${id}` }}>
       <div className="bill-item">
@@ -26,7 +27,12 @@ export default function BillItem({
         </div>
 
         {cart?.map((item) => (
-          <CartItem formatPrice={formatPrice} key={item.id} cart={item} />
+          <CartItem
+            formatPrice={formatPrice}
+            key={item.id}
+            cart={item}
+            status={status}
+          />
         ))}
         <div className="bill-price">
           <div className="date-order">Đã đặt hàng vào lúc: {dateOrder}</div>

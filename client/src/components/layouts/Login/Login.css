@@ -1,13 +1,12 @@
 .form-login {
     padding: 1.2rem 2rem;
-    margin-top: 1rem;
     border-radius: .5rem;
     border: 1px solid rgba(0, 0, 0, .2);
     background-color: white;
 }
 
 .form-login h1 {
-    color: #FC7300;
+    color: var(--color-background);
     padding-bottom: .4rem;
     font-weight: 600;
 }
@@ -44,7 +43,7 @@
 
 .form-input:focus {
     outline: none;
-    border-color: #FC7300;
+    border-color: var(--color-background);
 }
 
 .form-input:not(:placeholder-shown)+.form-label,
@@ -53,7 +52,7 @@
     padding: 0 10px;
     display: inline-block;
     background-color: white;
-    color: #FC7300;
+    color: var(--color-background);
 }
 
 .form-login .btn-login {
@@ -61,10 +60,11 @@
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #FC7300;
+    background-color: var(--color-background);
     color: #FFF;
     cursor: pointer;
-    height: 50px;
+    height: 45px;
+    font-weight: 500;
 }
 
 .navigation-register {
@@ -75,7 +75,7 @@
 }
 
 .navigation-register span a {
-    color: #FC7300;
+    color: var(--color-background);
     cursor: pointer;
     ;
 }

@@ -10,9 +10,6 @@ import { AuthContext } from "../contexts/AuthContext";
 import Notify from "../components/layouts/InfoUser/Notify";
 import DetailBill from "../components/layouts/InfoUser/DetailBill/DetailBill";
 function InfoUser({ userRouter }) {
-  const location = useLocation();
-  const { pathName } = location;
-  console.log(pathName);
   const {
     authState: {
       user: { firstname, lastname },

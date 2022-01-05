@@ -7,6 +7,7 @@ import ProductContextProvider from "./contexts/ProductContext";
 import CartContextProvider from "./contexts/CartContext";
 import CheckOutContextProvider from "./contexts/CheckOutContext";
 import CategoryContextProvider from "./contexts/CategoryContext";
+import SearchContextProvider from "./contexts/SearchContext";
 
 ReactDOM.render(
   <AuthContextProvider>
@@ -14,9 +15,11 @@ ReactDOM.render(
       <ProductContextProvider>
         <CartContextProvider>
           <CheckOutContextProvider>
-            {/* <React.StrictMode> */}
-            <App />
-            {/* </React.StrictMode> */}
+            <SearchContextProvider>
+              {/* <React.StrictMode> */}
+              <App />
+              {/* </React.StrictMode> */}
+            </SearchContextProvider>
           </CheckOutContextProvider>
         </CartContextProvider>
       </ProductContextProvider>

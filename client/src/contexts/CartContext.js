@@ -6,13 +6,14 @@ export const CartContext = createContext();
 const CartContextProvider = ({ children }) => {
   const [cartItem, setCartItem] = useState([]);
   const [isloading, setIsLoading] = useState(false);
-
   const getToken = localStorage.getItem(LOCAL_TOKEN_USER);
-  const loadItemCart = async () => {
+
+  const loadItemCart = async  () => {
+    const token = await localStorage.getItem(LOCAL_TOKEN_USER);
     try {
       const response = await axios.get(`${apiUrl}/items?_sort=createdAt:DESC`, {
         headers: {
-          Authorization: `Bearer ${getToken}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       if (response.data) {
@@ -24,7 +25,6 @@ const CartContextProvider = ({ children }) => {
       const item = localStorage.getItem(LOCAL_TOKEN_CART_ITEM);
       if (item) {
         const StoreItem = JSON.parse(item);
-        console.log("item", StoreItem);
         setCartItem(StoreItem);
       }
 
@@ -33,15 +33,6 @@ const CartContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  // const getItemCart = () => {
-  //   const item = localStorage.getItem(LOCAL_TOKEN_CART_ITEM);
-  //   if (item) {
-  //     const StoreItem = JSON.parse(item);
-  //     console.log("item", JSON.parse(item));
-  //     setCartItem(StoreItem);
-  //   }
-  //   return item;
-  // };
 
   const deleteItemCart = async (itemId) => {
     try {
@@ -63,7 +54,7 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  const addProductToCart = async (productId , quanlityId) => {
+  const addProductToCart = async (productId, quanlityId) => {
     const item = cartItem.find((idItem) => idItem.products.id === productId);
     try {
       setIsLoading(true);
@@ -123,7 +114,7 @@ const CartContextProvider = ({ children }) => {
               headers: {
                 Authorization: `Bearer ${getToken}`,
               },
-            },
+            }
           )
           .then((res) => {
             if (res.data) {
@@ -153,7 +144,7 @@ const CartContextProvider = ({ children }) => {
               headers: {
                 Authorization: `Bearer ${getToken}`,
               },
-            },
+            }
           )
           .then((res) => {
             if (res.data) {

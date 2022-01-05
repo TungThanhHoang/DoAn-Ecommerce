@@ -84,6 +84,7 @@
 .bill-item .total-price {
     font-size: 16px;
     color: var(--color-gray);
+    text-align: right;
 }
 
 .bill-item .total-price span {

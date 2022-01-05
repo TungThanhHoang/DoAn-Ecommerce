@@ -23,7 +23,7 @@ const AuthContextProvider = ({ children }) => {
     const tokenUser = localStorage[LOCAL_TOKEN_USER];
     if (tokenUser) {
       // setToken(localStorage[LOCAL_TOKEN_USER]);
-      console.log("token", tokenUser);
+      // console.log("token", tokenUser);
     }
     try {
       await axios
@@ -91,7 +91,7 @@ const AuthContextProvider = ({ children }) => {
         }
       );
       if (response.data) {
-        console.log(response.data);
+        // console.log(response.data);
         await loadUser();
       }
       return response.data;

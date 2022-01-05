@@ -5,16 +5,6 @@ import { CategoryContext } from "../../../contexts/CategoryContext";
 import { apiUrl } from "../../../contexts/constants";
 import "./Category.css";
 export default function Category() {
-  const category = [
-    { img: "../../../softdrinks.png", title: "Đồ Uống", path: "/drink" },
-    { img: "../../../vegetable.png", title: "Rau Củ", path: "/vegatable" },
-    { img: "../../../milk.png", title: "Sữa", path: "/milk" },
-    { img: "../../../beef.png", title: "Thịt", path: "/beef" },
-    { img: "../../../spice.png", title: "Gia Vị", path: "/spice" },
-    { img: "../../../fruits1.png", title: "Trái Cây", path: "/fruit" },
-    { img: "../../../seafood.png", title: "Hải Sản", path: "/seafood" },
-    { img: "../../../pet-food.png", title: "Đồ Khô", path: "/dry-food" },
-  ];
   const {
     categoryState: { categories },
     loadCategory,
@@ -22,7 +12,6 @@ export default function Category() {
   useEffect(() => {
     loadCategory();
   }, []);
-  console.log(categories.title);
   return (
     <div className="category">
       <Row justify="center" align="middle">
