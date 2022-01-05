@@ -38,7 +38,6 @@ module.exports = {
       { id },
       { path: "cart", populate: { path: "products" } }
     );
-    console.log(entities);
     return sanitizeEntity(entities, { model: strapi.models.bills });
   },
 };
