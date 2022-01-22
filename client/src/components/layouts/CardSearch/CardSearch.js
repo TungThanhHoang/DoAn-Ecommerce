@@ -4,20 +4,19 @@ import { Row, Col } from "antd";
 import { Search } from "react-feather";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../../../contexts/ProductContext";
-import { apiUrl } from "../../../contexts/constants";
 import { SearchContext } from "../../../contexts/SearchContext";
 import Lottie from "react-lottie";
 import empty from "../../../assets/empty1.json";
 import useOnClickOutside from "../../../Hook/UseOnClickOutSide";
 function CardSearch() {
   const ref = useRef();
+  const [searchModal, setSearchModal] = useState(false);
   const {
     productState: { newProducts },
   } = useContext(ProductContext);
-
-  const [searchModal, setSearchModal] = useState(false);
   const { searchProduct, searchItem, stringSearch, setStringSearch } =
     useContext(SearchContext);
+  const { formatPrice } = useContext(ProductContext)  
   useEffect(() => {
     if (stringSearch !== null) {
       searchProduct();
@@ -34,7 +33,7 @@ function CardSearch() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-
+// dfdfdf
   const SearchProductItem = ({
     item: {
       id,
@@ -51,16 +50,10 @@ function CardSearch() {
         onClick={() => setSearchModal(!searchModal)}
         className="search-new__product"
       >
-        <img
-          src={`${apiUrl}${url}`}
-          alt=""
-          className="bg-img"
-          width={50}
-          height={50}
-        />
+        <img src={url} alt="" className="bg-img" width={50} height={50} />
         <div className="product-item">
           <div className="title-product__search">{title}</div>
-          <span className="price-product">{Price}</span>
+          <span className="price-product">{formatPrice.format(Price)}</span>
         </div>
       </Link>
     </Col>
@@ -80,10 +73,7 @@ function CardSearch() {
         </span>
         {searchModal ? (
           <div className="content-search__wrap" ref={ref}>
-            <span className="btn-search">
-              <Search size={24} className="nav-search-icon" />
-            </span>
-            {searchItem === "" ? (
+            {stringSearch === "" ? (
               <div>
                 <h4 className="title-search">Sản phẩm mới</h4>
                 <Row className="container__wrap">

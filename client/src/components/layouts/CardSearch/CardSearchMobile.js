@@ -1,17 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Search } from "react-feather";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Row, Col } from "antd";
 import { ProductContext } from "../../../contexts/ProductContext";
-import { apiUrl } from "../../../contexts/constants";
 import { SearchContext } from "../../../contexts/SearchContext";
 import Lottie from "react-lottie";
 import empty from "../../../assets/empty1.json";
 function CardSearchMobile({ setSearchState }) {
   const {
     productState: { newProducts },
+    formatPrice
   } = useContext(ProductContext);
-  // const [searchString, setSearchItem] = useState("");
   const { searchProduct, searchItem, stringSearch, setStringSearch } =
     useContext(SearchContext);
   useEffect(() => {
@@ -48,7 +47,7 @@ function CardSearchMobile({ setSearchState }) {
         className="search-new__product"
       >
         <img
-          src={`${apiUrl}${url}`}
+          src={url}
           alt=""
           className="bg-img"
           width={50}
@@ -56,7 +55,7 @@ function CardSearchMobile({ setSearchState }) {
         />
         <div className="product-item product-item__mobile">
           <div className="title-product__search">{title}</div>
-          <span className="price-product">{Price}</span>
+          <span className="price-product">{formatPrice.format(Price)}</span>
         </div>
       </Link>
     </Col>
